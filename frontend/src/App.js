@@ -948,7 +948,7 @@ function App() {
               project={selectedProject} 
               onClose={() => setSelectedProject(null)} 
             />
-          </div>
+          </SuperWebsiteEditor>
         )}
         
         <Toaster />
