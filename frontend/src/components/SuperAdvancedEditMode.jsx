@@ -388,6 +388,7 @@ const SuperAdvancedEditMode = ({
         {/* Enhanced Tabs */}
         <div className="p-4 border-b border-gray-700">
           <div className="grid grid-cols-2 gap-2">
+            <TabButton id="universal-editor" label="Universal Editor" icon={Wand2} active={activeTab === 'universal-editor'} onClick={setActiveTab} />
             <TabButton id="live-edit" label="Super Edit" icon={Zap} active={activeTab === 'live-edit'} onClick={setActiveTab} badge={true} />
             <TabButton id="money-flow" label="Money Flow" icon={BarChart3} active={activeTab === 'money-flow'} onClick={setActiveTab} />
             <TabButton id="ai-assistant" label="AI Assistant" icon={Sparkles} active={activeTab === 'ai-assistant'} onClick={setActiveTab} />
