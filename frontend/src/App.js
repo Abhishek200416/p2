@@ -91,6 +91,54 @@ function App() {
     loadContent();
   }, []);
 
+  // Load GitHub projects
+  useEffect(() => {
+    const loadGithubProjects = async () => {
+      if (!content.projects?.githubAutoPull) return;
+      
+      setIsLoadingGithub(true);
+      try {
+        const repos = await fetchGitHubRepos('updated');
+        const mergedProjects = mergeWithFeatured(repos, content.projects.featured);
+        
+        setGithubProjects(mergedProjects);
+        
+        // Update content with merged projects
+        setContent(prev => ({
+          ...prev,
+          projects: {
+            ...prev.projects,
+            featured: mergedProjects
+          }
+        }));
+        
+      } catch (error) {
+        console.warn('Failed to load GitHub projects:', error);
+      } finally {
+        setIsLoadingGithub(false);
+      }
+    };
+
+    if (content.projects) {
+      loadGithubProjects();
+    }
+  }, [content.projects?.githubAutoPull]);
+
+  // Register service worker for PWA
+  useEffect(() => {
+    if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((registration) => {
+            console.log('SW registered: ', registration);
+          })
+          .catch((registrationError) => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+  }, []);
+
   const saveContent = async () => {
     try {
       // Save to localStorage first
