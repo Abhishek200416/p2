@@ -10,9 +10,15 @@ import time
 from datetime import datetime
 from typing import Dict, Any
 
-# Configuration
-BASE_URL = "http://localhost:8001/api"
-PASSPHRASE = "shipfast"
+# Configuration - Use environment URL
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv('/app/frontend/.env')
+BACKEND_URL = os.environ.get('REACT_APP_BACKEND_URL', 'http://localhost:8001')
+BASE_URL = f"{BACKEND_URL}/api"
+PASSPHRASE = os.environ.get('REACT_APP_OWNER_PASS', 'shipfast')
 
 class PortfolioAPITester:
     def __init__(self):
