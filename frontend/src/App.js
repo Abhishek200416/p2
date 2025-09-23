@@ -33,151 +33,53 @@ import {
 } from 'lucide-react';
 
 function App() {
-  // Complete site content
-  const defaultContent = {
-    "hero": {
-      "name": "Abhishek Kolluri",
-      "tagline": "Founder @ PromptForge • Full-Stack + AI",
-      "punch": "I ship working apps fast — 1 day typical, hard in 3–4.",
-      "ctaPrimary": "Hire Me",
-      "ctaSecondary": "View Projects",
-      "ctaDownload": "Download Resume",
-      "subscribeCopy": "Rare updates, high signal only.",
-      "video": { "src": "assets/infcastle-loop.mp4", "poster": "assets/infcastle-poster.jpg" },
-      "social": {
-        "github": "https://github.com/Abhishek200416",
-        "linkedin": "https://www.linkedin.com/in/abhishek-k-0b34ba329"
-      }
-    },
-    "about": {
-      "why": "I solve practical problems by shipping software that actually works.",
-      "how": "Quick scoping, daily milestones, tight feedback loops, clean handoff.",
-      "speed": "25+ projects shipped quickly; MVPs in a day, complex in 3–4."
-    },
-    "freelance": {
-      "about": "I'm a professional Full-Stack Developer and Freelancer from India. I build cost-effective, scalable, production-ready solutions—web, mobile, and automations—at competitive Indian market rates with long-term value and trust.",
-      "services": [
-        "Custom Software (Desktop/Web/SaaS)",
-        "Mobile (Android, Flutter, Capacitor)",
-        "Full-Stack Web (React, Node, Express, Tailwind, Sequelize, SQL, Firebase)",
-        "Workflow Automations (bots, scripts, scraping, reporting)",
-        "AI/ML Integrations (basic NLP, CNN, predictive analytics)",
-        "Deployment (GitHub, Railway, Vercel, pipelines)"
-      ],
-      "pricing": {
-        "hourlyINR": 900,
-        "hourlyUSD": 11,
-        "projects": [
-          {"name": "Automations/Bots/Scripts", "inr": 3000, "usd": 35},
-          {"name": "Landing/Small Website", "inr": 10000, "usd": 120},
-          {"name": "Full-Stack Web App (MVP)", "inr": 25000, "usd": 300},
-          {"name": "Mobile App (basic)", "inr": 20000, "usd": 240},
-          {"name": "AI Tools/Dashboards", "inr": 30000, "usd": 360}
-        ],
-        "bundles": [{"name": "Website + Admin + Automation", "startINR": 15000}],
-        "maintenanceMonthlyINR": 2000
-      },
-      "mailto": "mailto:abhishekollurii@gmail.com?subject=Project%20for%20Abhi&body=Goal%3A%0AMust-have%3A%0ADeadline%3A%0ABudget%20range%3A"
-    },
-    "projects": {
-      "githubUser": "Abhishek200416",
-      "githubAutoPull": false,
-      "featured": [
-        {
-          "slug": "fake-news-cc-fraud-movies-ml",
-          "title": "ML Notebooks: Fake News • Credit Card Fraud • Movies",
-          "story": "Exploratory ML notebooks with classification and EDA for real-world datasets. Implemented multiple algorithms for fraud detection with 94% accuracy.",
-          "stack": ["Python", "Jupyter", "Pandas", "Scikit-learn"],
-          "links": {"repo": "https://github.com/Abhishek200416/Fake-News-Detection", "demo": ""},
-          "updated": "2024-12-15"
-        },
-        {
-          "slug": "civic-resilience-sdgs",
-          "title": "Civic Resilience (Water/Waste/Health)",
-          "story": "Community risk reporting platform with role management, email alerts, and Gemini AI assistance. Helping communities track and resolve civic issues effectively.",
-          "stack": ["Node.js", "React", "Sequelize", "Gemini API"],
-          "links": {"repo": "https://github.com/Abhishek200416/civic-resilience-based-on-sdgs-working-prototype", "demo": ""},
-          "updated": "2024-12-10"
-        },
-        {
-          "slug": "tripplanner-ai",
-          "title": "TripPlanner-AI (PWA)",
-          "story": "Intelligent itinerary generator with budget optimization and offline capabilities. Uses AI to create personalized travel plans with cost breakdowns.",
-          "stack": ["React", "PWA", "Google Maps", "Gemini API"],
-          "links": {"repo": "https://github.com/Abhishek200416/Tripplanner-AI", "demo": ""},
-          "updated": "2024-12-08"
-        },
-        {
-          "slug": "skill-seed",
-          "title": "Skill-seed Learning Platform",
-          "story": "Flutter-Firebase learning platform with practical skill development paths. Gamified learning experience with progress tracking and achievements.",
-          "stack": ["Flutter", "Firebase", "Dart"],
-          "links": {"repo": "https://github.com/Abhishek200416/Skill-seed", "demo": ""},
-          "updated": "2024-12-05"
-        },
-        {
-          "slug": "ai-platform-workspace",
-          "title": "AI Platform Production-Grade Workspace",
-          "story": "Comprehensive AI development environment with model management and deployment tools. Enterprise-ready platform for AI teams.",
-          "stack": ["Python", "FastAPI", "Docker", "Redis"],
-          "links": {"repo": "https://github.com/Abhishek200416/AI-Platform-Production-Grade-Workspace", "demo": ""},
-          "updated": "2024-11-28"
-        },
-        {
-          "slug": "invoice-dashboard",
-          "title": "Invoice Dashboard & Management",
-          "story": "Complete invoicing solution with analytics and automated workflow management. Streamlined billing process with payment tracking.",
-          "stack": ["React", "Node.js", "Express", "MongoDB"],
-          "links": {"repo": "https://github.com/Abhishek200416/invoice_dashboard", "demo": ""},
-          "updated": "2024-11-25"
-        }
-      ]
-    },
-    "skills": ["JavaScript/TypeScript","Node.js","Express","React","HTML/CSS","Tailwind CSS","Sequelize/SQL","Python","Streamlit","Docker","Firebase","AWS","Git/GitHub","UiPath RPA","Google Maps","Gemini AI","AI Agents"],
-    "experience": [
-      {"org": "UiPath RPA & ML Automation", "role": "RPA Developer Intern", "impact": "Automated repetitive operations, improved throughput and reliability by 40%"},
-      {"org": "L4G — Google GenAI", "role": "AI Developer", "impact": "Integrated LLMs with safety guardrails and prompt engineering best practices"},
-      {"org": "AWS Cloud Deployment", "role": "Cloud Engineer", "impact": "Implemented 8-step deployment pipeline with enhanced security and scalability"},
-      {"org": "GEEPL — Visuals/Screens", "role": "UI Developer", "impact": "Developed cohesive visual systems and UI polish since 2023"}
-    ],
-    "hackathons": [
-      {"name": "AI Innovation Challenge", "duration": "24h", "shipped": "Real-time recommendation engine", "lesson": "Scope brutally; ship the core functionality first"},
-      {"name": "Smart Cities Hackathon", "duration": "48h", "shipped": "IoT traffic management system", "lesson": "Guardrails and error handling over flashy features"},
-      {"name": "FinTech Innovation Sprint", "duration": "36h", "shipped": "Fraud detection ML model", "lesson": "Demo from a stable, tested branch always"},
-      {"name": "Healthcare AI Challenge", "duration": "24h", "shipped": "Medical data analysis tool", "lesson": "Better documentation equals better judging scores"}
-    ],
-    "certs": [
-      {"name": "Prompt Engineering Mastery", "issuer": "DeepLearning.AI", "count": 3},
-      {"name": "Advanced Python Programming", "issuer": "Python Institute"},
-      {"name": "Cloud Computing Fundamentals", "issuer": "AWS"},
-      {"name": "Full-Stack Web Development", "issuer": "freeCodeCamp"},
-      {"name": "UiPath RPA Developer", "issuer": "UiPath"}
-    ],
-    "education": {"school": "VSR & VIT College", "degree": "B.Tech in AI & Machine Learning", "years": "2022–2026"},
-    "contact": {
-      "email": "abhishekollurii@gmail.com", 
-      "phone": "+919000327849", 
-      "city": "Guntur, Andhra Pradesh, India",
-      "github": "https://github.com/Abhishek200416",
-      "linkedin": "https://www.linkedin.com/in/abhishek-k-0b34ba329"
-    }
-  };
-
-  const [content, setContent] = useState(defaultContent);
+  const [content, setContent] = useState(enhancedContent);
   const [isEditMode, setIsEditMode] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isReduced, setIsReduced] = useState(false);
   const { toast } = useToast();
 
+  // Check for reduced motion preference
   useEffect(() => {
-    // Load any saved content from localStorage
-    const savedContent = localStorage.getItem('portfolio-content');
-    if (savedContent) {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setIsReduced(mediaQuery.matches);
+    
+    const handleChange = (e) => setIsReduced(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  useEffect(() => {
+    // Load content from backend or localStorage
+    const loadContent = async () => {
       try {
-        setContent(JSON.parse(savedContent));
-      } catch (e) {
-        console.warn('Failed to parse saved content, using default');
+        // Try to load from backend first
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/content`);
+        if (response.ok) {
+          const backendContent = await response.json();
+          if (backendContent && Object.keys(backendContent).length > 1) {
+            setContent(backendContent);
+            return;
+          }
+        }
+      } catch (error) {
+        console.log('Backend content not available, using local content');
       }
-    }
+
+      // Fallback to localStorage
+      const savedContent = localStorage.getItem('portfolio-content');
+      if (savedContent) {
+        try {
+          const localContent = JSON.parse(savedContent);
+          setContent({ ...enhancedContent, ...localContent });
+        } catch (e) {
+          console.warn('Failed to parse saved content, using enhanced default');
+        }
+      }
+    };
+
+    loadContent();
   }, []);
 
   const saveContent = async () => {
