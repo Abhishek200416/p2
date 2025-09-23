@@ -10,6 +10,8 @@ import AdvancedInPlaceEditor from './components/AdvancedInPlaceEditor';
 import VideoIntro from './components/VideoIntro';
 import AdvancedParticleSystem from './components/AdvancedParticleSystem';
 import RichEditableWrapper, { withRichEditable } from './components/RichEditableWrapper';
+// Alias for backward compatibility
+const EditableWrapper = RichEditableWrapper;
 import { Toaster } from './components/ui/toaster';
 import { useToast } from './hooks/use-toast';
 import enhancedContent from './data/enhanced-content.json';
