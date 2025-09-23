@@ -538,6 +538,7 @@ const AdvancedEditMode = ({
               ))}
             </div>
             </div>
+          </div>
         )}
 
         {activeTab === 'media' && (
