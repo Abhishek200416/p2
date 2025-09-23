@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import EnhancedHero from './components/EnhancedHero';
-import { SkillsSection, ExperienceSection, HackathonsSection, CertificationsSection, ContactSection, Footer } from './components/EnhancedSections';
-import FeedbackSection from './components/FeedbackSection';
+import { SkillsSection, ExperienceSection, HackathonsSection, CertificationsSection, Footer } from './components/EnhancedSections';
+import EnhancedFeedback from './components/EnhancedFeedback';
+import EnhancedContact from './components/EnhancedContact';
+import AdvancedEditMode from './components/AdvancedEditMode';
+import VideoIntro from './components/VideoIntro';
 import AdvancedParticleSystem from './components/AdvancedParticleSystem';
 import { Toaster } from './components/ui/toaster';
 import { useToast } from './hooks/use-toast';
