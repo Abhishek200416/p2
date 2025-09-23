@@ -736,9 +736,9 @@ function App() {
 
         {/* Main Content - Only show when video is done */}
         {(hasSeenIntro || !content.hero?.hasIntroVideo) && (
-          <>
-            {/* Advanced Edit Mode Panel */}
-            <AdvancedEditMode
+          <div className={`${isEditMode ? 'edit-mode-active' : ''}`}>
+            {/* Super Advanced Edit Mode Panel */}
+            <SuperAdvancedEditMode
               content={content}
               setContent={setContent}
               isEditMode={isEditMode}
@@ -748,25 +748,26 @@ function App() {
             />
 
             {/* Edit Mode Toggle Button */}
-            <div className="fixed top-4 right-4 z-40">
+            <div className="fixed top-4 right-4 z-30">
               <button 
                 onClick={toggleEditMode}
-                className="px-4 py-2 text-sm font-medium rounded-full transition-all duration-250 ease-smooth backdrop-blur-xl border"
+                className="px-4 py-2 text-sm font-medium rounded-full transition-all duration-250 ease-smooth backdrop-blur-xl border shadow-lg hover:shadow-xl"
                 style={{ 
-                  background: isEditMode ? 'var(--ok)' : 'var(--glass-bg)',
+                  background: isEditMode ? 'linear-gradient(135deg, #10b981, #059669)' : 'var(--glass-bg)',
                   color: isEditMode ? 'white' : 'var(--ink)',
-                  border: `1px solid ${isEditMode ? 'var(--ok)' : 'var(--glass-border)'}`,
+                  border: `1px solid ${isEditMode ? '#10b981' : 'var(--glass-border)'}`,
+                  transform: isEditMode ? 'scale(1.05)' : 'scale(1)',
                 }}
               >
                 {isEditMode ? (
                   <>
                     <Save className="inline w-3 h-3 mr-2" />
-                    Advanced Edit ON
+                    Super Edit ON
                   </>
                 ) : (
                   <>
                     <Settings className="inline w-3 h-3 mr-2" />
-                    Advanced Edit
+                    Super Edit
                   </>
                 )}
               </button>
@@ -782,29 +783,128 @@ function App() {
             />
             
             <div className="relative z-10">
-              <EnhancedHero content={content.hero} />
+              <EditableWrapper
+                isEditMode={isEditMode}
+                elementPath="hero"
+                elementType="hero-section"
+                content={content}
+                setContent={setContent}
+              >
+                <EnhancedHero content={content.hero} isEditMode={isEditMode} />
+              </EditableWrapper>
+              
               <AboutSection />
-              <FreelanceSection />
-              <ProjectsSection />
-              <SkillsSection content={content} />
-              <ExperienceSection content={content} />
-              <HackathonsSection content={content} />
-              <CertificationsSection content={content} />
-              <TestimonialSection 
-                content={content} 
-                isEditMode={isEditMode} 
-                setContent={setContent} 
-              />
-              <EnhancedFeedback content={content} />
-              <EnhancedContact content={content} />
-              <Footer content={content} isEditMode={isEditMode} saveContent={saveContent} exportJSON={exportJSON} />
+              
+              <EditableWrapper
+                isEditMode={isEditMode}
+                elementPath="freelance"
+                elementType="section"
+                content={content}
+                setContent={setContent}
+              >
+                <FreelanceSection />
+              </EditableWrapper>
+              
+              <EditableWrapper
+                isEditMode={isEditMode}
+                elementPath="projects"
+                elementType="section"
+                content={content}
+                setContent={setContent}
+              >
+                <ProjectsSection />
+              </EditableWrapper>
+              
+              <EditableWrapper
+                isEditMode={isEditMode}
+                elementPath="skills"
+                elementType="section"
+                content={content}
+                setContent={setContent}
+              >
+                <SkillsSection content={content} isEditMode={isEditMode} />
+              </EditableWrapper>
+              
+              <EditableWrapper
+                isEditMode={isEditMode}
+                elementPath="experience"
+                elementType="section"
+                content={content}
+                setContent={setContent}
+              >
+                <ExperienceSection content={content} isEditMode={isEditMode} />
+              </EditableWrapper>
+              
+              <EditableWrapper
+                isEditMode={isEditMode}
+                elementPath="hackathons"
+                elementType="section"
+                content={content}
+                setContent={setContent}
+              >
+                <HackathonsSection content={content} isEditMode={isEditMode} />
+              </EditableWrapper>
+              
+              <EditableWrapper
+                isEditMode={isEditMode}
+                elementPath="certs"
+                elementType="section"
+                content={content}
+                setContent={setContent}
+              >
+                <CertificationsSection content={content} isEditMode={isEditMode} />
+              </EditableWrapper>
+              
+              <EditableWrapper
+                isEditMode={isEditMode}
+                elementPath="testimonials"
+                elementType="section"
+                content={content}
+                setContent={setContent}
+              >
+                <TestimonialSection 
+                  content={content} 
+                  isEditMode={isEditMode} 
+                  setContent={setContent} 
+                />
+              </EditableWrapper>
+              
+              <EditableWrapper
+                isEditMode={isEditMode}
+                elementPath="feedback"
+                elementType="section"
+                content={content}
+                setContent={setContent}
+              >
+                <EnhancedFeedback content={content} isEditMode={isEditMode} />
+              </EditableWrapper>
+              
+              <EditableWrapper
+                isEditMode={isEditMode}
+                elementPath="contact"
+                elementType="section"
+                content={content}
+                setContent={setContent}
+              >
+                <EnhancedContact content={content} isEditMode={isEditMode} />
+              </EditableWrapper>
+              
+              <EditableWrapper
+                isEditMode={isEditMode}
+                elementPath="footer"
+                elementType="section"
+                content={content}
+                setContent={setContent}
+              >
+                <Footer content={content} isEditMode={isEditMode} saveContent={saveContent} exportJSON={exportJSON} />
+              </EditableWrapper>
             </div>
             
             <ProjectModal 
               project={selectedProject} 
               onClose={() => setSelectedProject(null)} 
             />
-          </>
+          </div>
         )}
         
         <Toaster />
