@@ -475,44 +475,63 @@ function App() {
   const ProjectsSection = () => (
     <section id="projects" className="section">
       <div className="portfolio-container">
-        <div className="glass-card section-content fade-in">
-          <h2 className="heading-xl" style={{ marginBottom: '2rem', color: 'var(--acc-1)' }}>
-            <Code2 className="inline w-8 h-8 mr-3" />
+        <div className="glass-card section-content animate-slide-up">
+          <h2 className="heading-xl mb-8 text-acc-1 font-display flex items-center">
+            <Code2 className="inline w-8 h-8 mr-4" />
             Projects — Impact over Tech
           </h2>
+          
+          {/* GitHub Sync Status */}
+          <div className="mb-6 p-4 bg-panel-2/30 rounded-lg border border-glass-border/20">
+            <p className="text-sm text-muted flex items-center">
+              <Calendar className="w-4 h-4 mr-2" />
+              {content.projects.githubAutoPull 
+                ? `Auto-synced from GitHub • Last update: ${new Date().toLocaleDateString()}` 
+                : 'Curated portfolio • GitHub sync available on request'
+              }
+              <span className="ml-2 px-2 py-1 bg-acc-1/20 text-acc-1 text-xs rounded-full font-medium">
+                {content.projects.featured.length} featured
+              </span>
+            </p>
+          </div>
           
           <div className="project-grid">
             {content.projects.featured.map((project, index) => (
               <div 
                 key={index} 
-                className="project-card"
+                className="project-card group cursor-pointer"
                 onClick={() => setSelectedProject(project)}
               >
-                <h3 className="project-title heading-md">
+                {/* Featured Badge */}
+                {project.featured && (
+                  <div className="absolute top-4 right-4 bg-acc-2/20 text-acc-2 px-2 py-1 rounded-full text-xs font-semibold">
+                    ★ Featured
+                  </div>
+                )}
+                
+                <h3 className="project-title heading-md mb-3">
                   {project.title}
                 </h3>
-                <p className="project-story body-md">
+                
+                <p className="project-story text-base mb-4 leading-relaxed">
                   {project.story}
                 </p>
                 
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
-                  alignItems: 'center',
-                  marginTop: '1rem',
-                  fontSize: '0.75rem',
-                  color: 'var(--muted)'
-                }}>
-                  <span>
-                    <Calendar className="inline w-3 h-3 mr-1" />
+                {/* Project Meta */}
+                <div className="flex justify-between items-center mb-4 text-xs text-muted">
+                  <span className="flex items-center">
+                    <Calendar className="w-3 h-3 mr-1" />
                     {new Date(project.updated).toLocaleDateString()}
                   </span>
-                  <ExternalLink className="inline w-4 h-4" style={{ color: 'var(--acc-1)' }} />
+                  <span className="flex items-center text-acc-1 group-hover:translate-x-1 transition-transform">
+                    <ExternalLink className="w-4 h-4" />
+                  </span>
                 </div>
                 
+                {/* Tech Stack */}
                 <div className="project-stack">
                   {project.stack.map((tech, techIndex) => (
-                    <span key={techIndex} className="stack-pill">
+                    <span key={techIndex} className="stack-pill text-xs">
                       {tech}
                     </span>
                   ))}
@@ -521,9 +540,14 @@ function App() {
             ))}
           </div>
           
-          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-            <p className="body-sm" style={{ color: 'var(--muted)' }}>
-              Click any project for case study • Auto-synced from GitHub • {content.projects.featured.length} featured projects
+          {/* Footer Note */}
+          <div className="text-center mt-8 p-6 bg-glass-bg/30 rounded-xl border border-glass-border/20">
+            <p className="text-sm text-muted mb-2">
+              Click any project for detailed case study
+            </p>
+            <p className="text-xs text-muted">
+              GitHub: <a href="https://github.com/Abhishek200416" target="_blank" rel="noopener noreferrer" className="text-acc-1 hover:text-acc-2 transition-colors">@Abhishek200416</a> • 
+              24 public repos • Recent ML and full-stack projects
             </p>
           </div>
         </div>
