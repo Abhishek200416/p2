@@ -10,6 +10,7 @@ import SuperWebsiteEditor from './components/SuperWebsiteEditor';
 
 import VideoIntro from './components/VideoIntro';
 import AdvancedParticleSystem from './components/AdvancedParticleSystem';
+import EditableWrapper from './components/EditableWrapper';
 import EditableSectionWrapper from './components/EditableSectionWrapper';
 import { Toaster } from './components/ui/toaster';
 import { useToast } from './hooks/use-toast';
