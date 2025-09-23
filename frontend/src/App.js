@@ -303,57 +303,7 @@ function App() {
     });
   };
 
-  const toggleEditMode = async () => {
-    if (isEditMode) {
-      setIsEditMode(false);
-      toast({
-        title: "Edit mode disabled",
-        description: "Content is now read-only",
-      });
-      return;
-    }
 
-    const passphrase = prompt('Enter owner passphrase to enable edit mode:');
-    if (!passphrase) return;
-
-    try {
-      // Try to authenticate with backend
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ passphrase })
-      });
-
-      if (response.ok) {
-        const { token } = await response.json();
-        sessionStorage.setItem('portfolio-token', token);
-        setIsEditMode(true);
-        toast({
-          title: "Advanced Edit Mode Enabled! ⚡",
-          description: "Full customization panel is now available. Make any changes you want!",
-        });
-      } else {
-        throw new Error('Authentication failed');
-      }
-    } catch (error) {
-      // Fallback to local passphrase check
-      if (passphrase === 'shipfast' || passphrase === process.env.REACT_APP_OWNER_PASS) {
-        setIsEditMode(true);
-        toast({
-          title: "Advanced Edit Mode Enabled! ⚡",
-          description: "Full customization panel active. All features unlocked!",
-        });
-      } else {
-        toast({
-          title: "Access denied",
-          description: "Incorrect passphrase. Try 'shipfast'",
-          variant: "destructive"
-        });
-      }
-    }
-  };
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
