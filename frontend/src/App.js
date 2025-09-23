@@ -824,28 +824,25 @@ function App() {
 
 
               
-              <EditableWrapper
-                isEditMode={isEditMode}
+              <EditableSectionWrapper
                 elementPath="hackathons"
                 elementType="section"
                 content={content}
                 setContent={setContent}
               >
                 <HackathonsSection content={content} isEditMode={isEditMode} />
-              </EditableWrapper>
+              </EditableSectionWrapper>
               
-              <EditableWrapper
-                isEditMode={isEditMode}
+              <EditableSectionWrapper
                 elementPath="certs"
                 elementType="section"
                 content={content}
                 setContent={setContent}
               >
                 <CertificationsSection content={content} isEditMode={isEditMode} />
-              </EditableWrapper>
+              </EditableSectionWrapper>
               
-              <EditableWrapper
-                isEditMode={isEditMode}
+              <EditableSectionWrapper
                 elementPath="testimonials"
                 elementType="section"
                 content={content}
@@ -856,37 +853,34 @@ function App() {
                   isEditMode={isEditMode} 
                   setContent={setContent} 
                 />
-              </EditableWrapper>
+              </EditableSectionWrapper>
               
-              <EditableWrapper
-                isEditMode={isEditMode}
+              <EditableSectionWrapper
                 elementPath="feedback"
                 elementType="section"
                 content={content}
                 setContent={setContent}
               >
                 <EnhancedFeedback content={content} isEditMode={isEditMode} />
-              </EditableWrapper>
+              </EditableSectionWrapper>
               
-              <EditableWrapper
-                isEditMode={isEditMode}
+              <EditableSectionWrapper
                 elementPath="contact"
                 elementType="section"
                 content={content}
                 setContent={setContent}
               >
                 <EnhancedContact content={content} isEditMode={isEditMode} />
-              </EditableWrapper>
+              </EditableSectionWrapper>
               
-              <EditableWrapper
-                isEditMode={isEditMode}
+              <EditableSectionWrapper
                 elementPath="footer"
                 elementType="section"
                 content={content}
                 setContent={setContent}
               >
                 <Footer content={content} isEditMode={isEditMode} saveContent={saveContent} exportJSON={exportJSON} />
-              </EditableWrapper>
+              </EditableSectionWrapper>
             </div>
             
             <ProjectModal 
