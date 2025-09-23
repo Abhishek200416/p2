@@ -1,0 +1,78 @@
+{
+  "short_name": "Abhishek Portfolio",
+  "name": "Abhishek Kolluri - Full-Stack Developer Portfolio",
+  "description": "Professional portfolio of Abhishek Kolluri, showcasing MVPs built in 1 day and complex projects in 3-4 days",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png", 
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-maskable-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-maskable-512x512.png",
+      "sizes": "512x512", 
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "id": "/",
+  "start_url": "/",
+  "background_color": "#0b0f14",
+  "theme_color": "#0b0f14",
+  "display": "standalone",
+  "scope": "/",
+  "orientation": "portrait-primary",
+  "categories": ["business", "developer", "portfolio"],
+  "lang": "en",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Projects",
+      "short_name": "Projects", 
+      "description": "View my latest projects and work",
+      "url": "/#projects",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Contact", 
+      "short_name": "Contact",
+      "description": "Get in touch for projects",
+      "url": "/#contact",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png", 
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Feedback",
+      "short_name": "Feedback",
+      "description": "Share your thoughts and feedback", 
+      "url": "/#feedback",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}
