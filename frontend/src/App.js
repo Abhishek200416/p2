@@ -674,58 +674,82 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App" style={{ background: 'var(--bg)', color: 'var(--ink)', minHeight: '100vh' }}>
-        {/* Edit Mode Toggle */}
-        <div className="fixed top-4 right-4 z-50">
-          <button 
-            onClick={toggleEditMode}
-            className="px-4 py-2 text-sm font-medium rounded-full transition-all duration-250 ease-smooth backdrop-blur-xl border"
-            style={{ 
-              background: isEditMode ? 'var(--ok)' : 'var(--glass-bg)',
-              color: isEditMode ? 'white' : 'var(--ink)',
-              border: `1px solid ${isEditMode ? 'var(--ok)' : 'var(--glass-border)'}`,
-            }}
-          >
-            {isEditMode ? (
-              <>
-                <Save className="inline w-3 h-3 mr-2" />
-                Exit Edit
-              </>
-            ) : (
-              <>
-                <Settings className="inline w-3 h-3 mr-2" />
-                Edit Mode
-              </>
-            )}
-          </button>
-        </div>
+        {/* Video Intro */}
+        {showVideoIntro && content.hero?.video?.src && (
+          <VideoIntro 
+            videoSrc={content.hero.video.src}
+            onComplete={handleVideoComplete}
+            onSkip={handleVideoSkip}
+          />
+        )}
 
-        {/* Background Particle System */}
-        <AdvancedParticleSystem 
-          particleCount={window.innerWidth > 768 ? 45 : 20}
-          color="#7bdfff"
-          opacity={0.4}
-          speed={0.3}
-          className="fixed inset-0 z-0"
-        />
-        
-        <div className="relative z-10">
-          <EnhancedHero content={content.hero} />
-          <AboutSection />
-          <FreelanceSection />
-          <ProjectsSection />
-          <SkillsSection content={content} />
-          <ExperienceSection content={content} />
-          <HackathonsSection content={content} />
-          <CertificationsSection content={content} />
-          <FeedbackSection content={content} />
-          <ContactSection content={content} />
-          <Footer content={content} isEditMode={isEditMode} saveContent={saveContent} exportJSON={exportJSON} />
-        </div>
-        
-        <ProjectModal 
-          project={selectedProject} 
-          onClose={() => setSelectedProject(null)} 
-        />
+        {/* Main Content - Only show when video is done */}
+        {(hasSeenIntro || !content.hero?.hasIntroVideo) && (
+          <>
+            {/* Advanced Edit Mode Panel */}
+            <AdvancedEditMode
+              content={content}
+              setContent={setContent}
+              isEditMode={isEditMode}
+              setIsEditMode={setIsEditMode}
+              onSave={saveContent}
+              onExport={exportJSON}
+            />
+
+            {/* Edit Mode Toggle Button */}
+            <div className="fixed top-4 right-4 z-40">
+              <button 
+                onClick={toggleEditMode}
+                className="px-4 py-2 text-sm font-medium rounded-full transition-all duration-250 ease-smooth backdrop-blur-xl border"
+                style={{ 
+                  background: isEditMode ? 'var(--ok)' : 'var(--glass-bg)',
+                  color: isEditMode ? 'white' : 'var(--ink)',
+                  border: `1px solid ${isEditMode ? 'var(--ok)' : 'var(--glass-border)'}`,
+                }}
+              >
+                {isEditMode ? (
+                  <>
+                    <Save className="inline w-3 h-3 mr-2" />
+                    Advanced Edit ON
+                  </>
+                ) : (
+                  <>
+                    <Settings className="inline w-3 h-3 mr-2" />
+                    Advanced Edit
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* Background Particle System */}
+            <AdvancedParticleSystem 
+              particleCount={window.innerWidth > 768 ? 45 : 20}
+              color="#7bdfff"
+              opacity={0.4}
+              speed={0.3}
+              className="fixed inset-0 z-0"
+            />
+            
+            <div className="relative z-10">
+              <EnhancedHero content={content.hero} />
+              <AboutSection />
+              <FreelanceSection />
+              <ProjectsSection />
+              <SkillsSection content={content} />
+              <ExperienceSection content={content} />
+              <HackathonsSection content={content} />
+              <CertificationsSection content={content} />
+              <EnhancedFeedback content={content} />
+              <EnhancedContact content={content} />
+              <Footer content={content} isEditMode={isEditMode} saveContent={saveContent} exportJSON={exportJSON} />
+            </div>
+            
+            <ProjectModal 
+              project={selectedProject} 
+              onClose={() => setSelectedProject(null)} 
+            />
+          </>
+        )}
         
         <Toaster />
       </div>
