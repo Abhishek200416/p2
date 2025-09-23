@@ -171,13 +171,53 @@ export const CertificationsSection = ({ content }) => (
         {/* Certifications */}
         <div className="mb-8">
           <h3 className="heading-lg mb-6 font-display">Professional Certifications</h3>
-          <div className="skill-pills">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {content.certs.map((cert, index) => (
-              <span key={index} className="skill-pill group">
-                <Award className="inline w-4 h-4 mr-2 text-acc-2 group-hover:text-acc-1 transition-colors" />
-                {cert.name || cert} {cert.count && `(×${cert.count})`}
-                {cert.year && <span className="ml-2 text-xs opacity-70">• {cert.year}</span>}
-              </span>
+              <div key={index} className="group relative overflow-hidden bg-glass-bg/50 backdrop-blur-xl border border-glass-border rounded-xl p-4 transition-all hover:border-acc-2 hover:shadow-lg hover:shadow-acc-2/20 hover:scale-105">
+                {/* Certificate Background Image */}
+                {cert.image && (
+                  <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <img 
+                      src={cert.image} 
+                      alt={cert.name}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-panel via-transparent to-transparent"></div>
+                  </div>
+                )}
+                
+                {/* Content */}
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-3">
+                    <Award className="w-6 h-6 text-acc-2 group-hover:text-acc-1 transition-colors flex-shrink-0" />
+                    {cert.count && (
+                      <span className="bg-acc-2/20 text-acc-2 px-2 py-1 rounded-full text-xs font-semibold">
+                        ×{cert.count}
+                      </span>
+                    )}
+                  </div>
+                  
+                  <h4 className="font-semibold text-ink group-hover:text-acc-1 transition-colors mb-2 text-sm leading-snug">
+                    {cert.name || cert}
+                  </h4>
+                  
+                  <div className="space-y-1 text-xs text-muted">
+                    {cert.issuer && (
+                      <p className="flex items-center">
+                        <span className="w-1 h-1 bg-acc-2 rounded-full mr-2"></span>
+                        {cert.issuer}
+                      </p>
+                    )}
+                    {cert.year && (
+                      <p className="flex items-center">
+                        <span className="w-1 h-1 bg-acc-1 rounded-full mr-2"></span>
+                        {cert.year}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
