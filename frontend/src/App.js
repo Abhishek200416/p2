@@ -18,6 +18,7 @@ import { fetchGitHubRepos, mergeWithFeatured } from './utils/github-api';
 import './styles/enhanced-portfolio.css';
 import './styles/editable-elements.css';
 import './styles/rich-editable.css';
+import './styles/super-website-editor.css';
 import { 
   User, 
   Briefcase, 
