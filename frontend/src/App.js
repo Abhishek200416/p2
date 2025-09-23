@@ -6,8 +6,7 @@ import EnhancedFeedback from './components/EnhancedFeedback';
 import EnhancedContact from './components/EnhancedContact';
 import TestimonialSection from './components/TestimonialSection';
 import SuperAdvancedEditMode from './components/SuperAdvancedEditMode';
-import AdvancedInPlaceEditor from './components/AdvancedInPlaceEditor';
-import SuperAdvancedEditor from './components/SuperAdvancedEditor';
+import SuperWebsiteEditor from './components/SuperWebsiteEditor';
 
 import VideoIntro from './components/VideoIntro';
 import AdvancedParticleSystem from './components/AdvancedParticleSystem';
