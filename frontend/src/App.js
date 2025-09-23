@@ -57,6 +57,7 @@ function App() {
   const [isLoadingGithub, setIsLoadingGithub] = useState(false);
   const [showVideoIntro, setShowVideoIntro] = useState(false);
   const [hasSeenIntro, setHasSeenIntro] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
   const { toast } = useToast();
 
   // Check if there's an intro video and user hasn't seen it
