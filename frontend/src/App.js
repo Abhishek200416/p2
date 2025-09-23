@@ -669,16 +669,28 @@ function App() {
           </button>
         </div>
 
-        <EnhancedHero content={content.hero} />
-        <AboutSection />
-        <FreelanceSection />
-        <ProjectsSection />
-        <SkillsSection content={content} />
-        <ExperienceSection content={content} />
-        <HackathonsSection content={content} />
-        <CertificationsSection content={content} />
-        <ContactSection content={content} />
-        <Footer content={content} isEditMode={isEditMode} saveContent={saveContent} exportJSON={exportJSON} />
+        {/* Background Particle System */}
+        <AdvancedParticleSystem 
+          particleCount={window.innerWidth > 768 ? 45 : 20}
+          color="#7bdfff"
+          opacity={0.4}
+          speed={0.3}
+          className="fixed inset-0 z-0"
+        />
+        
+        <div className="relative z-10">
+          <EnhancedHero content={content.hero} />
+          <AboutSection />
+          <FreelanceSection />
+          <ProjectsSection />
+          <SkillsSection content={content} />
+          <ExperienceSection content={content} />
+          <HackathonsSection content={content} />
+          <CertificationsSection content={content} />
+          <FeedbackSection content={content} />
+          <ContactSection content={content} />
+          <Footer content={content} isEditMode={isEditMode} saveContent={saveContent} exportJSON={exportJSON} />
+        </div>
         
         <ProjectModal 
           project={selectedProject} 
