@@ -51,7 +51,6 @@ import {
 
 function App() {
   const [content, setContent] = useState(enhancedContent);
-  const [isEditMode, setIsEditMode] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isReduced, setIsReduced] = useState(false);
   const [githubProjects, setGithubProjects] = useState([]);
