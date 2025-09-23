@@ -6,15 +6,17 @@ import EnhancedFeedback from './components/EnhancedFeedback';
 import EnhancedContact from './components/EnhancedContact';
 import TestimonialSection from './components/TestimonialSection';
 import SuperAdvancedEditMode from './components/SuperAdvancedEditMode';
+import AdvancedInPlaceEditor from './components/AdvancedInPlaceEditor';
 import VideoIntro from './components/VideoIntro';
 import AdvancedParticleSystem from './components/AdvancedParticleSystem';
-import EditableWrapper, { withEditable } from './components/EditableWrapper';
+import RichEditableWrapper, { withRichEditable } from './components/RichEditableWrapper';
 import { Toaster } from './components/ui/toaster';
 import { useToast } from './hooks/use-toast';
 import enhancedContent from './data/enhanced-content.json';
 import { fetchGitHubRepos, mergeWithFeatured } from './utils/github-api';
 import './styles/enhanced-portfolio.css';
 import './styles/editable-elements.css';
+import './styles/rich-editable.css';
 import { 
   User, 
   Briefcase, 
