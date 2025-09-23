@@ -250,6 +250,120 @@ async def get_github_repos():
     # This will be implemented later when GitHub integration is needed
     return {"message": "GitHub integration coming soon", "status": "placeholder"}
 
+# Feedback management
+@api_router.post("/feedback")
+async def create_feedback(request: FeedbackRequest):
+    """Submit feedback (public endpoint with rate limiting)"""
+    try:
+        feedback = Feedback(**request.dict())
+        await db.feedback.insert_one(feedback.dict())
+        
+        return {"message": "Feedback received! Thank you.", "status": "success", "id": feedback.id}
+    except Exception as e:
+        logging.error(f"Error saving feedback: {e}")
+        raise HTTPException(status_code=500, detail="Failed to save feedback")
+
+@api_router.get("/feedback")
+async def get_feedback(user: dict = Depends(verify_token)):
+    """Get all feedback (authenticated endpoint)"""
+    try:
+        feedback_list = await db.feedback.find().to_list(1000)
+        return {
+            "count": len(feedback_list),
+            "feedback": [
+                {
+                    "id": f["id"],
+                    "name": f["name"],
+                    "email": f["email"],
+                    "company": f.get("company"),
+                    "category": f["category"],
+                    "rating": f["rating"],
+                    "message": f["message"],
+                    "wouldRecommend": f["wouldRecommend"],
+                    "contactBack": f["contactBack"],
+                    "timestamp": f["timestamp"]
+                } for f in feedback_list
+            ]
+        }
+    except Exception as e:
+        logging.error(f"Error fetching feedback: {e}")
+        raise HTTPException(status_code=500, detail="Failed to fetch feedback")
+
+# Contact management
+@api_router.post("/contact")
+async def create_contact(request: ContactRequest):
+    """Submit contact form (public endpoint with rate limiting)"""
+    try:
+        contact = Contact(**request.dict())
+        await db.contacts.insert_one(contact.dict())
+        
+        return {"message": "Message sent successfully! I'll get back to you soon.", "status": "success", "id": contact.id}
+    except Exception as e:
+        logging.error(f"Error saving contact: {e}")
+        raise HTTPException(status_code=500, detail="Failed to save contact")
+
+@api_router.get("/contacts")
+async def get_contacts(user: dict = Depends(verify_token)):
+    """Get all contacts (authenticated endpoint)"""
+    try:
+        contacts_list = await db.contacts.find().to_list(1000)
+        return {
+            "count": len(contacts_list),
+            "contacts": [
+                {
+                    "id": c["id"],
+                    "name": c["name"],
+                    "email": c["email"],
+                    "company": c.get("company"),
+                    "phone": c.get("phone"),
+                    "projectType": c["projectType"],
+                    "budget": c["budget"],
+                    "timeline": c["timeline"],
+                    "message": c["message"],
+                    "preferredContact": c["preferredContact"],
+                    "urgency": c["urgency"],
+                    "status": c.get("status", "new"),
+                    "timestamp": c["timestamp"]
+                } for c in contacts_list
+            ]
+        }
+    except Exception as e:
+        logging.error(f"Error fetching contacts: {e}")
+        raise HTTPException(status_code=500, detail="Failed to fetch contacts")
+
+# Analytics endpoint
+@api_router.get("/analytics")
+async def get_analytics(user: dict = Depends(verify_token)):
+    """Get portfolio analytics (authenticated endpoint)"""
+    try:
+        # Count documents in collections
+        subscribers_count = await db.subscribers.count_documents({})
+        feedback_count = await db.feedback.count_documents({})
+        contacts_count = await db.contacts.count_documents({})
+        
+        # Calculate some basic stats
+        recent_feedback = await db.feedback.find(
+            {"timestamp": {"$gte": datetime.utcnow() - timedelta(days=30)}}
+        ).to_list(100)
+        
+        avg_rating = sum(f.get("rating", 0) for f in recent_feedback) / len(recent_feedback) if recent_feedback else 0
+        
+        return {
+            "subscribers": subscribers_count,
+            "feedback": feedback_count,
+            "contacts": contacts_count,
+            "avg_rating": round(avg_rating, 1),
+            "recent_activity": {
+                "feedback_30d": len(recent_feedback),
+                "contacts_30d": await db.contacts.count_documents({
+                    "timestamp": {"$gte": datetime.utcnow() - timedelta(days=30)}
+                })
+            }
+        }
+    except Exception as e:
+        logging.error(f"Error fetching analytics: {e}")
+        raise HTTPException(status_code=500, detail="Failed to fetch analytics")
+
 # Include the router in the main app
 app.include_router(api_router)
 
