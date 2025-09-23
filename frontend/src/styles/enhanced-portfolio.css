@@ -82,7 +82,7 @@ body {
     rgba(123, 223, 255, 0.08) 0%,
     transparent 25%,
     transparent 75%,
-    rgba(230, 184, 0, 0.06) 100%);
+    rgba(168, 85, 247, 0.06) 100%);
   pointer-events: none;
   z-index: 1;
 }
