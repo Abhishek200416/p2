@@ -392,30 +392,81 @@ function App() {
       <div className="modal-overlay" onClick={onClose}>
         <div className="modal-content glass-card" onClick={e => e.stopPropagation()}>
           <button className="modal-close" onClick={onClose}>×</button>
-          <h3 className="heading-lg" style={{ color: 'var(--acc-1)', marginBottom: '1rem' }}>
+          
+          <h3 className="heading-lg text-acc-1 mb-4 font-display">
             {project.title}
           </h3>
-          <h4 className="body-md" style={{ fontWeight: '600', marginBottom: '0.5rem' }}>Problem</h4>
-          <p className="body-md" style={{ color: 'var(--muted)', marginBottom: '1rem' }}>
-            {project.story}
-          </p>
-          <h4 className="body-md" style={{ fontWeight: '600', marginBottom: '0.5rem' }}>Stack</h4>
-          <div className="project-stack" style={{ marginBottom: '1rem' }}>
-            {project.stack.map((tech, index) => (
-              <span key={index} className="stack-pill">{tech}</span>
-            ))}
+          
+          {/* Case Study Structure */}
+          <div className="space-y-6">
+            <div>
+              <h4 className="text-base font-semibold mb-2 text-acc-2 flex items-center">
+                <Target className="w-4 h-4 mr-2" />
+                Problem
+              </h4>
+              <p className="text-sm text-muted leading-relaxed">
+                {project.story}
+              </p>
+            </div>
+            
+            {project.approach && (
+              <div>
+                <h4 className="text-base font-semibold mb-2 text-acc-1 flex items-center">
+                  <Settings className="w-4 h-4 mr-2" />
+                  Approach
+                </h4>
+                <p className="text-sm text-ink leading-relaxed">
+                  {project.approach}
+                </p>
+              </div>
+            )}
+            
+            {project.impact && (
+              <div>
+                <h4 className="text-base font-semibold mb-2 text-ok flex items-center">
+                  <TrendingUp className="w-4 h-4 mr-2" />
+                  Impact
+                </h4>
+                <p className="text-sm text-ink leading-relaxed">
+                  {project.impact}
+                </p>
+              </div>
+            )}
+            
+            <div>
+              <h4 className="text-base font-semibold mb-3">Tech Stack</h4>
+              <div className="project-stack">
+                {project.stack.map((tech, index) => (
+                  <span key={index} className="stack-pill">{tech}</span>
+                ))}
+              </div>
+            </div>
+            
+            <div className="flex gap-3 pt-4 border-t border-glass-border/30">
+              {project.links?.repo && (
+                <a 
+                  href={project.links.repo} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="cta-secondary px-4 py-2 text-sm"
+                >
+                  <Github className="inline w-4 h-4 mr-2" />
+                  View Code
+                </a>
+              )}
+              {project.links?.demo && (
+                <a 
+                  href={project.links.demo} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="cta-primary px-4 py-2 text-sm"
+                >
+                  <ExternalLink className="inline w-4 h-4 mr-2" />
+                  Live Demo
+                </a>
+              )}
+            </div>
           </div>
-          {project.links?.repo && (
-            <a 
-              href={project.links.repo} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="cta-secondary"
-            >
-              <Github className="inline w-4 h-4 mr-2" />
-              View Code
-            </a>
-          )}
         </div>
       </div>
     );
