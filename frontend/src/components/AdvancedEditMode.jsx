@@ -62,7 +62,7 @@ const AdvancedEditMode = ({
   // Layout customization
   const [sectionOrder, setSectionOrder] = useState([
     'hero', 'about', 'freelance', 'projects', 
-    'skills', 'experience', 'hackathons', 'certs', 'feedback', 'contact'
+    'skills', 'experience', 'hackathons', 'certs', 'testimonials', 'feedback', 'contact'
   ]);
   
   // Advanced layout settings
