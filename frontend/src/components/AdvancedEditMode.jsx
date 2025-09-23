@@ -409,7 +409,48 @@ const AdvancedEditMode = ({
 
         {activeTab === 'content' && (
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-white">Project Management</h3>
+            <h3 className="text-sm font-semibold text-white">Content Management</h3>
+            
+            {/* Hero Section Editing */}
+            <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+              <h4 className="text-sm font-medium text-white mb-3">Hero Section</h4>
+              <div className="space-y-2">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  value={content.hero?.name || ''}
+                  onChange={(e) => setContent(prev => ({
+                    ...prev,
+                    hero: { ...prev.hero, name: e.target.value }
+                  }))}
+                  className="w-full p-2 text-sm bg-gray-900 border border-gray-600 rounded text-white"
+                />
+                <input
+                  type="text"
+                  placeholder="Tagline"
+                  value={content.hero?.tagline || ''}
+                  onChange={(e) => setContent(prev => ({
+                    ...prev,
+                    hero: { ...prev.hero, tagline: e.target.value }
+                  }))}
+                  className="w-full p-2 text-sm bg-gray-900 border border-gray-600 rounded text-white"
+                />
+                <textarea
+                  placeholder="Punch line"
+                  value={content.hero?.punch || ''}
+                  onChange={(e) => setContent(prev => ({
+                    ...prev,
+                    hero: { ...prev.hero, punch: e.target.value }
+                  }))}
+                  className="w-full p-2 text-sm bg-gray-900 border border-gray-600 rounded text-white resize-none"
+                  rows="2"
+                />
+              </div>
+            </div>
+
+            {/* Project Management */}
+            <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+              <h4 className="text-sm font-medium text-white mb-3">Projects</h4>
             
             <button
               onClick={addNewProject}
