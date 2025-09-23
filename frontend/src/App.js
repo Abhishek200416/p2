@@ -332,7 +332,7 @@ function App() {
               <h2 className="heading-xl mb-8 text-acc-1 font-display">
                 Less talk. More shipping.
               </h2>
-            </EditableSectionWrapper>
+            </EditableWrapper>
             
             <div className="two-col-grid">
               <div className="space-y-6">
