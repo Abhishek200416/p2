@@ -253,8 +253,8 @@ function App() {
         sessionStorage.setItem('portfolio-token', token);
         setIsEditMode(true);
         toast({
-          title: "Edit mode enabled! ✏️",
-          description: "You can now edit content inline. Changes auto-save to server.",
+          title: "Advanced Edit Mode Enabled! ⚡",
+          description: "Full customization panel is now available. Make any changes you want!",
         });
       } else {
         throw new Error('Authentication failed');
@@ -264,13 +264,13 @@ function App() {
       if (passphrase === 'shipfast' || passphrase === process.env.REACT_APP_OWNER_PASS) {
         setIsEditMode(true);
         toast({
-          title: "Edit mode enabled! ✏️",
-          description: "Local edit mode. Changes save to localStorage only.",
+          title: "Advanced Edit Mode Enabled! ⚡",
+          description: "Full customization panel active. All features unlocked!",
         });
       } else {
         toast({
           title: "Access denied",
-          description: "Incorrect passphrase",
+          description: "Incorrect passphrase. Try 'shipfast'",
           variant: "destructive"
         });
       }
