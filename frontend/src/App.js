@@ -315,8 +315,7 @@ function App() {
   const AboutSection = () => (
     <section id="about" className="section">
       <div className="portfolio-container">
-        <EditableWrapper
-          isEditMode={isEditMode}
+        <EditableSectionWrapper
           elementPath="about"
           elementType="section"
           content={content}
