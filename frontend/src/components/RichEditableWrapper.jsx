@@ -69,7 +69,7 @@ const RichEditableWrapper = ({
 
   return (
     <div className="rich-editable-container" style={{ position: 'relative' }}>
-      {React.cloneElement(children, enhancedProps)}
+      {React.isValidElement(children) ? React.cloneElement(children, enhancedProps) : children}
       
       {/* Enhanced Edit Indicator */}
       {isEditMode && isHovered && (
