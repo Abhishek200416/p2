@@ -770,35 +770,64 @@ class PortfolioAPITester:
     
     def run_all_tests(self):
         """Run all tests in sequence"""
-        print("🚀 Starting Portfolio Backend API Tests")
-        print("=" * 50)
+        print("🚀 Starting Enhanced Portfolio Backend API Tests")
+        print("=" * 60)
         
         # Basic health checks
+        print("\n📋 BASIC HEALTH CHECKS")
+        print("-" * 30)
         self.test_root_endpoint()
         self.test_cors_headers()
         
         # Authentication tests
+        print("\n🔐 AUTHENTICATION TESTS")
+        print("-" * 30)
         self.test_login_valid_passphrase()
         self.test_login_invalid_passphrase()
         self.test_jwt_token_validation()
         self.test_invalid_token()
         
         # Content management tests
+        print("\n📄 CONTENT MANAGEMENT TESTS")
+        print("-" * 30)
         self.test_get_content_public()
         self.test_save_content_authenticated()
         self.test_save_content_unauthenticated()
         self.test_content_persistence()
         
         # Subscriber management tests
+        print("\n📧 SUBSCRIBER MANAGEMENT TESTS")
+        print("-" * 30)
         self.test_subscribe_valid_email()
         self.test_subscribe_duplicate_email()
         self.test_get_subscribers_authenticated()
         self.test_get_subscribers_unauthenticated()
         
+        # NEW ENHANCED FEATURES TESTING
+        print("\n⭐ ENHANCED FEEDBACK SYSTEM TESTS")
+        print("-" * 30)
+        self.test_submit_feedback_general()
+        self.test_submit_feedback_project()
+        self.test_submit_feedback_hiring()
+        self.test_get_feedback_authenticated()
+        self.test_feedback_data_validation()
+        
+        print("\n📞 CONTACT/PROJECT INQUIRY TESTS")
+        print("-" * 30)
+        self.test_submit_contact_mvp_project()
+        self.test_submit_contact_webapp_project()
+        self.test_submit_contact_ai_integration()
+        self.test_get_contacts_authenticated()
+        self.test_contact_data_validation()
+        
+        print("\n📊 ANALYTICS DASHBOARD TESTS")
+        print("-" * 30)
+        self.test_analytics_authenticated()
+        
         # Summary
-        print("\n" + "=" * 50)
-        print("📊 TEST SUMMARY")
-        print("=" * 50)
+        print("\n" + "=" * 60)
+        print("📊 COMPREHENSIVE TEST SUMMARY")
+        print("=" * 60)
         
         passed = sum(1 for result in self.test_results if result["success"])
         failed = len(self.test_results) - passed
@@ -806,12 +835,34 @@ class PortfolioAPITester:
         print(f"Total Tests: {len(self.test_results)}")
         print(f"✅ Passed: {passed}")
         print(f"❌ Failed: {failed}")
+        print(f"📈 Success Rate: {(passed/len(self.test_results)*100):.1f}%")
+        
+        # Categorize results
+        categories = {
+            "Basic Health": ["Root Endpoint", "CORS Headers"],
+            "Authentication": ["Login Valid Passphrase", "Login Invalid Passphrase", "JWT Token Validation", "Invalid Token Rejection"],
+            "Content Management": ["Get Content Public", "Save Content Authenticated", "Save Content Unauthenticated", "Content Persistence"],
+            "Subscriber Management": ["Subscribe Valid Email", "Subscribe Duplicate Email", "Get Subscribers Authenticated", "Get Subscribers Unauthenticated"],
+            "Feedback System": ["Submit Feedback General", "Submit Feedback Project", "Submit Feedback Hiring", "Get Feedback Authenticated", "Feedback Data Validation"],
+            "Contact System": ["Submit Contact MVP Project", "Submit Contact WebApp Project", "Submit Contact AI Integration", "Get Contacts Authenticated", "Contact Data Validation"],
+            "Analytics": ["Analytics Authenticated"]
+        }
+        
+        print(f"\n📋 RESULTS BY CATEGORY:")
+        for category, test_names in categories.items():
+            category_results = [r for r in self.test_results if r["test"] in test_names]
+            if category_results:
+                category_passed = sum(1 for r in category_results if r["success"])
+                category_total = len(category_results)
+                print(f"  {category}: {category_passed}/{category_total} ({'✅' if category_passed == category_total else '⚠️'})")
         
         if failed > 0:
             print("\n🔍 FAILED TESTS:")
             for result in self.test_results:
                 if not result["success"]:
                     print(f"  • {result['test']}: {result['message']}")
+        else:
+            print("\n🎉 ALL TESTS PASSED! Backend API is fully functional.")
         
         return passed, failed
 
