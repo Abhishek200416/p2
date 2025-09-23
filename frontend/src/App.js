@@ -716,7 +716,7 @@ function App() {
           </button>
         </div>
 
-        <Hero content={content.hero} />
+        <EnhancedHero content={content.hero} />
         <AboutSection />
         <FreelanceSection />
         <ProjectsSection />
