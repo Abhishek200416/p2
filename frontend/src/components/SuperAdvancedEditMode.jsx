@@ -401,6 +401,90 @@ const SuperAdvancedEditMode = ({
 
         {/* Tab Content */}
         <div className="p-4">
+          {activeTab === 'universal-editor' && (
+            <div className="space-y-4">
+              <div className="p-4 bg-gradient-to-r from-purple-900/20 to-pink-900/20 border border-purple-600/30 rounded-lg">
+                <h3 className="text-sm font-semibold text-white mb-2 flex items-center">
+                  <Wand2 className="w-4 h-4 mr-2 text-purple-400" />
+                  Universal Editor - AI-Powered Everything
+                </h3>
+                <div className="text-xs text-gray-300 space-y-1">
+                  <p>• AI understands your entire portfolio context</p>
+                  <p>• Natural language commands for any change</p>
+                  <p>• Smart suggestions based on industry trends</p>
+                  <p>• One-click professional optimizations</p>
+                  <p>• Real-time collaboration with AI assistant</p>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <h4 className="text-sm font-semibold text-white">Universal Commands</h4>
+                
+                <div className="grid grid-cols-1 gap-2">
+                  <button className="p-3 bg-purple-900/30 hover:bg-purple-800/40 border border-purple-600/30 rounded-lg text-left transition-colors">
+                    <div className="flex items-center">
+                      <Sparkles className="w-4 h-4 text-purple-400 mr-2" />
+                      <div>
+                        <div className="text-xs font-medium text-white">"Make it more professional"</div>
+                        <div className="text-[10px] text-gray-400">AI optimizes entire portfolio</div>
+                      </div>
+                    </div>
+                  </button>
+                  
+                  <button className="p-3 bg-blue-900/30 hover:bg-blue-800/40 border border-blue-600/30 rounded-lg text-left transition-colors">
+                    <div className="flex items-center">
+                      <Wand2 className="w-4 h-4 text-blue-400 mr-2" />
+                      <div>
+                        <div className="text-xs font-medium text-white">"Add a contact form"</div>
+                        <div className="text-[10px] text-gray-400">Instantly creates functional forms</div>
+                      </div>
+                    </div>
+                  </button>
+                  
+                  <button className="p-3 bg-green-900/30 hover:bg-green-800/40 border border-green-600/30 rounded-lg text-left transition-colors">
+                    <div className="flex items-center">
+                      <Type className="w-4 h-4 text-green-400 mr-2" />
+                      <div>
+                        <div className="text-xs font-medium text-white">"Improve my project descriptions"</div>
+                        <div className="text-[10px] text-gray-400">AI rewrites with impact</div>
+                      </div>
+                    </div>
+                  </button>
+                  
+                  <button className="p-3 bg-orange-900/30 hover:bg-orange-800/40 border border-orange-600/30 rounded-lg text-left transition-colors">
+                    <div className="flex items-center">
+                      <Palette className="w-4 h-4 text-orange-400 mr-2" />
+                      <div>
+                        <div className="text-xs font-medium text-white">"Change theme to modern dark"</div>
+                        <div className="text-[10px] text-gray-400">Smart theme generation</div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+                <div className="p-3 bg-gray-800/50 border border-gray-700 rounded-lg">
+                  <div className="text-xs text-gray-300 mb-2">Try these commands:</div>
+                  <div className="space-y-1 text-[10px] text-gray-400">
+                    <div>• "Add testimonials section"</div>
+                    <div>• "Make the hero section more engaging"</div>
+                    <div>• "Optimize for mobile devices"</div>
+                    <div>• "Add social media links"</div>
+                    <div>• "Create a blog section"</div>
+                    <div>• "Improve SEO optimization"</div>
+                  </div>
+                </div>
+
+                <div className="p-3 bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-600/30 rounded-lg">
+                  <div className="text-xs text-purple-300 mb-2">🚀 Pro Tip:</div>
+                  <div className="text-[10px] text-gray-400">
+                    The Universal Editor learns from your preferences and gets smarter with each interaction. 
+                    It can handle complex multi-step changes with a single command!
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {activeTab === 'live-edit' && (
             <div className="space-y-4">
               <div className="p-4 bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-600/30 rounded-lg">
