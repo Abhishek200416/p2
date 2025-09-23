@@ -49,7 +49,34 @@ function App() {
   const [isReduced, setIsReduced] = useState(false);
   const [githubProjects, setGithubProjects] = useState([]);
   const [isLoadingGithub, setIsLoadingGithub] = useState(false);
+  const [showVideoIntro, setShowVideoIntro] = useState(false);
+  const [hasSeenIntro, setHasSeenIntro] = useState(false);
   const { toast } = useToast();
+
+  // Check if there's an intro video and user hasn't seen it
+  useEffect(() => {
+    const seenIntro = localStorage.getItem('portfolio-seen-intro');
+    const hasVideo = content.hero?.video?.src && content.hero?.hasIntroVideo;
+    
+    if (hasVideo && !seenIntro) {
+      setShowVideoIntro(true);
+      setHasSeenIntro(false);
+    } else {
+      setHasSeenIntro(true);
+    }
+  }, [content.hero]);
+
+  const handleVideoComplete = () => {
+    setShowVideoIntro(false);
+    setHasSeenIntro(true);
+    localStorage.setItem('portfolio-seen-intro', 'true');
+  };
+
+  const handleVideoSkip = () => {
+    setShowVideoIntro(false);
+    setHasSeenIntro(true);
+    localStorage.setItem('portfolio-seen-intro', 'true');
+  };
 
   // Check for reduced motion preference
   useEffect(() => {
