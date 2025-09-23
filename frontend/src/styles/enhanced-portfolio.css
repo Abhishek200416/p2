@@ -286,6 +286,7 @@ body {
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(20px);
+  min-height: 300px;
 }
 
 .project-card::before {
