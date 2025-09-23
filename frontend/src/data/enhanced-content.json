@@ -122,7 +122,8 @@
         "stack": ["React", "Node.js", "Express", "MongoDB", "Stripe API"],
         "links": {"repo": "https://github.com/Abhishek200416/invoice_dashboard", "demo": ""},
         "updated": "2024-11-25",
-        "featured": true
+        "featured": true,
+        "image": "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg"
       },
       {
         "slug": "retail-customer-segmentation",
