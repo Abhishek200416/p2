@@ -44,6 +44,8 @@ function App() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isReduced, setIsReduced] = useState(false);
+  const [githubProjects, setGithubProjects] = useState([]);
+  const [isLoadingGithub, setIsLoadingGithub] = useState(false);
   const { toast } = useToast();
 
   // Check for reduced motion preference
