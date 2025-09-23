@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test the complete portfolio backend API functionality including authentication system, portfolio content API, subscriber management, and basic health checks."
+user_problem_statement: "Perform comprehensive frontend testing for Abhishek Kolluri's cinematic portfolio website. Test all interactive functionality, responsiveness, and user experience including hero section navigation, edit mode functionality, project interactions, form interactions, responsive design, visual animations, accessibility, performance, cross-section navigation, and error handling."
 
 backend:
   - task: "Authentication System - Login Endpoint"
