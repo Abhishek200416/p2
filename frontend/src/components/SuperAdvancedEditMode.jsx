@@ -477,6 +477,111 @@ const SuperAdvancedEditMode = ({
             </div>
           )}
 
+          {activeTab === 'money-flow' && (
+            <div className="space-y-4">
+              <div className="p-4 bg-gradient-to-r from-green-900/20 to-blue-900/20 border border-green-600/30 rounded-lg">
+                <h3 className="text-sm font-semibold text-white mb-2 flex items-center">
+                  <BarChart3 className="w-4 h-4 mr-2 text-green-400" />
+                  Money Flow Visualization
+                </h3>
+                <div className="text-xs text-gray-300 space-y-1">
+                  <p>• Interactive financial flow diagrams</p>
+                  <p>• Real-time money movement tracking</p>
+                  <p>• Drag nodes to customize layout</p>
+                  <p>• AI-powered financial insights</p>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <h4 className="text-sm font-semibold text-white">Flow Controls</h4>
+                
+                <div className="grid grid-cols-2 gap-2">
+                  <button className="p-3 bg-green-900/30 hover:bg-green-800/40 border border-green-600/30 rounded-lg text-left transition-colors">
+                    <div className="flex items-center">
+                      <Plus className="w-4 h-4 text-green-400 mr-2" />
+                      <div>
+                        <div className="text-xs font-medium text-white">Add Flow</div>
+                        <div className="text-[10px] text-gray-400">New connection</div>
+                      </div>
+                    </div>
+                  </button>
+                  
+                  <button className="p-3 bg-blue-900/30 hover:bg-blue-800/40 border border-blue-600/30 rounded-lg text-left transition-colors">
+                    <div className="flex items-center">
+                      <Zap className="w-4 h-4 text-blue-400 mr-2" />
+                      <div>
+                        <div className="text-xs font-medium text-white">Auto Layout</div>
+                        <div className="text-[10px] text-gray-400">AI arrangement</div>
+                      </div>
+                    </div>
+                  </button>
+                  
+                  <button className="p-3 bg-purple-900/30 hover:bg-purple-800/40 border border-purple-600/30 rounded-lg text-left transition-colors">
+                    <div className="flex items-center">
+                      <RefreshCw className="w-4 h-4 text-purple-400 mr-2" />
+                      <div>
+                        <div className="text-xs font-medium text-white">Animate</div>
+                        <div className="text-[10px] text-gray-400">Live flows</div>
+                      </div>
+                    </div>
+                  </button>
+                  
+                  <button className="p-3 bg-orange-900/30 hover:bg-orange-800/40 border border-orange-600/30 rounded-lg text-left transition-colors">
+                    <div className="flex items-center">
+                      <Download className="w-4 h-4 text-orange-400 mr-2" />
+                      <div>
+                        <div className="text-xs font-medium text-white">Export</div>
+                        <div className="text-[10px] text-gray-400">Save diagram</div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+                <div className="space-y-2">
+                  <h5 className="text-xs font-semibold text-white">Flow Categories</h5>
+                  
+                  <div className="space-y-2">
+                    {[
+                      { name: 'Income Sources', color: '#10b981', count: '2 active' },
+                      { name: 'Expenses', color: '#ef4444', count: '5 flows' },
+                      { name: 'Investments', color: '#3b82f6', count: '3 portfolios' },
+                      { name: 'Savings', color: '#8b5cf6', count: '2 accounts' }
+                    ].map((category, index) => (
+                      <div key={index} className="flex items-center justify-between p-2 bg-gray-800/30 rounded border border-gray-700/50">
+                        <div className="flex items-center">
+                          <div 
+                            className="w-3 h-3 rounded-full mr-2" 
+                            style={{ backgroundColor: category.color }}
+                          />
+                          <span className="text-xs text-white">{category.name}</span>
+                        </div>
+                        <span className="text-[10px] text-gray-400">{category.count}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="p-3 bg-gray-800/50 border border-gray-700 rounded-lg">
+                  <div className="text-xs text-gray-300 mb-2">Financial Insights:</div>
+                  <div className="space-y-1 text-[10px] text-gray-400">
+                    <div className="flex justify-between">
+                      <span>Total Monthly Flow:</span>
+                      <span className="text-green-400">₹45,000</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Net Savings Rate:</span>
+                      <span className="text-blue-400">32%</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Investment Allocation:</span>
+                      <span className="text-purple-400">28%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {activeTab === 'ai-assistant' && (
             <GeminiAIAssistant
               content={content}
