@@ -87,27 +87,35 @@ function App() {
       // Save to localStorage first
       localStorage.setItem('portfolio-content', JSON.stringify(content));
       
-      // Try to save to backend if available
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/save-content`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sessionStorage.getItem('portfolio-token')}`
-        },
-        body: JSON.stringify(content)
-      });
-      
-      if (response.ok) {
-        toast({
-          title: "Content saved successfully!",
-          description: "Changes have been saved to both local storage and server.",
+      // Try to save to backend if token available
+      const token = sessionStorage.getItem('portfolio-token');
+      if (token) {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/save-content`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(content)
         });
+        
+        if (response.ok) {
+          toast({
+            title: "Content saved successfully! ✨",
+            description: "Changes have been saved to both local storage and server.",
+          });
+        } else {
+          throw new Error('Backend save failed');
+        }
       } else {
-        throw new Error('Backend save failed');
+        toast({
+          title: "Saved locally 💾",
+          description: "Content saved to localStorage. Login to sync with server.",
+        });
       }
     } catch (error) {
       toast({
-        title: "Saved locally",
+        title: "Saved locally 💾",
         description: "Content saved to localStorage. Backend sync unavailable.",
       });
     }
