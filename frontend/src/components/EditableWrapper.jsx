@@ -257,7 +257,7 @@ const EditableWrapper = ({
 
   return (
     <>
-      {React.cloneElement(children, editableProps)}
+      {React.isValidElement(children) ? React.cloneElement(children, editableProps) : children}
       
       {/* Edit Indicator */}
       {isEditMode && isHovered && (
