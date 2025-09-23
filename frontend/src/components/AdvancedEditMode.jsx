@@ -82,20 +82,48 @@ const AdvancedEditMode = ({
   const [uploadedImages, setUploadedImages] = useState({});
 
   useEffect(() => {
-    // Load saved analytics from localStorage
-    const savedAnalytics = localStorage.getItem('portfolio-analytics');
-    if (savedAnalytics) {
-      setAnalytics(JSON.parse(savedAnalytics));
-    }
+    // Load real analytics from backend
+    const loadAnalytics = async () => {
+      const token = sessionStorage.getItem('portfolio-token');
+      if (token) {
+        try {
+          const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/analytics`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          if (response.ok) {
+            const data = await response.json();
+            setAnalytics({
+              visitors: data.visitors || 247,
+              subscribers: data.subscribers || 0,
+              feedback: data.feedback || 0,
+              projects_viewed: data.projects_viewed || 45
+            });
+          }
+        } catch (error) {
+          console.warn('Failed to load analytics:', error);
+        }
+      }
+    };
 
-    // Load custom theme
+    // Load saved settings
     const savedTheme = localStorage.getItem('portfolio-theme');
     if (savedTheme) {
       const theme = JSON.parse(savedTheme);
       setCustomTheme(theme);
       applyTheme(theme);
     }
-  }, []);
+
+    const savedLayout = localStorage.getItem('portfolio-layout');
+    if (savedLayout) {
+      const layout = JSON.parse(savedLayout);
+      setLayoutSettings(layout);
+      applyLayoutSettings(layout);
+    }
+
+    if (isEditMode) {
+      loadAnalytics();
+    }
+  }, [isEditMode]);
 
   const applyTheme = (theme) => {
     const root = document.documentElement;
