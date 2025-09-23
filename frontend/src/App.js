@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Hero from './components/Hero';
 import { Toaster } from './components/ui/toaster';
-import siteContent from './data/site-content.json';
 import './styles/portfolio.css';
 import { 
   User, 
