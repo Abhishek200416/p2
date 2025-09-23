@@ -279,67 +279,67 @@ function App() {
   const FreelanceSection = () => (
     <section id="freelance" className="section">
       <div className="portfolio-container">
-        <div className="glass-card section-content fade-in">
-          <h2 className="heading-xl" style={{ marginBottom: '1rem', color: 'var(--acc-1)' }}>
-            <Briefcase className="inline w-8 h-8 mr-3" />
+        <div className="glass-card section-content animate-slide-up">
+          <h2 className="heading-xl mb-4 text-acc-1 font-display flex items-center">
+            <Briefcase className="inline w-8 h-8 mr-4" />
             Freelance Profile
           </h2>
-          <p className="heading-md" style={{ color: 'var(--muted)', marginBottom: '2rem' }}>
+          <p className="heading-md text-muted mb-8 font-display">
             Abhishek Kolluri — Ready for your next project
           </p>
           
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 className="heading-lg" style={{ marginBottom: '1rem' }}>About Me</h3>
-            <p className="body-lg" style={{ color: 'var(--ink)' }}>
+          {/* About */}
+          <div className="mb-8">
+            <h3 className="heading-lg mb-4 font-display">About Me</h3>
+            <p className="text-lg text-ink leading-relaxed">
               {content.freelance.about}
             </p>
           </div>
           
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 className="heading-lg" style={{ marginBottom: '1rem' }}>Skills & Services</h3>
+          {/* Services */}
+          <div className="mb-8">
+            <h3 className="heading-lg mb-6 font-display">Skills & Services</h3>
             <div className="skill-pills">
               {content.freelance.services.map((service, index) => (
-                <span key={index} className="skill-pill">
-                  <CheckCircle className="inline w-4 h-4 mr-1" style={{ color: 'var(--ok)' }} />
+                <span key={index} className="skill-pill group">
+                  <CheckCircle className="inline w-4 h-4 mr-2 text-ok group-hover:text-acc-1 transition-colors" />
                   {service}
                 </span>
               ))}
             </div>
           </div>
           
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 className="heading-lg" style={{ marginBottom: '1rem' }}>
-              <DollarSign className="inline w-6 h-6 mr-2" />
+          {/* Pricing */}
+          <div className="mb-8">
+            <h3 className="heading-lg mb-6 font-display flex items-center">
+              <DollarSign className="inline w-6 h-6 mr-3" />
               Pricing
             </h3>
             
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-              gap: '1rem',
-              marginBottom: '1.5rem'
-            }}>
-              <div className="glass-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-                <h4 className="heading-md" style={{ color: 'var(--acc-1)', marginBottom: '0.5rem' }}>
+            {/* Hourly Rate Highlight */}
+            <div className="max-w-sm mx-auto mb-8">
+              <div className="glass-card p-6 text-center border-2 border-acc-1/30 hover:border-acc-1/60 transition-all">
+                <h4 className="heading-md text-acc-1 mb-2 font-display">
                   Hourly Rate
                 </h4>
-                <div className="price-amount">
-                  <IndianRupee className="inline w-5 h-5" />
+                <div className="text-3xl font-bold text-ink mb-1 flex items-center justify-center">
+                  <IndianRupee className="w-6 h-6" />
                   {content.freelance.pricing.hourlyINR}/hr
                 </div>
-                <div className="price-usd">~${content.freelance.pricing.hourlyUSD}/hr USD</div>
+                <div className="text-sm text-muted">~${content.freelance.pricing.hourlyUSD}/hr USD</div>
               </div>
             </div>
             
-            <h4 className="heading-md" style={{ marginBottom: '1rem' }}>Project Pricing (Starting at)</h4>
+            {/* Project Pricing Grid */}
+            <h4 className="heading-md mb-4 font-display">Project Pricing (Starting at)</h4>
             <div className="pricing-grid">
               {content.freelance.pricing.projects.map((project, index) => (
-                <div key={index} className="pricing-card">
-                  <h5 className="body-md" style={{ fontWeight: '600', marginBottom: '0.5rem' }}>
+                <div key={index} className="pricing-card group">
+                  <h5 className="text-base font-semibold mb-3 group-hover:text-acc-2 transition-colors">
                     {project.name}
                   </h5>
-                  <div className="price-amount">
-                    <IndianRupee className="inline w-4 h-4" />
+                  <div className="price-amount flex items-center justify-center mb-1">
+                    <IndianRupee className="w-5 h-5 mr-1" />
                     {project.inr.toLocaleString()}
                   </div>
                   <div className="price-usd">~${project.usd} USD</div>
@@ -347,32 +347,37 @@ function App() {
               ))}
             </div>
             
-            <div style={{ 
-              marginTop: '1.5rem', 
-              padding: '1rem', 
-              background: 'var(--panel-2)', 
-              borderRadius: '0.5rem' 
-            }}>
-              <h5 className="body-md" style={{ fontWeight: '600', marginBottom: '0.5rem' }}>
-                Value-Adds
+            {/* Value Adds */}
+            <div className="mt-6 p-6 bg-panel-2/40 rounded-xl border border-glass-border/30">
+              <h5 className="text-base font-semibold mb-4 text-acc-2 flex items-center">
+                <Star className="w-4 h-4 mr-2" />
+                Value-Adds & Bundles
               </h5>
-              <p className="body-sm" style={{ color: 'var(--muted)' }}>
-                • {content.freelance.pricing.bundles[0].name}: ₹{content.freelance.pricing.bundles[0].startINR.toLocaleString()}+
-              </p>
-              <p className="body-sm" style={{ color: 'var(--muted)' }}>
-                • Maintenance: ₹{content.freelance.pricing.maintenanceMonthlyINR.toLocaleString()}/month
-              </p>
+              <div className="space-y-2 text-sm text-muted">
+                <p className="flex items-center">
+                  <ArrowRight className="w-3 h-3 mr-2 text-acc-1" />
+                  {content.freelance.pricing.bundles[0].name}: ₹{content.freelance.pricing.bundles[0].startINR.toLocaleString()}+
+                </p>
+                <p className="flex items-center">
+                  <ArrowRight className="w-3 h-3 mr-2 text-acc-1" />
+                  Maintenance & Support: ₹{content.freelance.pricing.maintenanceMonthlyINR.toLocaleString()}/month
+                </p>
+                <p className="flex items-center">
+                  <ArrowRight className="w-3 h-3 mr-2 text-acc-1" />
+                  Complete code ownership and documentation included
+                </p>
+              </div>
             </div>
           </div>
           
-          <div style={{ textAlign: 'center' }}>
+          {/* CTA */}
+          <div className="text-center">
             <a 
               href={content.freelance.mailto}
-              className="cta-primary"
-              style={{ padding: '1rem 2rem', fontSize: '1.125rem' }}
+              className="cta-primary text-lg px-8 py-4 group"
             >
-              <Mail className="inline w-5 h-5 mr-2" />
-              Describe Your Idea
+              <Mail className="inline w-5 h-5 mr-3 group-hover:rotate-12 transition-transform" />
+              {content.freelance.cta}
             </a>
           </div>
         </div>
