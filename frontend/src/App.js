@@ -29,7 +29,10 @@ import {
   Eye,
   Edit3,
   Save,
-  Settings
+  Settings,
+  ArrowRight,
+  Star,
+  TrendingUp
 } from 'lucide-react';
 
 function App() {
