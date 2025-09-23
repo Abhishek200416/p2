@@ -810,43 +810,11 @@ function App() {
 
         {/* Main Content - Only show when video is done */}
         {(hasSeenIntro || !content.hero?.hasIntroVideo) && (
-          <div className={`${isEditMode ? 'edit-mode-active' : ''}`}>
-            {/* Super Advanced Edit Mode Panel */}
-            <SuperAdvancedEditMode
-              content={content}
-              setContent={setContent}
-              isEditMode={isEditMode}
-              setIsEditMode={setIsEditMode}
-              onSave={saveContent}
-              onExport={exportJSON}
-            />
-
-            {/* Edit Mode Toggle Button */}
-            <div className="fixed top-4 right-4 z-30">
-              <button 
-                onClick={toggleEditMode}
-                className="px-4 py-2 text-sm font-medium rounded-full transition-all duration-250 ease-smooth backdrop-blur-xl border shadow-lg hover:shadow-xl"
-                style={{ 
-                  background: isEditMode ? 'linear-gradient(135deg, #10b981, #059669)' : 'var(--glass-bg)',
-                  color: isEditMode ? 'white' : 'var(--ink)',
-                  border: `1px solid ${isEditMode ? '#10b981' : 'var(--glass-border)'}`,
-                  transform: isEditMode ? 'scale(1.05)' : 'scale(1)',
-                }}
-              >
-                {isEditMode ? (
-                  <>
-                    <Save className="inline w-3 h-3 mr-2" />
-                    Super Edit ON
-                  </>
-                ) : (
-                  <>
-                    <Settings className="inline w-3 h-3 mr-2" />
-                    Super Edit
-                  </>
-                )}
-              </button>
-            </div>
-
+          <SuperWebsiteEditor
+            content={content}
+            setContent={setContent}
+            onContentChange={saveContent}
+          >
             {/* Background Particle System */}
             <AdvancedParticleSystem 
               particleCount={window.innerWidth > 768 ? 45 : 20}
