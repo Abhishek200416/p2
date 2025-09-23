@@ -160,6 +160,13 @@ const AdvancedEditMode = ({
     localStorage.setItem('portfolio-theme', JSON.stringify(newTheme));
   };
 
+  const handleLayoutChange = (settingKey, value) => {
+    const newSettings = { ...layoutSettings, [settingKey]: value };
+    setLayoutSettings(newSettings);
+    applyLayoutSettings(newSettings);
+    localStorage.setItem('portfolio-layout', JSON.stringify(newSettings));
+  };
+
   const handleVideoUpload = (event) => {
     const file = event.target.files[0];
     if (file && file.type.startsWith('video/')) {
