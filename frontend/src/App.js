@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import Hero from './components/Hero';
+import EnhancedHero from './components/EnhancedHero';
 import { Toaster } from './components/ui/toaster';
 import { useToast } from './hooks/use-toast';
-import './styles/portfolio.css';
+import enhancedContent from './data/enhanced-content.json';
+import './styles/enhanced-portfolio.css';
 import { 
   User, 
   Briefcase, 
