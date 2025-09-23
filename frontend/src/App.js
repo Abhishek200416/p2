@@ -830,12 +830,12 @@ function App() {
         <AboutSection />
         <FreelanceSection />
         <ProjectsSection />
-        <SkillsSection />
-        <ExperienceSection />
-        <HackathonsSection />
-        <CertificationsSection />
-        <ContactSection />
-        <Footer />
+        <SkillsSection content={content} />
+        <ExperienceSection content={content} />
+        <HackathonsSection content={content} />
+        <CertificationsSection content={content} />
+        <ContactSection content={content} />
+        <Footer content={content} isEditMode={isEditMode} saveContent={saveContent} exportJSON={exportJSON} />
         
         <ProjectModal 
           project={selectedProject} 
