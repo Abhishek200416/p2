@@ -4,6 +4,7 @@ import EnhancedHero from './components/EnhancedHero';
 import { SkillsSection, ExperienceSection, HackathonsSection, CertificationsSection, Footer } from './components/EnhancedSections';
 import EnhancedFeedback from './components/EnhancedFeedback';
 import EnhancedContact from './components/EnhancedContact';
+import TestimonialSection from './components/TestimonialSection';
 import AdvancedEditMode from './components/AdvancedEditMode';
 import VideoIntro from './components/VideoIntro';
 import AdvancedParticleSystem from './components/AdvancedParticleSystem';
