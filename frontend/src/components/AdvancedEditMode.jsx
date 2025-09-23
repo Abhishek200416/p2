@@ -49,10 +49,14 @@ const AdvancedEditMode = ({
     muted: '#9fb3c8',
     acc1: '#7bdfff',
     acc2: '#00bfff',
+    acc3: '#06d6a0',
     ok: '#10b981',
     warn: '#f59e0b',
     bad: '#ef4444',
-    ring: '#7bdfff'
+    ring: '#7bdfff',
+    glassOpacity: 0.85,
+    borderOpacity: 0.25,
+    shadowOpacity: 0.15
   });
 
   // Layout customization
