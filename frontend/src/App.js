@@ -776,15 +776,14 @@ function App() {
             />
             
             <div className="relative z-10">
-              <EditableWrapper
-                isEditMode={isEditMode}
+              <EditableSectionWrapper
                 elementPath="hero"
                 elementType="hero-section"
                 content={content}
                 setContent={setContent}
               >
                 <EnhancedHero content={content.hero} isEditMode={isEditMode} />
-              </EditableWrapper>
+              </EditableSectionWrapper>
               
               <AboutSection />
               
