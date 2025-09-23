@@ -420,7 +420,7 @@ function App() {
               </div>
             </div>
           </div>
-        </EditableWrapper>
+        </EditableSectionWrapper>
       </div>
     </section>
   );
