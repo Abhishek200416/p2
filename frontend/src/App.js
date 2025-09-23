@@ -127,41 +127,7 @@ function App() {
 
     loadContent();
     
-    // Initialize money flow data if not present
-    setTimeout(() => {
-      setContent(prev => {
-        if (!prev.moneyFlow) {
-          return {
-            ...prev,
-            moneyFlow: {
-              categories: [
-                { id: 'income', name: 'Primary Income', type: 'source', color: '#10b981', amount: 75000 },
-                { id: 'freelance', name: 'Freelance Work', type: 'source', color: '#06b6d4', amount: 25000 },
-                { id: 'expenses', name: 'Living Expenses', type: 'sink', color: '#ef4444', amount: 45000 },
-                { id: 'investments', name: 'Investment Portfolio', type: 'flow', color: '#3b82f6', amount: 30000 },
-                { id: 'savings', name: 'Emergency Fund', type: 'flow', color: '#8b5cf6', amount: 15000 },
-                { id: 'education', name: 'Skill Development', type: 'sink', color: '#ec4899', amount: 10000 }
-              ],
-              connections: [
-                { from: 'income', to: 'expenses', amount: 35000, label: 'Monthly Living' },
-                { from: 'income', to: 'investments', amount: 25000, label: 'Portfolio Growth' },
-                { from: 'income', to: 'savings', amount: 15000, label: 'Emergency Fund' },
-                { from: 'freelance', to: 'investments', amount: 15000, label: 'Additional Investment' },
-                { from: 'freelance', to: 'education', amount: 10000, label: 'Skill Courses' },
-                { from: 'investments', to: 'savings', amount: 5000, label: 'Profit Booking' }
-              ],
-              settings: {
-                realTimeUpdates: true,
-                animationSpeed: 1,
-                showLabels: true,
-                gridSnap: false
-              }
-            }
-          };
-        }
-        return prev;
-      });
-    }, 100);
+
   }, []);
 
   // Load GitHub projects
