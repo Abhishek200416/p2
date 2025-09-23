@@ -1,0 +1,238 @@
+/* Super Website Editor Styles */
+
+.edit-mode-active {
+  cursor: crosshair;
+}
+
+.edit-mode-active * {
+  transition: all 0.2s ease;
+}
+
+.edit-mode-active *:hover {
+  outline: 2px dashed rgba(59, 130, 246, 0.6) !important;
+  outline-offset: 2px;
+  cursor: pointer;
+  background: rgba(59, 130, 246, 0.05) !important;
+}
+
+.edit-mode-active [contenteditable="true"] {
+  outline: 2px solid rgba(59, 130, 246, 0.8) !important;
+  outline-offset: 2px;
+  background: rgba(59, 130, 246, 0.1) !important;
+  cursor: text !important;
+}
+
+.edit-mode-active [contenteditable="true"]:focus {
+  outline: 2px solid rgba(34, 197, 94, 0.8) !important;
+  outline-offset: 2px;
+  background: rgba(34, 197, 94, 0.1) !important;
+}
+
+/* Draggable section styles */
+.draggable-section {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.draggable-section.dragging {
+  opacity: 0.5;
+  transform: scale(0.95);
+  z-index: 1000;
+  rotate: 2deg;
+}
+
+.draggable-section.drop-target {
+  ring: 2px solid rgba(59, 130, 246, 0.5);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.draggable-section .drag-handle {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.draggable-section:hover .drag-handle {
+  opacity: 1;
+}
+
+/* Context menu styles */
+.context-menu {
+  backdrop-filter: blur(16px);
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.context-menu-item:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+  transform: translateX(2px);
+}
+
+/* Edit toolbar styles */
+.edit-toolbar {
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.edit-toolbar-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.edit-toolbar-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.edit-toolbar-button:hover::before {
+  left: 100%;
+}
+
+/* Floating elements */
+.floating-element {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(1deg); }
+  66% { transform: translateY(5px) rotate(-1deg); }
+}
+
+/* Selection indicator */
+.element-selected {
+  outline: 2px solid rgba(34, 197, 94, 0.8) !important;
+  outline-offset: 2px;
+  background: rgba(34, 197, 94, 0.1) !important;
+  position: relative;
+}
+
+.element-selected::after {
+  content: 'SELECTED';
+  position: absolute;
+  top: -20px;
+  left: 0;
+  background: rgba(34, 197, 94, 0.9);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  z-index: 1000;
+}
+
+/* Inline editor */
+.inline-editor {
+  background: rgba(17, 24, 39, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Auto-save indicator */
+.auto-save-indicator {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Drop zones */
+.drop-zone-active {
+  border: 2px dashed rgba(59, 130, 246, 0.4);
+  background: rgba(59, 130, 246, 0.05);
+  transition: all 0.2s ease;
+}
+
+.drop-zone-hover {
+  border-color: rgba(59, 130, 246, 0.8);
+  background: rgba(59, 130, 246, 0.1);
+  transform: scale(1.02);
+}
+
+/* Add section button */
+.add-section-button {
+  border: 2px dashed rgba(107, 114, 128, 0.4);
+  transition: all 0.3s ease;
+}
+
+.add-section-button:hover {
+  border-color: rgba(59, 130, 246, 0.8);
+  background: rgba(59, 130, 246, 0.05);
+  transform: scale(1.02);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .edit-toolbar {
+    padding: 0.5rem;
+  }
+  
+  .edit-toolbar-button {
+    padding: 0.5rem;
+  }
+  
+  .context-menu {
+    min-width: 240px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .edit-mode-active *:hover {
+    outline-color: #000;
+    background: rgba(255, 255, 255, 0.2) !important;
+  }
+  
+  .edit-mode-active [contenteditable="true"] {
+    outline-color: #000;
+    background: rgba(255, 255, 255, 0.3) !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .edit-mode-active *,
+  .draggable-section,
+  .floating-element {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Focus styles for accessibility */
+.edit-toolbar-button:focus,
+.context-menu-item:focus {
+  outline: 2px solid rgba(59, 130, 246, 0.8);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar for edit panels */
+.edit-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.edit-panel::-webkit-scrollbar-track {
+  background: rgba(17, 24, 39, 0.3);
+  border-radius: 4px;
+}
+
+.edit-panel::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.6);
+  border-radius: 4px;
+}
+
+.edit-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 85, 99, 0.8);
+}
