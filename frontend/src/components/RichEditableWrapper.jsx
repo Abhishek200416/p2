@@ -67,9 +67,19 @@ const RichEditableWrapper = ({
     ...props
   };
 
+  // Simplified return to isolate the issue
+  if (!children) {
+    return <div className="rich-editable-container" style={{ position: 'relative' }} />;
+  }
+
   return (
     <div className="rich-editable-container" style={{ position: 'relative' }}>
-      {React.isValidElement(children) ? React.cloneElement(children, enhancedProps) : children}
+      {typeof children === 'string' || typeof children === 'number' 
+        ? children 
+        : React.isValidElement(children) 
+          ? React.cloneElement(children, enhancedProps) 
+          : <div {...enhancedProps}>{children}</div>
+      }
       
       {/* Enhanced Edit Indicator */}
       {isEditMode && isHovered && (
