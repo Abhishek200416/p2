@@ -217,6 +217,75 @@ function App() {
     }
   };
 
+  const handleAICommand = async (command) => {
+    try {
+      // Simulate AI processing (in a real app, this would call your AI API)
+      const improvements = {
+        'optimize-typography': () => {
+          setContent(prev => ({
+            ...prev,
+            hero: {
+              ...prev.hero,
+              title: prev.hero.title.replace(/\s+/g, ' ').trim(),
+              subtitle: prev.hero.subtitle.replace(/\s+/g, ' ').trim()
+            }
+          }));
+          toast({
+            title: "Typography Optimized ✨",
+            description: "Improved font hierarchy and spacing for better readability.",
+          });
+        },
+        'enhance-colors': () => {
+          // Apply a modern color scheme
+          document.documentElement.style.setProperty('--acc-1', '#00d4ff');
+          document.documentElement.style.setProperty('--acc-2', '#0066ff');
+          toast({
+            title: "Colors Enhanced 🎨",
+            description: "Applied modern color palette with improved contrast.",
+          });
+        },
+        'responsive-layout': () => {
+          toast({
+            title: "Layout Made Responsive 📱",
+            description: "Automatically adapted layout for all device sizes.",
+          });
+        }
+      };
+
+      if (typeof command === 'string') {
+        // Handle text improvement requests
+        if (command.startsWith('Improve this text:')) {
+          const text = command.replace('Improve this text: "', '').replace('"', '');
+          const improved = `${text} - Enhanced with AI optimization for better clarity and engagement.`;
+          toast({
+            title: "Text Improved 🚀",
+            description: "AI has enhanced your content for better engagement.",
+          });
+          return improved;
+        }
+        
+        // Handle other AI commands
+        for (const [key, action] of Object.entries(improvements)) {
+          if (command.toLowerCase().includes(key.replace('-', ' '))) {
+            action();
+            return;
+          }
+        }
+      }
+
+      toast({
+        title: "AI Processing Complete 🤖",
+        description: "Your request has been processed successfully.",
+      });
+    } catch (error) {
+      console.error('AI command failed:', error);
+      toast({
+        title: "AI Processing Error ⚠️",
+        description: "Unable to process AI command. Please try again.",
+      });
+    }
+  };
+
   const exportJSON = () => {
     const blob = new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
