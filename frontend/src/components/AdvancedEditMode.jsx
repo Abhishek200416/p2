@@ -533,6 +533,187 @@ const AdvancedEditMode = ({
           </div>
         )}
 
+        {activeTab === 'effects' && (
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-white">Visual Effects & Animation</h3>
+            
+            {/* Particle System Controls */}
+            <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+              <h4 className="text-sm font-medium text-white mb-3 flex items-center">
+                <Zap className="w-4 h-4 mr-2 text-blue-400" />
+                Particle System
+              </h4>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <label className="text-sm text-gray-300">Count</label>
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="range"
+                      min="10"
+                      max="100"
+                      value={layoutSettings.particleCount}
+                      onChange={(e) => {
+                        const newSettings = { ...layoutSettings, particleCount: parseInt(e.target.value) };
+                        setLayoutSettings(newSettings);
+                        applyLayoutSettings(newSettings);
+                      }}
+                      className="w-20"
+                    />
+                    <span className="text-xs text-gray-500 w-8">{layoutSettings.particleCount}</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <label className="text-sm text-gray-300">Speed</label>
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="range"
+                      min="0.1"
+                      max="1"
+                      step="0.1"
+                      value={layoutSettings.particleSpeed}
+                      onChange={(e) => {
+                        const newSettings = { ...layoutSettings, particleSpeed: parseFloat(e.target.value) };
+                        setLayoutSettings(newSettings);
+                        applyLayoutSettings(newSettings);
+                      }}
+                      className="w-20"
+                    />
+                    <span className="text-xs text-gray-500 w-8">{layoutSettings.particleSpeed}</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <label className="text-sm text-gray-300">Opacity</label>
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="range"
+                      min="0.1"
+                      max="1"
+                      step="0.1"
+                      value={layoutSettings.particleOpacity}
+                      onChange={(e) => {
+                        const newSettings = { ...layoutSettings, particleOpacity: parseFloat(e.target.value) };
+                        setLayoutSettings(newSettings);
+                        applyLayoutSettings(newSettings);
+                      }}
+                      className="w-20"
+                    />
+                    <span className="text-xs text-gray-500 w-8">{layoutSettings.particleOpacity}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Animation Controls */}
+            <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+              <h4 className="text-sm font-medium text-white mb-3">Animation Settings</h4>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <label className="text-sm text-gray-300">Animation Speed</label>
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="range"
+                      min="100"
+                      max="500"
+                      step="50"
+                      value={layoutSettings.animationSpeed}
+                      onChange={(e) => {
+                        const newSettings = { ...layoutSettings, animationSpeed: parseInt(e.target.value) };
+                        setLayoutSettings(newSettings);
+                        applyLayoutSettings(newSettings);
+                      }}
+                      className="w-20"
+                    />
+                    <span className="text-xs text-gray-500 w-12">{layoutSettings.animationSpeed}ms</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <label className="text-sm text-gray-300">Border Radius</label>
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="range"
+                      min="4"
+                      max="24"
+                      value={layoutSettings.borderRadius}
+                      onChange={(e) => {
+                        const newSettings = { ...layoutSettings, borderRadius: parseInt(e.target.value) };
+                        setLayoutSettings(newSettings);
+                        applyLayoutSettings(newSettings);
+                      }}
+                      className="w-20"
+                    />
+                    <span className="text-xs text-gray-500 w-8">{layoutSettings.borderRadius}px</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <label className="text-sm text-gray-300">Card Spacing</label>
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="range"
+                      min="1"
+                      max="4"
+                      step="0.5"
+                      value={layoutSettings.cardSpacing}
+                      onChange={(e) => {
+                        const newSettings = { ...layoutSettings, cardSpacing: parseFloat(e.target.value) };
+                        setLayoutSettings(newSettings);
+                        applyLayoutSettings(newSettings);
+                      }}
+                      className="w-20"
+                    />
+                    <span className="text-xs text-gray-500 w-8">{layoutSettings.cardSpacing}rem</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Toggle Controls */}
+            <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+              <h4 className="text-sm font-medium text-white mb-3">Effect Toggles</h4>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <label className="text-sm text-gray-300">Glass Effect</label>
+                  <input
+                    type="checkbox"
+                    checked={layoutSettings.glassEffect}
+                    onChange={(e) => {
+                      const newSettings = { ...layoutSettings, glassEffect: e.target.checked };
+                      setLayoutSettings(newSettings);
+                      localStorage.setItem('portfolio-layout', JSON.stringify(newSettings));
+                    }}
+                    className="w-4 h-4"
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  <label className="text-sm text-gray-300">Parallax Effect</label>
+                  <input
+                    type="checkbox"
+                    checked={layoutSettings.parallaxEnabled}
+                    onChange={(e) => {
+                      const newSettings = { ...layoutSettings, parallaxEnabled: e.target.checked };
+                      setLayoutSettings(newSettings);
+                      localStorage.setItem('portfolio-layout', JSON.stringify(newSettings));
+                    }}
+                    className="w-4 h-4"
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  <label className="text-sm text-gray-300">Reduce Motion</label>
+                  <input
+                    type="checkbox"
+                    checked={layoutSettings.reduceMotion}
+                    onChange={(e) => {
+                      const newSettings = { ...layoutSettings, reduceMotion: e.target.checked };
+                      setLayoutSettings(newSettings);
+                      localStorage.setItem('portfolio-layout', JSON.stringify(newSettings));
+                    }}
+                    className="w-4 h-4"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {activeTab === 'analytics' && (
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-white">Analytics Dashboard</h3>
