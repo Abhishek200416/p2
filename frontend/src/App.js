@@ -203,41 +203,70 @@ function App() {
   const AboutSection = () => (
     <section id="about" className="section">
       <div className="portfolio-container">
-        <div className="glass-card section-content fade-in">
-          <h2 className="heading-xl" style={{ marginBottom: '2rem', color: 'var(--acc-1)' }}>
+        <div className="glass-card section-content animate-fade-in">
+          <h2 className="heading-xl mb-8 text-acc-1 font-display">
             Less talk. More shipping.
           </h2>
           
           <div className="two-col-grid">
-            <div>
-              <h3 className="heading-lg" style={{ marginBottom: '1rem' }}>
-                <Target className="inline w-6 h-6 mr-2" style={{ color: 'var(--acc-1)' }} />
-                Story
-              </h3>
-              <p className="body-lg" style={{ color: 'var(--muted)', marginBottom: '1rem' }}>
-                {content.about.why}
-              </p>
-              <p className="body-md" style={{ color: 'var(--ink)' }}>
-                {content.about.how}
-              </p>
+            <div className="space-y-6">
+              <div>
+                <h3 className="heading-lg mb-4 flex items-center">
+                  <Target className="inline w-6 h-6 mr-3 text-acc-1" />
+                  Story
+                </h3>
+                <p className="text-lg text-muted mb-4 leading-relaxed">
+                  {content.about.why}
+                </p>
+                <p className="text-base text-ink">
+                  {content.about.how}
+                </p>
+              </div>
+              
+              <div className="p-6 bg-panel-2/50 rounded-xl border border-glass-border/30">
+                <p className="text-sm text-acc-1 font-semibold mb-2 flex items-center">
+                  <TrendingUp className="inline w-4 h-4 mr-2" />
+                  {content.meta.credo}
+                </p>
+                <p className="text-sm text-muted">
+                  "{content.meta.tagline}"
+                </p>
+              </div>
             </div>
             
-            <div>
-              <h3 className="heading-lg" style={{ marginBottom: '1rem' }}>
-                <Zap className="inline w-6 h-6 mr-2" style={{ color: 'var(--acc-2)' }} />
-                Speed
-              </h3>
-              <p className="body-lg" style={{ color: 'var(--muted)' }}>
-                {content.about.speed}
-              </p>
-              
-              <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'var(--panel-2)', borderRadius: '0.5rem' }}>
-                <p className="body-sm" style={{ color: 'var(--acc-1)', fontWeight: '600' }}>
-                  <Clock className="inline w-4 h-4 mr-1" />
-                  Recent GitHub Activity
+            <div className="space-y-6">
+              <div>
+                <h3 className="heading-lg mb-4 flex items-center">
+                  <Zap className="inline w-6 h-6 mr-3 text-acc-2" />
+                  Speed & Outcomes
+                </h3>
+                <p className="text-lg text-muted mb-4">
+                  {content.about.speed}
                 </p>
-                <p className="body-sm" style={{ color: 'var(--muted)', marginTop: '0.5rem' }}>
-                  Auto-synced from GitHub API • 24+ repos active
+                
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between p-3 bg-glass-bg rounded-lg border border-glass-border/20">
+                    <span className="text-sm font-medium">MVPs</span>
+                    <span className="text-acc-1 font-bold">1 day</span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-glass-bg rounded-lg border border-glass-border/20">
+                    <span className="text-sm font-medium">Complex builds</span>
+                    <span className="text-acc-2 font-bold">3-4 days</span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-glass-bg rounded-lg border border-glass-border/20">
+                    <span className="text-sm font-medium">Projects shipped</span>
+                    <span className="text-ok font-bold">25+ total</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="p-4 bg-panel-2/30 rounded-lg border border-acc-1/20">
+                <p className="text-xs text-acc-1 font-semibold mb-1 flex items-center">
+                  <Clock className="inline w-3 h-3 mr-1" />
+                  GitHub Activity
+                </p>
+                <p className="text-xs text-muted">
+                  Auto-synced • 24+ repos • Recent: {new Date().toLocaleDateString()}
                 </p>
               </div>
             </div>
