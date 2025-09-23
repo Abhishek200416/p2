@@ -138,20 +138,55 @@ function App() {
     });
   };
 
-  const toggleEditMode = () => {
-    const pass = prompt('Enter passphrase to enable edit mode:');
-    if (pass === process.env.REACT_APP_OWNER_PASS || pass === 'shipfast') {
-      setIsEditMode(!isEditMode);
+  const toggleEditMode = async () => {
+    if (isEditMode) {
+      setIsEditMode(false);
       toast({
-        title: isEditMode ? "Edit mode disabled" : "Edit mode enabled",
-        description: isEditMode ? "Content is now read-only" : "You can now edit content inline",
+        title: "Edit mode disabled",
+        description: "Content is now read-only",
       });
-    } else if (pass) {
-      toast({
-        title: "Access denied",
-        description: "Incorrect passphrase",
-        variant: "destructive"
+      return;
+    }
+
+    const passphrase = prompt('Enter owner passphrase to enable edit mode:');
+    if (!passphrase) return;
+
+    try {
+      // Try to authenticate with backend
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ passphrase })
       });
+
+      if (response.ok) {
+        const { token } = await response.json();
+        sessionStorage.setItem('portfolio-token', token);
+        setIsEditMode(true);
+        toast({
+          title: "Edit mode enabled! ✏️",
+          description: "You can now edit content inline. Changes auto-save to server.",
+        });
+      } else {
+        throw new Error('Authentication failed');
+      }
+    } catch (error) {
+      // Fallback to local passphrase check
+      if (passphrase === 'shipfast' || passphrase === process.env.REACT_APP_OWNER_PASS) {
+        setIsEditMode(true);
+        toast({
+          title: "Edit mode enabled! ✏️",
+          description: "Local edit mode. Changes save to localStorage only.",
+        });
+      } else {
+        toast({
+          title: "Access denied",
+          description: "Incorrect passphrase",
+          variant: "destructive"
+        });
+      }
     }
   };
 
