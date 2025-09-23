@@ -337,9 +337,43 @@ const AdvancedEditMode = ({
               <ColorInput label="Muted Text" colorKey="muted" value={customTheme.muted} />
               <ColorInput label="Primary Accent" colorKey="acc1" value={customTheme.acc1} />
               <ColorInput label="Secondary Accent" colorKey="acc2" value={customTheme.acc2} />
+              <ColorInput label="Emerald Accent" colorKey="acc3" value={customTheme.acc3} />
               <ColorInput label="Success" colorKey="ok" value={customTheme.ok} />
               <ColorInput label="Warning" colorKey="warn" value={customTheme.warn} />
               <ColorInput label="Error" colorKey="bad" value={customTheme.bad} />
+            </div>
+
+            {/* Opacity Controls */}
+            <div className="mt-6">
+              <h4 className="text-sm font-semibold text-white mb-3">Glass & Shadow Effects</h4>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between p-3 bg-gray-900/50 rounded-lg border border-gray-700">
+                  <label className="text-sm font-medium text-gray-300">Glass Opacity</label>
+                  <input
+                    type="range"
+                    min="0.1"
+                    max="1"
+                    step="0.05"
+                    value={customTheme.glassOpacity}
+                    onChange={(e) => handleThemeChange('glassOpacity', parseFloat(e.target.value))}
+                    className="w-20"
+                  />
+                  <span className="text-xs text-gray-500 font-mono w-12">{(customTheme.glassOpacity * 100).toFixed(0)}%</span>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-gray-900/50 rounded-lg border border-gray-700">
+                  <label className="text-sm font-medium text-gray-300">Border Opacity</label>
+                  <input
+                    type="range"
+                    min="0.1"
+                    max="0.8"
+                    step="0.05"
+                    value={customTheme.borderOpacity}
+                    onChange={(e) => handleThemeChange('borderOpacity', parseFloat(e.target.value))}
+                    className="w-20"
+                  />
+                  <span className="text-xs text-gray-500 font-mono w-12">{(customTheme.borderOpacity * 100).toFixed(0)}%</span>
+                </div>
+              </div>
             </div>
           </div>
         )}
