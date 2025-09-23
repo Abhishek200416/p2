@@ -305,10 +305,11 @@ const AdvancedEditMode = ({
       {/* Tabs */}
       <div className="p-4 border-b border-gray-700">
         <div className="grid grid-cols-2 gap-2">
-          <TabButton id="theme" label="Theme" icon={Palette} active={activeTab === 'theme'} onClick={setActiveTab} />
+          <TabButton id="theme" label="Colors" icon={Palette} active={activeTab === 'theme'} onClick={setActiveTab} />
           <TabButton id="layout" label="Layout" icon={Layout} active={activeTab === 'layout'} onClick={setActiveTab} />
           <TabButton id="content" label="Content" icon={Type} active={activeTab === 'content'} onClick={setActiveTab} />
           <TabButton id="media" label="Media" icon={Video} active={activeTab === 'media'} onClick={setActiveTab} />
+          <TabButton id="effects" label="Effects" icon={Zap} active={activeTab === 'effects'} onClick={setActiveTab} />
           <TabButton id="analytics" label="Analytics" icon={BarChart3} active={activeTab === 'analytics'} onClick={setActiveTab} />
         </div>
       </div>
