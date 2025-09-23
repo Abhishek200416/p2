@@ -100,8 +100,29 @@ const AdvancedEditMode = ({
   const applyTheme = (theme) => {
     const root = document.documentElement;
     Object.entries(theme).forEach(([key, value]) => {
-      root.style.setProperty(`--${key.replace(/(\d)/, '-$1')}`, value);
+      if (key.includes('Opacity')) {
+        // Handle opacity values
+        root.style.setProperty(`--${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`, value);
+      } else {
+        root.style.setProperty(`--${key.replace(/(\d)/, '-$1')}`, value);
+      }
     });
+  };
+
+  const applyLayoutSettings = (settings) => {
+    const root = document.documentElement;
+    root.style.setProperty('--animation-duration', `${settings.animationSpeed}ms`);
+    root.style.setProperty('--border-radius', `${settings.borderRadius}px`);
+    root.style.setProperty('--card-spacing', `${settings.cardSpacing}rem`);
+    
+    // Apply particle settings to particle system if it exists
+    if (window.particleSystem) {
+      window.particleSystem.updateSettings({
+        count: window.innerWidth > 768 ? settings.particleCount : Math.floor(settings.particleCount / 2),
+        opacity: settings.particleOpacity,
+        speed: settings.particleSpeed
+      });
+    }
   };
 
   const handleThemeChange = (colorKey, value) => {
