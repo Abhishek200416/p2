@@ -290,65 +290,113 @@ function App() {
   const AboutSection = () => (
     <section id="about" className="section">
       <div className="portfolio-container">
-        <div className="glass-card section-content animate-fade-in">
-          <h2 className="heading-xl mb-8 text-acc-1 font-display">
-            Less talk. More shipping.
-          </h2>
-          
-          <div className="two-col-grid">
-            <div className="space-y-6">
-              <div>
-                <h3 className="heading-lg mb-4 flex items-center">
-                  <Target className="inline w-6 h-6 mr-3 text-acc-1" />
-                  Story
-                </h3>
-                <p className="text-lg text-muted mb-4 leading-relaxed">
-                  {content.about.why}
-                </p>
-                <p className="text-base text-ink">
-                  {content.about.how}
-                </p>
+        <EditableWrapper
+          isEditMode={isEditMode}
+          elementPath="about"
+          elementType="section"
+          content={content}
+          setContent={setContent}
+        >
+          <div className="glass-card section-content animate-fade-in">
+            <EditableWrapper
+              isEditMode={isEditMode}
+              elementPath="about.title"
+              elementType="heading"
+              content={content}
+              setContent={setContent}
+            >
+              <h2 className="heading-xl mb-8 text-acc-1 font-display">
+                Less talk. More shipping.
+              </h2>
+            </EditableWrapper>
+            
+            <div className="two-col-grid">
+              <div className="space-y-6">
+                <div>
+                  <h3 className="heading-lg mb-4 flex items-center">
+                    <Target className="inline w-6 h-6 mr-3 text-acc-1" />
+                    Story
+                  </h3>
+                  <EditableWrapper
+                    isEditMode={isEditMode}
+                    elementPath="about.why"
+                    elementType="paragraph"
+                    content={content}
+                    setContent={setContent}
+                  >
+                    <p className="text-lg text-muted mb-4 leading-relaxed">
+                      {content.about.why}
+                    </p>
+                  </EditableWrapper>
+                  <EditableWrapper
+                    isEditMode={isEditMode}
+                    elementPath="about.how"
+                    elementType="paragraph"
+                    content={content}
+                    setContent={setContent}
+                  >
+                    <p className="text-base text-ink">
+                      {content.about.how}
+                    </p>
+                  </EditableWrapper>
+                </div>
+                
+                <div className="p-6 bg-panel-2/50 rounded-xl border border-glass-border/30">
+                  <p className="text-sm text-acc-1 font-semibold mb-2 flex items-center">
+                    <TrendingUp className="inline w-4 h-4 mr-2" />
+                    {content.meta?.credo || content.about.credo}
+                  </p>
+                  <EditableWrapper
+                    isEditMode={isEditMode}
+                    elementPath="meta.tagline"
+                    elementType="tagline"
+                    content={content}
+                    setContent={setContent}
+                  >
+                    <p className="text-sm text-muted">
+                      "{content.meta?.tagline || 'Give me a clear problem and 24 hours. You\'ll get something real.'}"
+                    </p>
+                  </EditableWrapper>
+                </div>
               </div>
               
-              <div className="p-6 bg-panel-2/50 rounded-xl border border-glass-border/30">
-                <p className="text-sm text-acc-1 font-semibold mb-2 flex items-center">
-                  <TrendingUp className="inline w-4 h-4 mr-2" />
-                  {content.meta?.credo || content.about.credo}
-                </p>
-                <p className="text-sm text-muted">
-                  "{content.meta?.tagline || 'Give me a clear problem and 24 hours. You\'ll get something real.'}"
-                </p>
-              </div>
-            </div>
-            
-            <div className="space-y-6">
-              <div>
-                <h3 className="heading-lg mb-4 flex items-center">
-                  <Zap className="inline w-6 h-6 mr-3 text-acc-2" />
-                  Speed & Outcomes
-                </h3>
-                <p className="text-lg text-muted mb-4">
-                  {content.about.speed}
-                </p>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="heading-lg mb-4 flex items-center">
+                    <Zap className="inline w-6 h-6 mr-3 text-acc-2" />
+                    Speed & Outcomes
+                  </h3>
+                  <EditableWrapper
+                    isEditMode={isEditMode}
+                    elementPath="about.speed"
+                    elementType="paragraph"
+                    content={content}
+                    setContent={setContent}
+                  >
+                    <p className="text-lg text-muted mb-4">
+                      {content.about.speed}
+                    </p>
+                  </EditableWrapper>
                 
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 bg-glass-bg rounded-lg border border-glass-border/20">
-                    <span className="text-sm font-medium">MVPs</span>
-                    <span className="text-acc-1 font-bold">1 day</span>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-glass-bg rounded-lg border border-glass-border/20">
-                    <span className="text-sm font-medium">Complex builds</span>
-                    <span className="text-acc-2 font-bold">3-4 days</span>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-glass-bg rounded-lg border border-glass-border/20">
-                    <span className="text-sm font-medium">Projects shipped</span>
-                    <span className="text-ok font-bold">25+ total</span>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between p-3 bg-glass-bg rounded-lg border border-glass-border/20">
+                      <span className="text-sm font-medium">MVPs</span>
+                      <span className="text-acc-1 font-bold">1 day</span>
+                    </div>
+                    <div className="flex items-center justify-between p-3 bg-glass-bg rounded-lg border border-glass-border/20">
+                      <span className="text-sm font-medium">Complex builds</span>
+                      <span className="text-acc-2 font-bold">3-4 days</span>
+                    </div>
+                    <div className="flex items-center justify-between p-3 bg-glass-bg rounded-lg border border-glass-border/20">
+                      <span className="text-sm font-medium">Projects shipped</span>
+                      <span className="text-ok font-bold">25+ total</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </EditableWrapper>
       </div>
     </section>
   );
