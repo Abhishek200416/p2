@@ -2,14 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Infinity Castle Color Palette */
+  /* Advanced Infinity Castle Color Palette */
   --bg: #0b0f14;
   --panel: #101620;
   --panel-2: #0d141d;
   --ink: #cfd8e3;
   --muted: #9fb3c8;
   --acc-1: #7bdfff;
-  --acc-2: #e6b800;
+  --acc-2: #a855f7; /* Purple accent instead of yellow */
+  --acc-3: #06d6a0; /* Emerald accent for variety */
   --ok: #10b981;
   --warn: #f59e0b;
   --bad: #ef4444;
