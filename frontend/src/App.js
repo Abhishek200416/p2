@@ -910,35 +910,7 @@ function App() {
                 <ExperienceSection content={content} isEditMode={isEditMode} />
               </EditableWrapper>
 
-              {/* Money Flow Visualization Section */}
-              <section className="py-16 relative overflow-hidden" style={{ background: 'var(--bg-gradient)' }}>
-                <div className="container mx-auto px-4">
-                  <EditableWrapper
-                    isEditMode={isEditMode}
-                    elementPath="moneyFlow"
-                    elementType="money-flow-section"
-                    content={content}
-                    setContent={setContent}
-                  >
-                    <div className="text-center mb-12">
-                      <h2 className="heading-lg text-acc-1 mb-4 font-display">
-                        Financial Flow Analytics
-                      </h2>
-                      <p className="text-muted max-w-2xl mx-auto">
-                        Interactive visualization of money flows, investments, and financial planning with real-time analytics
-                      </p>
-                    </div>
-                    <MoneyFlowVisualization 
-                      isEditMode={isEditMode}
-                      data={content.moneyFlow}
-                      onDataChange={(newData) => setContent(prev => ({ ...prev, moneyFlow: newData }))}
-                      theme="dark"
-                      interactive={true}
-                      realTime={true}
-                    />
-                  </EditableWrapper>
-                </div>
-              </section>
+
               
               <EditableWrapper
                 isEditMode={isEditMode}
