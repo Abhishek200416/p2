@@ -406,80 +406,165 @@ const SuperAdvancedEditMode = ({
               <div className="p-4 bg-gradient-to-r from-purple-900/20 to-pink-900/20 border border-purple-600/30 rounded-lg">
                 <h3 className="text-sm font-semibold text-white mb-2 flex items-center">
                   <Wand2 className="w-4 h-4 mr-2 text-purple-400" />
-                  Universal Editor - AI-Powered Everything
+                  Universal Editor - Edit Everything
                 </h3>
                 <div className="text-xs text-gray-300 space-y-1">
-                  <p>• AI understands your entire portfolio context</p>
-                  <p>• Natural language commands for any change</p>
-                  <p>• Smart suggestions based on industry trends</p>
-                  <p>• One-click professional optimizations</p>
-                  <p>• Real-time collaboration with AI assistant</p>
+                  <p>• Click any element to edit it directly</p>
+                  <p>• Right-click for advanced options menu</p>
+                  <p>• Use AI commands for complex changes</p>
+                  <p>• Everything is editable: text, images, positions, styles</p>
                 </div>
               </div>
 
+              {/* Universal AI Command Input */}
               <div className="space-y-3">
-                <h4 className="text-sm font-semibold text-white">Universal Commands</h4>
+                <h4 className="text-sm font-semibold text-white">AI Universal Commands</h4>
                 
-                <div className="grid grid-cols-1 gap-2">
-                  <button className="p-3 bg-purple-900/30 hover:bg-purple-800/40 border border-purple-600/30 rounded-lg text-left transition-colors">
-                    <div className="flex items-center">
-                      <Sparkles className="w-4 h-4 text-purple-400 mr-2" />
-                      <div>
-                        <div className="text-xs font-medium text-white">"Make it more professional"</div>
-                        <div className="text-[10px] text-gray-400">AI optimizes entire portfolio</div>
-                      </div>
-                    </div>
-                  </button>
-                  
-                  <button className="p-3 bg-blue-900/30 hover:bg-blue-800/40 border border-blue-600/30 rounded-lg text-left transition-colors">
-                    <div className="flex items-center">
-                      <Wand2 className="w-4 h-4 text-blue-400 mr-2" />
-                      <div>
-                        <div className="text-xs font-medium text-white">"Add a contact form"</div>
-                        <div className="text-[10px] text-gray-400">Instantly creates functional forms</div>
-                      </div>
-                    </div>
-                  </button>
-                  
-                  <button className="p-3 bg-green-900/30 hover:bg-green-800/40 border border-green-600/30 rounded-lg text-left transition-colors">
-                    <div className="flex items-center">
-                      <Type className="w-4 h-4 text-green-400 mr-2" />
-                      <div>
-                        <div className="text-xs font-medium text-white">"Improve my project descriptions"</div>
-                        <div className="text-[10px] text-gray-400">AI rewrites with impact</div>
-                      </div>
-                    </div>
-                  </button>
-                  
-                  <button className="p-3 bg-orange-900/30 hover:bg-orange-800/40 border border-orange-600/30 rounded-lg text-left transition-colors">
-                    <div className="flex items-center">
-                      <Palette className="w-4 h-4 text-orange-400 mr-2" />
-                      <div>
-                        <div className="text-xs font-medium text-white">"Change theme to modern dark"</div>
-                        <div className="text-[10px] text-gray-400">Smart theme generation</div>
-                      </div>
-                    </div>
+                <div className="relative">
+                  <textarea
+                    placeholder="Tell AI what to edit... (e.g., 'Change hero background to gradient', 'Make all buttons rounded', 'Add animation to cards')"
+                    className="w-full h-20 px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-white text-sm placeholder-gray-400 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 resize-none"
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter' && e.ctrlKey) {
+                        handleUniversalAICommand(e.target.value);
+                        e.target.value = '';
+                      }
+                    }}
+                  />
+                  <button
+                    onClick={() => {
+                      const textarea = document.querySelector('textarea');
+                      if (textarea.value.trim()) {
+                        handleUniversalAICommand(textarea.value);
+                        textarea.value = '';
+                      }
+                    }}
+                    className="absolute bottom-2 right-2 px-3 py-1 bg-purple-600 hover:bg-purple-700 text-white text-xs rounded transition-colors flex items-center"
+                  >
+                    <Sparkles className="w-3 h-3 mr-1" />
+                    Apply Universal Changes
                   </button>
                 </div>
+                
+                <div className="text-xs text-gray-400">
+                  Ctrl + Enter to apply quickly • AI will modify the entire website based on your command
+                </div>
+              </div>
 
+              {/* Element Inspector */}
+              <div className="space-y-3">
+                <h4 className="text-sm font-semibold text-white">Element Inspector</h4>
                 <div className="p-3 bg-gray-800/50 border border-gray-700 rounded-lg">
-                  <div className="text-xs text-gray-300 mb-2">Try these commands:</div>
-                  <div className="space-y-1 text-[10px] text-gray-400">
-                    <div>• "Add testimonials section"</div>
-                    <div>• "Make the hero section more engaging"</div>
-                    <div>• "Optimize for mobile devices"</div>
-                    <div>• "Add social media links"</div>
-                    <div>• "Create a blog section"</div>
-                    <div>• "Improve SEO optimization"</div>
+                  <div className="text-xs text-gray-300 mb-2">Click any element on the page to edit:</div>
+                  <div className="space-y-2">
+                    <button
+                      onClick={() => enableElementSelection()}
+                      className="w-full px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs rounded transition-colors flex items-center justify-center"
+                    >
+                      <Crosshair className="w-3 h-3 mr-1" />
+                      Enable Element Selector
+                    </button>
+                    
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        onClick={() => toggleEditMode('text')}
+                        className="px-3 py-2 bg-green-600/20 hover:bg-green-600/30 border border-green-600/50 text-green-400 text-xs rounded transition-colors flex items-center justify-center"
+                      >
+                        <Type className="w-3 h-3 mr-1" />
+                        Text Mode
+                      </button>
+                      
+                      <button
+                        onClick={() => toggleEditMode('style')}
+                        className="px-3 py-2 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-600/50 text-purple-400 text-xs rounded transition-colors flex items-center justify-center"
+                      >
+                        <Palette className="w-3 h-3 mr-1" />
+                        Style Mode
+                      </button>
+                      
+                      <button
+                        onClick={() => toggleEditMode('position')}
+                        className="px-3 py-2 bg-orange-600/20 hover:bg-orange-600/30 border border-orange-600/50 text-orange-400 text-xs rounded transition-colors flex items-center justify-center"
+                      >
+                        <Move className="w-3 h-3 mr-1" />
+                        Position Mode
+                      </button>
+                      
+                      <button
+                        onClick={() => toggleEditMode('image')}
+                        className="px-3 py-2 bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-600/50 text-cyan-400 text-xs rounded transition-colors flex items-center justify-center"
+                      >
+                        <ImageIcon className="w-3 h-3 mr-1" />
+                        Image Mode
+                      </button>
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                <div className="p-3 bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-600/30 rounded-lg">
-                  <div className="text-xs text-purple-300 mb-2">🚀 Pro Tip:</div>
-                  <div className="text-[10px] text-gray-400">
-                    The Universal Editor learns from your preferences and gets smarter with each interaction. 
-                    It can handle complex multi-step changes with a single command!
-                  </div>
+              {/* Quick Edit Tools */}
+              <div className="space-y-3">
+                <h4 className="text-sm font-semibold text-white">Quick Universal Tools</h4>
+                
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    onClick={() => handleQuickEdit('make-responsive')}
+                    className="p-3 bg-blue-900/30 hover:bg-blue-800/40 border border-blue-600/30 rounded-lg text-left transition-colors"
+                  >
+                    <div className="flex items-center">
+                      <Monitor className="w-4 h-4 text-blue-400 mr-2" />
+                      <div>
+                        <div className="text-xs font-medium text-white">Make Responsive</div>
+                        <div className="text-[10px] text-gray-400">Auto-optimize for all devices</div>
+                      </div>
+                    </div>
+                  </button>
+                  
+                  <button
+                    onClick={() => handleQuickEdit('add-animations')}
+                    className="p-3 bg-green-900/30 hover:bg-green-800/40 border border-green-600/30 rounded-lg text-left transition-colors"
+                  >
+                    <div className="flex items-center">
+                      <Zap className="w-4 h-4 text-green-400 mr-2" />
+                      <div>
+                        <div className="text-xs font-medium text-white">Add Animations</div>
+                        <div className="text-[10px] text-gray-400">Smooth transitions everywhere</div>
+                      </div>
+                    </div>
+                  </button>
+                  
+                  <button
+                    onClick={() => handleQuickEdit('optimize-spacing')}
+                    className="p-3 bg-purple-900/30 hover:bg-purple-800/40 border border-purple-600/30 rounded-lg text-left transition-colors"
+                  >
+                    <div className="flex items-center">
+                      <Grid3X3 className="w-4 h-4 text-purple-400 mr-2" />
+                      <div>
+                        <div className="text-xs font-medium text-white">Fix Spacing</div>
+                        <div className="text-[10px] text-gray-400">Perfect margins & padding</div>
+                      </div>
+                    </div>
+                  </button>
+                  
+                  <button
+                    onClick={() => handleQuickEdit('enhance-typography')}
+                    className="p-3 bg-orange-900/30 hover:bg-orange-800/40 border border-orange-600/30 rounded-lg text-left transition-colors"
+                  >
+                    <div className="flex items-center">
+                      <Type className="w-4 h-4 text-orange-400 mr-2" />
+                      <div>
+                        <div className="text-xs font-medium text-white">Better Typography</div>
+                        <div className="text-[10px] text-gray-400">Professional font styling</div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              <div className="p-3 bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-600/30 rounded-lg">
+                <div className="text-xs text-purple-300 mb-2">🎯 Universal Edit Mode Active</div>
+                <div className="text-[10px] text-gray-400">
+                  Every element on your website is now editable. Use the AI commands above or click directly on any element to modify it instantly.
                 </div>
               </div>
             </div>
