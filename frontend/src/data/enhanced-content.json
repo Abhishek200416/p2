@@ -237,11 +237,11 @@
     }
   ],
   "certs": [
-    {"name": "Prompt Engineering Mastery", "issuer": "DeepLearning.AI", "count": 3, "year": "2024", "image": "https://images.unsplash.com/photo-1589330694653-ded6df03f754?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwxfHxjZXJ0aWZpY2F0ZXN8ZW58MHx8fHwxNzU4NjM1NTIzfDA&ixlib=rb-4.1.0&q=85"},
-    {"name": "Advanced Python Programming", "issuer": "Python Institute", "year": "2024", "image": "https://images.unsplash.com/photo-1597700561118-3b2cae28c6c8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwyfHxjZXJ0aWZpY2F0ZXN8ZW58MHx8fHwxNzU4NjM1NTIzfDA&ixlib=rb-4.1.0&q=85"},
-    {"name": "Cloud Computing Fundamentals", "issuer": "AWS", "year": "2023", "image": "https://images.unsplash.com/photo-1629721671030-a83edbb11211?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwxfHxhY2hpZXZlbWVudHN8ZW58MHx8fHwxNzU4NjM1NTI4fDA&ixlib=rb-4.1.0&q=85"},
-    {"name": "Full-Stack Web Development", "issuer": "freeCodeCamp", "year": "2023", "image": "https://images.unsplash.com/photo-1548126466-4470dfd3a209?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwzfHxhY2hpZXZlbWVudHN8ZW58MHx8fHwxNzU4NjM1NTI4fDA&ixlib=rb-4.1.0&q=85"},
-    {"name": "UiPath RPA Developer", "issuer": "UiPath", "year": "2024", "image": "https://images.pexels.com/photos/8152729/pexels-photo-8152729.jpeg"}
+    {"name": "Prompt Engineering Mastery", "issuer": "DeepLearning.AI", "count": 3, "year": "2024", "image": "https://images.unsplash.com/photo-1596067825960-c996c51d7463?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwxfHxjZXJ0aWZpY2F0ZXN8ZW58MHx8fGJsdWV8MTc1ODY0MDIwNXww&ixlib=rb-4.1.0&q=85"},
+    {"name": "Advanced Python Programming", "issuer": "Python Institute", "year": "2024", "image": "https://images.unsplash.com/photo-1559443065-31b290d9c9c1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwzfHxjZXJ0aWZpY2F0ZXN8ZW58MHx8fGJsdWV8MTc1ODY0MDIwNXww&ixlib=rb-4.1.0&q=85"},
+    {"name": "Cloud Computing Fundamentals", "issuer": "AWS", "year": "2023", "image": "https://images.pexels.com/photos/8830665/pexels-photo-8830665.jpeg"},
+    {"name": "Full-Stack Web Development", "issuer": "freeCodeCamp", "year": "2023", "image": "https://images.unsplash.com/photo-1527871369852-eb58cb2b54e2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwyfHxhY2hpZXZlbWVudHN8ZW58MHx8fGJsdWV8MTc1ODY0MDIxM3ww&ixlib=rb-4.1.0&q=85"},
+    {"name": "UiPath RPA Developer", "issuer": "UiPath", "year": "2024", "image": "https://images.pexels.com/photos/2530131/pexels-photo-2530131.jpeg"}
   ],
   "education": {
     "school": "VSR & VIT College", 
