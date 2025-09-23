@@ -50,8 +50,8 @@
   },
   "projects": {
     "githubUser": "Abhishek200416",
-    "githubAutoPull": false,
-    "githubSyncEnabled": false,
+    "githubAutoPull": true,
+    "githubSyncEnabled": true,
     "featured": [
       {
         "slug": "fake-news-cc-fraud-movies-ml",
