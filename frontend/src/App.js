@@ -786,15 +786,14 @@ function App() {
               
               <AboutSection />
               
-              <EditableWrapper
-                isEditMode={isEditMode}
+              <EditableSectionWrapper
                 elementPath="freelance"
                 elementType="section"
                 content={content}
                 setContent={setContent}
               >
                 <FreelanceSection />
-              </EditableWrapper>
+              </EditableSectionWrapper>
               
               <EditableWrapper
                 isEditMode={isEditMode}
