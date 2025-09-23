@@ -11,8 +11,7 @@ import SuperAdvancedEditor from './components/SuperAdvancedEditor';
 import MoneyFlowVisualization from './components/MoneyFlowVisualization';
 import VideoIntro from './components/VideoIntro';
 import AdvancedParticleSystem from './components/AdvancedParticleSystem';
-// Temporarily removing EditableWrapper to resolve runtime error
-const EditableWrapper = ({ children, ...props }) => children;
+import EditableWrapper from './components/EditableWrapper';
 import { Toaster } from './components/ui/toaster';
 import { useToast } from './hooks/use-toast';
 import enhancedContent from './data/enhanced-content.json';
