@@ -11,9 +11,8 @@ import SuperAdvancedEditor from './components/SuperAdvancedEditor';
 import MoneyFlowVisualization from './components/MoneyFlowVisualization';
 import VideoIntro from './components/VideoIntro';
 import AdvancedParticleSystem from './components/AdvancedParticleSystem';
-import RichEditableWrapper, { withRichEditable } from './components/RichEditableWrapper';
-// Alias for backward compatibility
-const EditableWrapper = RichEditableWrapper;
+import EditableWrapper from './components/EditableWrapper';
+// Temporarily using EditableWrapper directly to resolve runtime error
 import { Toaster } from './components/ui/toaster';
 import { useToast } from './hooks/use-toast';
 import enhancedContent from './data/enhanced-content.json';
