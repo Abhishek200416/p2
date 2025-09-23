@@ -28,6 +28,10 @@ module.exports = {
         'display': ['Sora', 'sans-serif'],
         'body': ['Inter', 'sans-serif'],
       },
+      spacing: {
+        '18': '4.5rem',
+        '88': '22rem',
+      },
       animation: {
         'float-slow': 'float 20s ease-in-out infinite',
         'float-medium': 'float 15s ease-in-out infinite',
@@ -81,4 +85,24 @@ module.exports = {
     },
   },
   plugins: [],
+  safelist: [
+    'animate-fade-in',
+    'animate-slide-up', 
+    'animate-pulse-glow',
+    'text-acc-1',
+    'text-acc-2',
+    'text-ok',
+    'bg-acc-1',
+    'bg-acc-2',
+    'border-acc-1',
+    'border-acc-2',
+    'hover:text-acc-1',
+    'hover:text-acc-2',
+    'hover:bg-acc-1',
+    'hover:bg-acc-2',
+    'hover:border-acc-1',
+    'hover:border-acc-2',
+    'group-hover:text-acc-1',
+    'group-hover:text-acc-2',
+  ]
 };
