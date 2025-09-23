@@ -63,11 +63,63 @@ class PortfolioContent(BaseModel):
 class SubscribeRequest(BaseModel):
     email: str
 
+class FeedbackRequest(BaseModel):
+    name: str
+    email: str
+    company: Optional[str] = None
+    category: str = 'general'
+    rating: int = 5
+    message: str
+    wouldRecommend: bool = True
+    contactBack: bool = False
+
+class ContactRequest(BaseModel):
+    name: str
+    email: str
+    company: Optional[str] = None
+    phone: Optional[str] = None
+    projectType: str = 'mvp'
+    budget: str = 'under-25k'
+    timeline: str = '1-week'
+    message: str
+    preferredContact: str = 'email'
+    urgency: str = 'normal'
+
 class Subscriber(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     email: str
     subscribed_at: datetime = Field(default_factory=datetime.utcnow)
     ip_address: Optional[str] = None
+
+class Feedback(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    email: str
+    company: Optional[str] = None
+    category: str
+    rating: int
+    message: str
+    wouldRecommend: bool
+    contactBack: bool
+    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    ip_address: Optional[str] = None
+    user_agent: Optional[str] = None
+
+class Contact(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    email: str
+    company: Optional[str] = None
+    phone: Optional[str] = None
+    projectType: str
+    budget: str
+    timeline: str
+    message: str
+    preferredContact: str
+    urgency: str
+    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    ip_address: Optional[str] = None
+    status: str = Field(default="new")
 
 def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)):
     try:
