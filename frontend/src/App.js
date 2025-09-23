@@ -5,14 +5,16 @@ import { SkillsSection, ExperienceSection, HackathonsSection, CertificationsSect
 import EnhancedFeedback from './components/EnhancedFeedback';
 import EnhancedContact from './components/EnhancedContact';
 import TestimonialSection from './components/TestimonialSection';
-import AdvancedEditMode from './components/AdvancedEditMode';
+import SuperAdvancedEditMode from './components/SuperAdvancedEditMode';
 import VideoIntro from './components/VideoIntro';
 import AdvancedParticleSystem from './components/AdvancedParticleSystem';
+import EditableWrapper, { withEditable } from './components/EditableWrapper';
 import { Toaster } from './components/ui/toaster';
 import { useToast } from './hooks/use-toast';
 import enhancedContent from './data/enhanced-content.json';
 import { fetchGitHubRepos, mergeWithFeatured } from './utils/github-api';
 import './styles/enhanced-portfolio.css';
+import './styles/editable-elements.css';
 import { 
   User, 
   Briefcase, 
