@@ -740,6 +740,11 @@ function App() {
               <ExperienceSection content={content} />
               <HackathonsSection content={content} />
               <CertificationsSection content={content} />
+              <TestimonialSection 
+                content={content} 
+                isEditMode={isEditMode} 
+                setContent={setContent} 
+              />
               <EnhancedFeedback content={content} />
               <EnhancedContact content={content} />
               <Footer content={content} isEditMode={isEditMode} saveContent={saveContent} exportJSON={exportJSON} />
