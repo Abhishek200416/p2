@@ -172,7 +172,7 @@ const EnhancedHero = ({ content }) => {
         {/* Social Links */}
         <div className="flex justify-center gap-6 animate-slide-up" style={{ animationDelay: '0.6s' }}>
           <a 
-            href={content.social.github} 
+            href={content.social?.github} 
             target="_blank" 
             rel="noopener noreferrer"
             className="group w-14 h-14 bg-glass-bg backdrop-blur-xl border border-glass-border hover:border-acc-1 rounded-full flex items-center justify-center transition-all duration-250 ease-smooth hover:scale-110 hover:shadow-lg hover:shadow-acc-1/25"
@@ -182,7 +182,7 @@ const EnhancedHero = ({ content }) => {
           </a>
           
           <a 
-            href={content.social.linkedin} 
+            href={content.social?.linkedin} 
             target="_blank" 
             rel="noopener noreferrer"
             className="group w-14 h-14 bg-glass-bg backdrop-blur-xl border border-glass-border hover:border-acc-1 rounded-full flex items-center justify-center transition-all duration-250 ease-smooth hover:scale-110 hover:shadow-lg hover:shadow-acc-1/25"
