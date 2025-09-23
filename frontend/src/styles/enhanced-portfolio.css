@@ -99,7 +99,7 @@ body {
     transparent 0deg,
     rgba(123, 223, 255, 0.1) 90deg,
     transparent 180deg,
-    rgba(168, 85, 247, 0.05) 270deg,
+    rgba(0, 191, 255, 0.05) 270deg,
     transparent 360deg
   );
   opacity: 0;
