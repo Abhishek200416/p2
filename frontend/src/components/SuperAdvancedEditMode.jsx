@@ -405,48 +405,74 @@ const SuperAdvancedEditMode = ({
               <div className="p-4 bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-600/30 rounded-lg">
                 <h3 className="text-sm font-semibold text-white mb-2 flex items-center">
                   <Zap className="w-4 h-4 mr-2 text-blue-400" />
-                  Live Editing Active
+                  Super Advanced Editor Active
                 </h3>
                 <div className="text-xs text-gray-300 space-y-1">
-                  <p>• Click any element to select and edit</p>
-                  <p>• Right-click for context menu</p>
-                  <p>• Drag elements to reposition</p>
-                  <p>• Changes apply instantly</p>
+                  <p>• Click any element to select with AI suggestions</p>
+                  <p>• Right-click for advanced context menu</p>
+                  <p>• Drag elements with magnetic snapping</p>
+                  <p>• Use Ctrl+G for grid, Ctrl+R for rulers</p>
+                  <p>• Live positioning with real-time measurements</p>
+                  <p>• Double-click for inline rich text editing</p>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <h4 className="text-sm font-semibold text-white">Quick Actions</h4>
+                <h4 className="text-sm font-semibold text-white">Super Editor Features</h4>
                 
-                <button className="w-full p-3 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 rounded-lg text-left transition-colors">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-sm font-medium text-white">Edit Hero Section</div>
-                      <div className="text-xs text-gray-400">Modify main heading and tagline</div>
+                <div className="grid grid-cols-2 gap-2">
+                  <button className="p-3 bg-purple-900/30 hover:bg-purple-800/40 border border-purple-600/30 rounded-lg text-left transition-colors">
+                    <div className="flex items-center">
+                      <Sparkles className="w-4 h-4 text-purple-400 mr-2" />
+                      <div>
+                        <div className="text-xs font-medium text-white">AI Suggestions</div>
+                        <div className="text-[10px] text-gray-400">Smart improvements</div>
+                      </div>
                     </div>
-                    <Type className="w-4 h-4 text-blue-400" />
-                  </div>
-                </button>
-                
-                <button className="w-full p-3 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 rounded-lg text-left transition-colors">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-sm font-medium text-white">Rearrange Sections</div>
-                      <div className="text-xs text-gray-400">Drag & drop to reorder</div>
+                  </button>
+                  
+                  <button className="p-3 bg-blue-900/30 hover:bg-blue-800/40 border border-blue-600/30 rounded-lg text-left transition-colors">
+                    <div className="flex items-center">
+                      <Grid3X3 className="w-4 h-4 text-blue-400 mr-2" />
+                      <div>
+                        <div className="text-xs font-medium text-white">Grid & Snap</div>
+                        <div className="text-[10px] text-gray-400">Precise positioning</div>
+                      </div>
                     </div>
-                    <Move className="w-4 h-4 text-green-400" />
-                  </div>
-                </button>
-                
-                <button className="w-full p-3 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 rounded-lg text-left transition-colors">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-sm font-medium text-white">Add New Project</div>
-                      <div className="text-xs text-gray-400">Insert project card</div>
+                  </button>
+                  
+                  <button className="p-3 bg-green-900/30 hover:bg-green-800/40 border border-green-600/30 rounded-lg text-left transition-colors">
+                    <div className="flex items-center">
+                      <Type className="w-4 h-4 text-green-400 mr-2" />
+                      <div>
+                        <div className="text-xs font-medium text-white">Rich Text</div>
+                        <div className="text-[10px] text-gray-400">Advanced formatting</div>
+                      </div>
                     </div>
-                    <Plus className="w-4 h-4 text-purple-400" />
+                  </button>
+                  
+                  <button className="p-3 bg-orange-900/30 hover:bg-orange-800/40 border border-orange-600/30 rounded-lg text-left transition-colors">
+                    <div className="flex items-center">
+                      <Move className="w-4 h-4 text-orange-400 mr-2" />
+                      <div>
+                        <div className="text-xs font-medium text-white">Drag & Drop</div>
+                        <div className="text-[10px] text-gray-400">Smooth interactions</div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+                <div className="p-3 bg-gray-800/50 border border-gray-700 rounded-lg">
+                  <div className="text-xs text-gray-300 mb-2">Keyboard Shortcuts:</div>
+                  <div className="grid grid-cols-2 gap-1 text-[10px] text-gray-400">
+                    <div>Ctrl+S - Save</div>
+                    <div>Ctrl+Z - Undo</div>
+                    <div>Ctrl+G - Toggle Grid</div>
+                    <div>Ctrl+R - Toggle Ruler</div>
+                    <div>Ctrl+M - Magnetic Snap</div>
+                    <div>Delete - Remove Selected</div>
                   </div>
-                </button>
+                </div>
               </div>
             </div>
           )}
