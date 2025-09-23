@@ -1392,11 +1392,11 @@ const SuperAdvancedEditor = ({
         }}
       >
         {React.Children.map(children, child => 
-          React.cloneElement(child, { 
+          React.isValidElement(child) ? React.cloneElement(child, { 
             onElementInteraction: handleElementInteraction,
             isEditMode,
             editMode 
-          })
+          }) : child
         )}
       </div>
 
