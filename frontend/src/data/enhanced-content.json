@@ -1,0 +1,264 @@
+{
+  "hero": {
+    "name": "Abhishek Kolluri",
+    "tagline": "Founder @ PromptForge • Full-Stack + AI",
+    "punch": "I ship working apps fast — 1 day typical, hard in 3–4.",
+    "ctaPrimary": "Hire Me",
+    "ctaSecondary": "View Projects", 
+    "ctaDownload": "Download Resume",
+    "subscribeCopy": "Rare updates, high signal only.",
+    "video": { 
+      "src": "/assets/infcastle-loop.mp4", 
+      "poster": "/assets/infcastle-poster.jpg" 
+    },
+    "social": {
+      "github": "https://github.com/Abhishek200416",
+      "linkedin": "https://www.linkedin.com/in/abhishek-k-0b34ba329"
+    }
+  },
+  "about": {
+    "why": "I solve practical problems by shipping software that actually works.",
+    "how": "Quick scoping, daily milestones, tight feedback loops, clean handoff.",
+    "speed": "25+ projects shipped quickly; MVPs in a day, complex in 3–4.",
+    "credo": "Outcomes over theatrics. Honest scope. Daily ships."
+  },
+  "freelance": {
+    "about": "I'm a professional Full-Stack Developer and Freelancer from India. I build cost-effective, scalable, production-ready solutions—web, mobile, and automations—at competitive Indian market rates with long-term value and trust.",
+    "services": [
+      "Custom Software (Desktop/Web/SaaS)",
+      "Mobile (Android, Flutter, Capacitor)",
+      "Full-Stack Web (React, Node, Express, Tailwind, Sequelize, SQL, Firebase)",
+      "Workflow Automations (bots, scripts, scraping, reporting)",
+      "AI/ML Integrations (basic NLP, CNN, predictive analytics)",
+      "Deployment (GitHub, Railway, Vercel, pipelines)"
+    ],
+    "pricing": {
+      "hourlyINR": 900,
+      "hourlyUSD": 11,
+      "projects": [
+        {"name": "Automations/Bots/Scripts", "inr": 3000, "usd": 35},
+        {"name": "Landing/Small Website", "inr": 10000, "usd": 120},
+        {"name": "Full-Stack Web App (MVP)", "inr": 25000, "usd": 300},
+        {"name": "Mobile App (basic)", "inr": 20000, "usd": 240},
+        {"name": "AI Tools/Dashboards", "inr": 30000, "usd": 360}
+      ],
+      "bundles": [{"name": "Website + Admin + Automation", "startINR": 15000}],
+      "maintenanceMonthlyINR": 2000
+    },
+    "mailto": "mailto:abhishekollurii@gmail.com?subject=Project%20for%20Abhi&body=Goal%3A%0AMust-have%3A%0ADeadline%3A%0ABudget%20range%3A",
+    "cta": "Ship your MVP this week."
+  },
+  "projects": {
+    "githubUser": "Abhishek200416",
+    "githubAutoPull": false,
+    "githubSyncEnabled": false,
+    "featured": [
+      {
+        "slug": "fake-news-cc-fraud-movies-ml",
+        "title": "ML Notebooks: Fake News • Credit Card Fraud • Movies",
+        "story": "Exploratory ML notebooks with classification and EDA for real-world datasets. Built comprehensive fraud detection models achieving 94% accuracy and sentiment analysis pipelines for movie reviews with advanced feature engineering.",
+        "approach": "Implemented ensemble methods combining Random Forest, SVM, and Neural Networks with careful data preprocessing and feature selection.",
+        "impact": "Delivered production-ready models that reduced false positives by 40% and improved detection speed by 3x compared to baseline approaches.",
+        "stack": ["Python", "Jupyter", "Pandas", "Scikit-learn", "TensorFlow"],
+        "links": {"repo": "https://github.com/Abhishek200416/Fake-News-Detection", "demo": ""},
+        "updated": "2024-12-15",
+        "featured": true
+      },
+      {
+        "slug": "civic-resilience-sdgs",
+        "title": "Civic Resilience (Water/Waste/Health)",
+        "story": "Community risk reporting platform with role management, email alerts, and Gemini AI assistance. Helping communities track and resolve civic issues effectively with real-time collaboration features.",
+        "approach": "Built scalable Node.js backend with React frontend, integrated Gemini AI for intelligent issue categorization and response suggestions.",
+        "impact": "Enables communities to track and resolve civic issues 60% faster with AI-powered insights and automated workflow management.",
+        "stack": ["Node.js", "React", "Sequelize", "Gemini API", "PostgreSQL"],
+        "links": {"repo": "https://github.com/Abhishek200416/civic-resilience-based-on-sdgs-working-prototype", "demo": ""},
+        "updated": "2024-12-10",
+        "featured": true
+      },
+      {
+        "slug": "tripplanner-ai",
+        "title": "TripPlanner-AI (PWA)",
+        "story": "Intelligent itinerary generator with budget optimization and offline capabilities. Uses AI to create personalized travel plans with cost breakdowns, weather integration, and local recommendations.",
+        "approach": "Progressive Web App with offline-first architecture, integrated multiple APIs for weather, places, and pricing with intelligent caching strategies.",
+        "impact": "Users save 5+ hours of trip planning while staying within budget. Offline functionality works in 25+ countries with pre-cached essential data.",
+        "stack": ["React", "PWA", "Google Maps", "Gemini API", "Service Worker"],
+        "links": {"repo": "https://github.com/Abhishek200416/Tripplanner-AI", "demo": ""},
+        "updated": "2024-12-08",
+        "featured": true
+      },
+      {
+        "slug": "skill-seed",
+        "title": "Skill-seed Learning Platform",
+        "story": "Flutter-Firebase learning platform with practical skill development paths. Gamified learning experience with progress tracking, achievements, and peer collaboration features.",
+        "approach": "Cross-platform Flutter app with Firebase backend, implemented adaptive learning algorithms and social learning features.",
+        "impact": "Students complete skill paths 40% faster with 85% retention rate. Deployed to 500+ users across mobile and web platforms.",
+        "stack": ["Flutter", "Firebase", "Dart", "Cloud Functions"],
+        "links": {"repo": "https://github.com/Abhishek200416/Skill-seed", "demo": ""},
+        "updated": "2024-12-05",
+        "featured": true
+      },
+      {
+        "slug": "ai-platform-workspace",
+        "title": "AI Platform Production-Grade Workspace",
+        "story": "Comprehensive AI development environment with model management, deployment tools, and collaborative features. Enterprise-ready platform for AI teams with MLOps best practices.",
+        "approach": "Microservices architecture with Docker containers, implemented CI/CD pipelines for model deployment and monitoring dashboards.",
+        "impact": "Reduces AI model deployment time from weeks to hours. Supports 10+ ML frameworks with automated testing and rollback capabilities.",
+        "stack": ["Python", "FastAPI", "Docker", "Redis", "Kubernetes"],
+        "links": {"repo": "https://github.com/Abhishek200416/AI-Platform-Production-Grade-Workspace", "demo": ""},
+        "updated": "2024-11-28",
+        "featured": true
+      },
+      {
+        "slug": "invoice-dashboard",
+        "title": "Invoice Dashboard & Management",
+        "story": "Complete invoicing solution with analytics and automated workflow management. Streamlined billing process with payment tracking, client management, and financial reporting.",
+        "approach": "Full-stack MERN application with automated invoice generation, payment gateway integration, and real-time analytics dashboard.",
+        "impact": "Businesses reduce invoicing time by 70% and improve payment collection rates by 35% through automated reminders and tracking.",
+        "stack": ["React", "Node.js", "Express", "MongoDB", "Stripe API"],
+        "links": {"repo": "https://github.com/Abhishek200416/invoice_dashboard", "demo": ""},
+        "updated": "2024-11-25",
+        "featured": true
+      },
+      {
+        "slug": "retail-customer-segmentation",
+        "title": "Retail Customer Segmentation & Analytics",
+        "story": "Advanced customer segmentation using ML clustering algorithms with actionable business insights and automated reporting for retail businesses.",
+        "approach": "K-means and hierarchical clustering with RFM analysis, built interactive dashboards for business stakeholders.",
+        "impact": "Retail clients increased targeted marketing ROI by 45% and customer lifetime value by 25% through precise segmentation strategies.",
+        "stack": ["Python", "Pandas", "Scikit-learn", "Plotly", "Streamlit"],
+        "links": {"repo": "https://github.com/Abhishek200416/Retail-Customer-Segmentation", "demo": ""},
+        "updated": "2024-12-12"
+      },
+      {
+        "slug": "spam-classifier-eda",
+        "title": "Spam Email Classifier & EDA",
+        "story": "Comprehensive spam detection system with exploratory data analysis, feature engineering, and multiple ML algorithms comparison for email security.",
+        "approach": "Text preprocessing with TF-IDF vectorization, implemented and compared Naive Bayes, SVM, and deep learning approaches.",
+        "impact": "Achieved 98.5% accuracy in spam detection with extremely low false positive rate, suitable for production email systems.",
+        "stack": ["Python", "NLTK", "Scikit-learn", "Matplotlib", "Seaborn"],
+        "links": {"repo": "https://github.com/Abhishek200416/Spam_Email_Classifier", "demo": ""},
+        "updated": "2024-12-14"
+      }
+    ]
+  },
+  "skills": [
+    "JavaScript/TypeScript",
+    "Node.js", 
+    "Express",
+    "React",
+    "HTML/CSS",
+    "Tailwind CSS",
+    "Sequelize/SQL",
+    "Python",
+    "Streamlit", 
+    "Docker",
+    "Firebase",
+    "AWS",
+    "Git/GitHub",
+    "UiPath RPA",
+    "Google Maps",
+    "Gemini AI",
+    "AI Agents",
+    "FastAPI",
+    "PostgreSQL",
+    "MongoDB",
+    "Flutter"
+  ],
+  "experience": [
+    {
+      "org": "UiPath RPA & ML Automation",
+      "role": "RPA Developer Intern", 
+      "period": "2024",
+      "impact": "Automated repetitive operations for enterprise clients, improved process throughput and reliability by 40%. Developed ML-enhanced bots for intelligent document processing.",
+      "skills": ["UiPath", "Python", "ML", "Process Automation"]
+    },
+    {
+      "org": "L4G — Google GenAI",
+      "role": "AI Developer",
+      "period": "2024", 
+      "impact": "Integrated LLMs with safety guardrails and prompt engineering best practices. Built production-ready AI applications with responsible AI principles.",
+      "skills": ["Gemini API", "Prompt Engineering", "AI Safety", "React"]
+    },
+    {
+      "org": "AWS Cloud Deployment",
+      "role": "Cloud Engineer",
+      "period": "2023-2024",
+      "impact": "Implemented 8-step deployment pipeline with enhanced security and scalability. Managed cloud infrastructure for high-traffic applications.",
+      "skills": ["AWS", "Docker", "CI/CD", "Infrastructure", "Security"]
+    },
+    {
+      "org": "GEEPL — Visuals/Screens", 
+      "role": "UI Developer",
+      "period": "2023-Present",
+      "impact": "Developed cohesive visual systems and UI polish for client projects since 2023. Focus on responsive design and user experience optimization.",
+      "skills": ["React", "UI/UX", "Responsive Design", "Figma"]
+    }
+  ],
+  "hackathons": [
+    {
+      "name": "AI Innovation Challenge",
+      "duration": "24h",
+      "shipped": "Real-time recommendation engine with collaborative filtering",
+      "lesson": "Scope brutally; ship the core functionality first",
+      "year": "2024",
+      "achievement": "1st Place - Best Technical Implementation"
+    },
+    {
+      "name": "Smart Cities Hackathon", 
+      "duration": "48h",
+      "shipped": "IoT traffic management system with predictive analytics",
+      "lesson": "Guardrails and error handling over flashy features",
+      "year": "2024",
+      "achievement": "Top 3 - Most Practical Solution"
+    },
+    {
+      "name": "FinTech Innovation Sprint",
+      "duration": "36h", 
+      "shipped": "Fraud detection ML model with real-time API",
+      "lesson": "Demo from a stable, tested branch always",
+      "year": "2023",
+      "achievement": "Best Security Implementation"
+    },
+    {
+      "name": "Healthcare AI Challenge",
+      "duration": "24h",
+      "shipped": "Medical data analysis tool with privacy compliance", 
+      "lesson": "Better documentation equals better judging scores",
+      "year": "2023",
+      "achievement": "Innovation Award"
+    }
+  ],
+  "certs": [
+    {"name": "Prompt Engineering Mastery", "issuer": "DeepLearning.AI", "count": 3, "year": "2024"},
+    {"name": "Advanced Python Programming", "issuer": "Python Institute", "year": "2024"},
+    {"name": "Cloud Computing Fundamentals", "issuer": "AWS", "year": "2023"},
+    {"name": "Full-Stack Web Development", "issuer": "freeCodeCamp", "year": "2023"},
+    {"name": "UiPath RPA Developer", "issuer": "UiPath", "year": "2024"}
+  ],
+  "education": {
+    "school": "VSR & VIT College", 
+    "degree": "B.Tech in AI & Machine Learning", 
+    "years": "2022–2026",
+    "location": "Andhra Pradesh, India",
+    "gpa": "8.5/10",
+    "focus": "Machine Learning, Data Science, Full-Stack Development"
+  },
+  "contact": {
+    "email": "abhishekollurii@gmail.com",
+    "phone": "+919000327849", 
+    "city": "Guntur, Andhra Pradesh, India",
+    "github": "https://github.com/Abhishek200416",
+    "linkedin": "https://www.linkedin.com/in/abhishek-k-0b34ba329",
+    "availability": "Available for freelance projects",
+    "timezone": "IST (UTC+5:30)",
+    "response_time": "Usually within 24 hours"
+  },
+  "meta": {
+    "tagline": "Give me a clear problem and 24 hours. You'll get something real.",
+    "credo": "Outcomes over theatrics. Honest scope. Daily ships.",
+    "footer_oath": "No fluff. Just software.",
+    "bio": "I ship MVPs in a day. Hard builds in 3–4. Honest, outcome-driven, no fluff.",
+    "value_prop": "Fast execution, clean handoff, honest communication.",
+    "last_updated": "2024-12-15"
+  }
+}
