@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import EnhancedHero from './components/EnhancedHero';
+import { SkillsSection, ExperienceSection, HackathonsSection, CertificationsSection, ContactSection, Footer } from './components/EnhancedSections';
 import { Toaster } from './components/ui/toaster';
 import { useToast } from './hooks/use-toast';
 import enhancedContent from './data/enhanced-content.json';
