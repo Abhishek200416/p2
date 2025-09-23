@@ -7,6 +7,8 @@ import EnhancedContact from './components/EnhancedContact';
 import TestimonialSection from './components/TestimonialSection';
 import SuperAdvancedEditMode from './components/SuperAdvancedEditMode';
 import AdvancedInPlaceEditor from './components/AdvancedInPlaceEditor';
+import SuperAdvancedEditor from './components/SuperAdvancedEditor';
+import MoneyFlowVisualization from './components/MoneyFlowVisualization';
 import VideoIntro from './components/VideoIntro';
 import AdvancedParticleSystem from './components/AdvancedParticleSystem';
 import RichEditableWrapper, { withRichEditable } from './components/RichEditableWrapper';
