@@ -473,9 +473,9 @@ const AdvancedEditMode = ({
                 <div className="text-lg font-bold text-green-400">{analytics.subscribers}</div>
                 <div className="text-xs text-green-300">Subscribers</div>
               </div>
-              <div className="p-3 bg-purple-900/20 border border-purple-600/30 rounded-lg text-center">
-                <div className="text-lg font-bold text-purple-400">{analytics.feedback}</div>
-                <div className="text-xs text-purple-300">Feedback</div>
+              <div className="p-3 bg-blue-900/20 border border-blue-600/30 rounded-lg text-center">
+                <div className="text-lg font-bold text-blue-400">{analytics.feedback}</div>
+                <div className="text-xs text-blue-300">Feedback</div>
               </div>
               <div className="p-3 bg-orange-900/20 border border-orange-600/30 rounded-lg text-center">
                 <div className="text-lg font-bold text-orange-400">{analytics.projects_viewed}</div>
