@@ -386,6 +386,387 @@ class PortfolioAPITester:
                 
         except Exception as e:
             self.log_test("Content Persistence", False, f"Connection error: {str(e)}")
+
+    # NEW ENHANCED FEATURES TESTING
+    
+    def test_submit_feedback_general(self):
+        """Test POST /api/feedback with general feedback"""
+        try:
+            timestamp = int(time.time())
+            feedback_data = {
+                "name": f"Sarah Johnson {timestamp}",
+                "email": f"sarah.johnson.{timestamp}@techcorp.com",
+                "company": "TechCorp Solutions",
+                "category": "general",
+                "rating": 5,
+                "message": "Excellent portfolio! Very impressed with the clean design and comprehensive project showcase. The technical skills section is particularly well-organized.",
+                "wouldRecommend": True,
+                "contactBack": True
+            }
+            
+            response = requests.post(f"{self.base_url}/feedback", json=feedback_data)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if "message" in data and "status" in data and "id" in data:
+                    self.log_test("Submit Feedback General", True, "General feedback submitted successfully", 
+                                {"response": data, "feedback_id": data.get("id")})
+                else:
+                    self.log_test("Submit Feedback General", False, "Missing expected fields in response", 
+                                {"response": data})
+            else:
+                self.log_test("Submit Feedback General", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Submit Feedback General", False, f"Connection error: {str(e)}")
+
+    def test_submit_feedback_project(self):
+        """Test POST /api/feedback with project-specific feedback"""
+        try:
+            timestamp = int(time.time())
+            feedback_data = {
+                "name": f"Michael Chen {timestamp}",
+                "email": f"michael.chen.{timestamp}@startup.io",
+                "company": "StartupIO",
+                "category": "project",
+                "rating": 4,
+                "message": "The e-commerce project caught my attention. Great use of React and FastAPI. Would love to discuss potential collaboration on similar projects.",
+                "wouldRecommend": True,
+                "contactBack": True
+            }
+            
+            response = requests.post(f"{self.base_url}/feedback", json=feedback_data)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("status") == "success":
+                    self.log_test("Submit Feedback Project", True, "Project feedback submitted successfully", 
+                                {"response": data})
+                else:
+                    self.log_test("Submit Feedback Project", False, "Unexpected response status", 
+                                {"response": data})
+            else:
+                self.log_test("Submit Feedback Project", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Submit Feedback Project", False, f"Connection error: {str(e)}")
+
+    def test_submit_feedback_hiring(self):
+        """Test POST /api/feedback with hiring-related feedback"""
+        try:
+            timestamp = int(time.time())
+            feedback_data = {
+                "name": f"Jennifer Rodriguez {timestamp}",
+                "email": f"jennifer.rodriguez.{timestamp}@bigtech.com",
+                "company": "BigTech Corp",
+                "category": "hiring",
+                "rating": 5,
+                "message": "We're impressed with your full-stack capabilities. Your portfolio demonstrates strong technical skills and project management experience. We'd like to discuss potential opportunities.",
+                "wouldRecommend": True,
+                "contactBack": True
+            }
+            
+            response = requests.post(f"{self.base_url}/feedback", json=feedback_data)
+            
+            if response.status_code == 200:
+                data = response.json()
+                self.log_test("Submit Feedback Hiring", True, "Hiring feedback submitted successfully", 
+                            {"response": data})
+            else:
+                self.log_test("Submit Feedback Hiring", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Submit Feedback Hiring", False, f"Connection error: {str(e)}")
+
+    def test_get_feedback_authenticated(self):
+        """Test GET /api/feedback (authenticated)"""
+        if not self.token:
+            self.log_test("Get Feedback Authenticated", False, "No token available for testing")
+            return
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.token}"}
+            response = requests.get(f"{self.base_url}/feedback", headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if "count" in data and "feedback" in data:
+                    feedback_list = data["feedback"]
+                    # Verify feedback structure
+                    if feedback_list and len(feedback_list) > 0:
+                        sample_feedback = feedback_list[0]
+                        required_fields = ["id", "name", "email", "category", "rating", "message", "wouldRecommend", "contactBack", "timestamp"]
+                        missing_fields = [field for field in required_fields if field not in sample_feedback]
+                        
+                        if not missing_fields:
+                            self.log_test("Get Feedback Authenticated", True, 
+                                        f"Retrieved {data['count']} feedback entries with correct structure", 
+                                        {"count": data["count"], "sample_fields": list(sample_feedback.keys())})
+                        else:
+                            self.log_test("Get Feedback Authenticated", False, 
+                                        f"Missing fields in feedback structure: {missing_fields}", 
+                                        {"missing_fields": missing_fields})
+                    else:
+                        self.log_test("Get Feedback Authenticated", True, 
+                                    "Feedback endpoint working, no feedback entries yet", 
+                                    {"count": data["count"]})
+                else:
+                    self.log_test("Get Feedback Authenticated", False, "Missing expected fields in response", 
+                                {"response": data})
+            else:
+                self.log_test("Get Feedback Authenticated", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Get Feedback Authenticated", False, f"Connection error: {str(e)}")
+
+    def test_submit_contact_mvp_project(self):
+        """Test POST /api/contact with MVP project inquiry"""
+        try:
+            timestamp = int(time.time())
+            contact_data = {
+                "name": f"David Kim {timestamp}",
+                "email": f"david.kim.{timestamp}@innovate.com",
+                "company": "Innovate Solutions",
+                "phone": "+1-555-0123",
+                "projectType": "mvp",
+                "budget": "25k-50k",
+                "timeline": "2-months",
+                "message": "We need to build an MVP for our fintech startup. Looking for a full-stack developer with React and Python experience. The project involves user authentication, payment processing, and dashboard analytics.",
+                "preferredContact": "email",
+                "urgency": "high"
+            }
+            
+            response = requests.post(f"{self.base_url}/contact", json=contact_data)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if "message" in data and "status" in data and "id" in data:
+                    self.log_test("Submit Contact MVP Project", True, "MVP project inquiry submitted successfully", 
+                                {"response": data, "contact_id": data.get("id")})
+                else:
+                    self.log_test("Submit Contact MVP Project", False, "Missing expected fields in response", 
+                                {"response": data})
+            else:
+                self.log_test("Submit Contact MVP Project", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Submit Contact MVP Project", False, f"Connection error: {str(e)}")
+
+    def test_submit_contact_webapp_project(self):
+        """Test POST /api/contact with web application project"""
+        try:
+            timestamp = int(time.time())
+            contact_data = {
+                "name": f"Lisa Wang {timestamp}",
+                "email": f"lisa.wang.{timestamp}@ecommerce.co",
+                "company": "E-Commerce Co",
+                "phone": "+1-555-0456",
+                "projectType": "webapp",
+                "budget": "50k-100k",
+                "timeline": "3-months",
+                "message": "We need a comprehensive e-commerce platform with inventory management, order processing, and customer analytics. Looking for someone with experience in scalable web applications.",
+                "preferredContact": "phone",
+                "urgency": "normal"
+            }
+            
+            response = requests.post(f"{self.base_url}/contact", json=contact_data)
+            
+            if response.status_code == 200:
+                data = response.json()
+                self.log_test("Submit Contact WebApp Project", True, "Web application project inquiry submitted successfully", 
+                            {"response": data})
+            else:
+                self.log_test("Submit Contact WebApp Project", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Submit Contact WebApp Project", False, f"Connection error: {str(e)}")
+
+    def test_submit_contact_ai_integration(self):
+        """Test POST /api/contact with AI integration project"""
+        try:
+            timestamp = int(time.time())
+            contact_data = {
+                "name": f"Robert Taylor {timestamp}",
+                "email": f"robert.taylor.{timestamp}@aitech.com",
+                "company": "AI Tech Solutions",
+                "projectType": "ai-integration",
+                "budget": "100k+",
+                "timeline": "6-months",
+                "message": "We're looking to integrate AI capabilities into our existing platform. Need expertise in machine learning APIs, natural language processing, and data analytics integration.",
+                "preferredContact": "email",
+                "urgency": "low"
+            }
+            
+            response = requests.post(f"{self.base_url}/contact", json=contact_data)
+            
+            if response.status_code == 200:
+                data = response.json()
+                self.log_test("Submit Contact AI Integration", True, "AI integration project inquiry submitted successfully", 
+                            {"response": data})
+            else:
+                self.log_test("Submit Contact AI Integration", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Submit Contact AI Integration", False, f"Connection error: {str(e)}")
+
+    def test_get_contacts_authenticated(self):
+        """Test GET /api/contacts (authenticated)"""
+        if not self.token:
+            self.log_test("Get Contacts Authenticated", False, "No token available for testing")
+            return
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.token}"}
+            response = requests.get(f"{self.base_url}/contacts", headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if "count" in data and "contacts" in data:
+                    contacts_list = data["contacts"]
+                    # Verify contact structure
+                    if contacts_list and len(contacts_list) > 0:
+                        sample_contact = contacts_list[0]
+                        required_fields = ["id", "name", "email", "projectType", "budget", "timeline", "message", "preferredContact", "urgency", "status", "timestamp"]
+                        missing_fields = [field for field in required_fields if field not in sample_contact]
+                        
+                        if not missing_fields:
+                            self.log_test("Get Contacts Authenticated", True, 
+                                        f"Retrieved {data['count']} contact entries with correct structure", 
+                                        {"count": data["count"], "sample_fields": list(sample_contact.keys())})
+                        else:
+                            self.log_test("Get Contacts Authenticated", False, 
+                                        f"Missing fields in contact structure: {missing_fields}", 
+                                        {"missing_fields": missing_fields})
+                    else:
+                        self.log_test("Get Contacts Authenticated", True, 
+                                    "Contacts endpoint working, no contact entries yet", 
+                                    {"count": data["count"]})
+                else:
+                    self.log_test("Get Contacts Authenticated", False, "Missing expected fields in response", 
+                                {"response": data})
+            else:
+                self.log_test("Get Contacts Authenticated", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Get Contacts Authenticated", False, f"Connection error: {str(e)}")
+
+    def test_analytics_authenticated(self):
+        """Test GET /api/analytics (authenticated)"""
+        if not self.token:
+            self.log_test("Analytics Authenticated", False, "No token available for testing")
+            return
+        
+        try:
+            headers = {"Authorization": f"Bearer {self.token}"}
+            response = requests.get(f"{self.base_url}/analytics", headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                required_fields = ["subscribers", "feedback", "contacts", "avg_rating", "recent_activity"]
+                missing_fields = [field for field in required_fields if field not in data]
+                
+                if not missing_fields:
+                    # Verify recent_activity structure
+                    recent_activity = data.get("recent_activity", {})
+                    activity_fields = ["feedback_30d", "contacts_30d"]
+                    missing_activity_fields = [field for field in activity_fields if field not in recent_activity]
+                    
+                    if not missing_activity_fields:
+                        self.log_test("Analytics Authenticated", True, 
+                                    "Analytics endpoint working with comprehensive data", 
+                                    {
+                                        "subscribers": data["subscribers"],
+                                        "feedback": data["feedback"],
+                                        "contacts": data["contacts"],
+                                        "avg_rating": data["avg_rating"],
+                                        "recent_activity": recent_activity
+                                    })
+                    else:
+                        self.log_test("Analytics Authenticated", False, 
+                                    f"Missing fields in recent_activity: {missing_activity_fields}", 
+                                    {"missing_activity_fields": missing_activity_fields})
+                else:
+                    self.log_test("Analytics Authenticated", False, 
+                                f"Missing fields in analytics response: {missing_fields}", 
+                                {"missing_fields": missing_fields})
+            else:
+                self.log_test("Analytics Authenticated", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Analytics Authenticated", False, f"Connection error: {str(e)}")
+
+    def test_feedback_data_validation(self):
+        """Test feedback endpoint with various rating values"""
+        try:
+            # Test with different rating values
+            test_cases = [
+                {"rating": 1, "category": "improvement", "expected": True},
+                {"rating": 3, "category": "collaboration", "expected": True},
+                {"rating": 5, "category": "hiring", "expected": True}
+            ]
+            
+            for i, test_case in enumerate(test_cases):
+                timestamp = int(time.time()) + i
+                feedback_data = {
+                    "name": f"Test User {timestamp}",
+                    "email": f"test.user.{timestamp}@example.com",
+                    "category": test_case["category"],
+                    "rating": test_case["rating"],
+                    "message": f"Test feedback with rating {test_case['rating']}",
+                    "wouldRecommend": test_case["rating"] >= 3,
+                    "contactBack": False
+                }
+                
+                response = requests.post(f"{self.base_url}/feedback", json=feedback_data)
+                
+                if response.status_code == 200 and test_case["expected"]:
+                    continue
+                else:
+                    self.log_test("Feedback Data Validation", False, 
+                                f"Failed for rating {test_case['rating']}", 
+                                {"test_case": test_case, "status_code": response.status_code})
+                    return
+            
+            self.log_test("Feedback Data Validation", True, "All rating values and categories accepted correctly")
+            
+        except Exception as e:
+            self.log_test("Feedback Data Validation", False, f"Connection error: {str(e)}")
+
+    def test_contact_data_validation(self):
+        """Test contact endpoint with various project types and budgets"""
+        try:
+            # Test with different project types and budgets
+            test_cases = [
+                {"projectType": "mobile", "budget": "under-25k", "timeline": "1-week"},
+                {"projectType": "automation", "budget": "25k-50k", "timeline": "1-month"},
+                {"projectType": "custom", "budget": "50k-100k", "timeline": "3-months"}
+            ]
+            
+            for i, test_case in enumerate(test_cases):
+                timestamp = int(time.time()) + i + 100
+                contact_data = {
+                    "name": f"Test Contact {timestamp}",
+                    "email": f"test.contact.{timestamp}@example.com",
+                    "projectType": test_case["projectType"],
+                    "budget": test_case["budget"],
+                    "timeline": test_case["timeline"],
+                    "message": f"Test contact for {test_case['projectType']} project",
+                    "preferredContact": "email",
+                    "urgency": "normal"
+                }
+                
+                response = requests.post(f"{self.base_url}/contact", json=contact_data)
+                
+                if response.status_code != 200:
+                    self.log_test("Contact Data Validation", False, 
+                                f"Failed for project type {test_case['projectType']}", 
+                                {"test_case": test_case, "status_code": response.status_code})
+                    return
+            
+            self.log_test("Contact Data Validation", True, "All project types, budgets, and timelines accepted correctly")
+            
+        except Exception as e:
+            self.log_test("Contact Data Validation", False, f"Connection error: {str(e)}")
     
     def run_all_tests(self):
         """Run all tests in sequence"""
