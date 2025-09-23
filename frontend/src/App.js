@@ -526,7 +526,7 @@ function App() {
           </h2>
           
           {/* GitHub Sync Status */}
-          <div className="mb-6 p-4 bg-panel-2/30 rounded-lg border border-glass-border/20">
+          <div className="mb-6 p-4 bg-panel-2/30 rounded-lg border border-glass-border/20 flex items-center justify-between">
             <p className="text-sm text-muted flex items-center">
               <Calendar className="w-4 h-4 mr-2" />
               {content.projects.githubAutoPull 
@@ -537,48 +537,90 @@ function App() {
                 {content.projects.featured.length} featured
               </span>
             </p>
+            {isLoadingGithub && (
+              <div className="flex items-center text-xs text-acc-2">
+                <div className="w-3 h-3 border border-acc-2 border-t-transparent rounded-full animate-spin mr-2"></div>
+                Syncing...
+              </div>
+            )}
           </div>
           
           <div className="project-grid">
             {content.projects.featured.map((project, index) => (
               <div 
-                key={index} 
-                className="project-card group cursor-pointer"
+                key={project.slug || index} 
+                className="project-card group cursor-pointer relative overflow-hidden"
                 onClick={() => setSelectedProject(project)}
               >
-                {/* Featured Badge */}
-                {project.featured && (
-                  <div className="absolute top-4 right-4 bg-acc-2/20 text-acc-2 px-2 py-1 rounded-full text-xs font-semibold">
-                    ★ Featured
+                {/* Project Image */}
+                {project.image && (
+                  <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-full object-cover rounded-xl"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-panel-2 via-transparent to-transparent"></div>
                   </div>
                 )}
                 
-                <h3 className="project-title heading-md mb-3">
-                  {project.title}
-                </h3>
-                
-                <p className="project-story text-base mb-4 leading-relaxed">
-                  {project.story}
-                </p>
-                
-                {/* Project Meta */}
-                <div className="flex justify-between items-center mb-4 text-xs text-muted">
-                  <span className="flex items-center">
-                    <Calendar className="w-3 h-3 mr-1" />
-                    {new Date(project.updated).toLocaleDateString()}
-                  </span>
-                  <span className="flex items-center text-acc-1 group-hover:translate-x-1 transition-transform">
-                    <ExternalLink className="w-4 h-4" />
-                  </span>
-                </div>
-                
-                {/* Tech Stack */}
-                <div className="project-stack">
-                  {project.stack.map((tech, techIndex) => (
-                    <span key={techIndex} className="stack-pill text-xs">
-                      {tech}
+                {/* Content */}
+                <div className="relative z-10">
+                  {/* Badges */}
+                  <div className="flex justify-between items-start mb-3">
+                    {project.featured && (
+                      <div className="bg-acc-2/20 text-acc-2 px-2 py-1 rounded-full text-xs font-semibold">
+                        ★ Featured
+                      </div>
+                    )}
+                    {project.isRecent && (
+                      <div className="bg-ok/20 text-ok px-2 py-1 rounded-full text-xs font-semibold">
+                        Recent
+                      </div>
+                    )}
+                    {project.isFromGitHub && (
+                      <div className="bg-acc-1/20 text-acc-1 px-2 py-1 rounded-full text-xs font-semibold">
+                        GitHub
+                      </div>
+                    )}
+                  </div>
+                  
+                  <h3 className="project-title heading-md mb-3">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="project-story text-base mb-4 leading-relaxed">
+                    {project.story || project.description}
+                  </p>
+                  
+                  {/* Project Stats & Meta */}
+                  <div className="flex justify-between items-center mb-4 text-xs text-muted">
+                    <span className="flex items-center">
+                      <Calendar className="w-3 h-3 mr-1" />
+                      {new Date(project.updated).toLocaleDateString()}
                     </span>
-                  ))}
+                    <div className="flex items-center gap-3">
+                      {project.stars > 0 && (
+                        <span className="flex items-center">
+                          <Star className="w-3 h-3 mr-1" />
+                          {project.stars}
+                        </span>
+                      )}
+                      <span className="flex items-center text-acc-1 group-hover:translate-x-1 transition-transform">
+                        <ExternalLink className="w-4 h-4" />
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* Tech Stack */}
+                  <div className="project-stack">
+                    {(project.stack || []).map((tech, techIndex) => (
+                      <span key={techIndex} className="stack-pill text-xs">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
@@ -591,7 +633,7 @@ function App() {
             </p>
             <p className="text-xs text-muted">
               GitHub: <a href="https://github.com/Abhishek200416" target="_blank" rel="noopener noreferrer" className="text-acc-1 hover:text-acc-2 transition-colors">@Abhishek200416</a> • 
-              24 public repos • Recent ML and full-stack projects
+              {content.projects.githubAutoPull ? 'Auto-synced' : '24+ public repos'} • Recent ML and full-stack projects
             </p>
           </div>
         </div>
