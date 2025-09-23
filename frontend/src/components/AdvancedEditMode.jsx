@@ -64,6 +64,19 @@ const AdvancedEditMode = ({
     'hero', 'about', 'freelance', 'projects', 
     'skills', 'experience', 'hackathons', 'certs', 'feedback', 'contact'
   ]);
+  
+  // Advanced layout settings
+  const [layoutSettings, setLayoutSettings] = useState({
+    particleCount: 45,
+    particleOpacity: 0.4,
+    particleSpeed: 0.3,
+    animationSpeed: 250,
+    borderRadius: 12,
+    cardSpacing: 2,
+    glassEffect: true,
+    parallaxEnabled: true,
+    reduceMotion: false
+  });
 
   const [videoFile, setVideoFile] = useState(null);
   const [uploadedImages, setUploadedImages] = useState({});
