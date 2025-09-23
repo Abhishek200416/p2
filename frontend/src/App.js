@@ -813,15 +813,14 @@ function App() {
                 <SkillsSection content={content} isEditMode={isEditMode} />
               </EditableSectionWrapper>
               
-              <EditableWrapper
-                isEditMode={isEditMode}
+              <EditableSectionWrapper
                 elementPath="experience"
                 elementType="section"
                 content={content}
                 setContent={setContent}
               >
                 <ExperienceSection content={content} isEditMode={isEditMode} />
-              </EditableWrapper>
+              </EditableSectionWrapper>
 
 
               
