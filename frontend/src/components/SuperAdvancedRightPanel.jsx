@@ -421,9 +421,13 @@ const SuperAdvancedRightPanel = ({
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('Clone Element clicked');
+                console.log('Clone Element button clicked');
               }}
               onMouseDown={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              onTouchStart={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
               }}
