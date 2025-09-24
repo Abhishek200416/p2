@@ -435,16 +435,44 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
 
                       <div className="flex items-center gap-1 bg-gray-800/50 rounded-lg p-1">
                         <button
-                          onClick={() => setShowGrid(!showGrid)}
-                          className={`p-2 hover:bg-gray-700 rounded transition-colors ${showGrid ? 'text-blue-400 bg-blue-500/20' : 'text-gray-400 hover:text-white'}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setShowGrid(!showGrid);
+                          }}
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                          }}
+                          className={`p-3 hover:bg-gray-700 rounded transition-colors cursor-pointer select-none ${showGrid ? 'text-blue-400 bg-blue-500/20' : 'text-gray-400 hover:text-white'}`}
                           title="Toggle Grid"
+                          style={{ 
+                            minWidth: '40px',
+                            minHeight: '40px',
+                            userSelect: 'none',
+                            WebkitUserSelect: 'none'
+                          }}
                         >
                           <Grid size={16} />
                         </button>
                         <button
-                          onClick={() => setShowRulers(!showRulers)}
-                          className={`p-2 hover:bg-gray-700 rounded transition-colors ${showRulers ? 'text-blue-400 bg-blue-500/20' : 'text-gray-400 hover:text-white'}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setShowRulers(!showRulers);
+                          }}
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                          }}
+                          className={`p-3 hover:bg-gray-700 rounded transition-colors cursor-pointer select-none ${showRulers ? 'text-blue-400 bg-blue-500/20' : 'text-gray-400 hover:text-white'}`}
                           title="Toggle Rulers"
+                          style={{ 
+                            minWidth: '40px',
+                            minHeight: '40px',
+                            userSelect: 'none',
+                            WebkitUserSelect: 'none'
+                          }}
                         >
                           <Ruler size={16} />
                         </button>
