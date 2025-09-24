@@ -524,11 +524,12 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                         </button>
                       </div>
 
-                      <div className="flex items-center gap-1 bg-gray-800/50 rounded-lg p-1">
+                      <div className="flex items-center gap-1 bg-gray-800/50 rounded-lg p-1" data-editor-ui="true">
                         <button
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
+                            console.log('Grid toggle clicked, current:', showGrid);
                             setShowGrid(!showGrid);
                           }}
                           onMouseDown={(e) => {
@@ -537,6 +538,7 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                           }}
                           className={`p-3 hover:bg-gray-700 rounded transition-colors cursor-pointer select-none ${showGrid ? 'text-blue-400 bg-blue-500/20' : 'text-gray-400 hover:text-white'}`}
                           title="Toggle Grid"
+                          data-editor-ui="true"
                           style={{ 
                             minWidth: '40px',
                             minHeight: '40px',
@@ -550,6 +552,7 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
+                            console.log('Rulers toggle clicked, current:', showRulers);
                             setShowRulers(!showRulers);
                           }}
                           onMouseDown={(e) => {
@@ -558,6 +561,7 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                           }}
                           className={`p-3 hover:bg-gray-700 rounded transition-colors cursor-pointer select-none ${showRulers ? 'text-blue-400 bg-blue-500/20' : 'text-gray-400 hover:text-white'}`}
                           title="Toggle Rulers"
+                          data-editor-ui="true"
                           style={{ 
                             minWidth: '40px',
                             minHeight: '40px',
@@ -568,9 +572,19 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                           <Ruler size={16} />
                         </button>
                         <button
-                          onClick={() => setRightPanelOpen(!rightPanelOpen)}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            console.log('Right panel toggle clicked, current:', rightPanelOpen);
+                            setRightPanelOpen(!rightPanelOpen);
+                          }}
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                          }}
                           className={`p-2 hover:bg-gray-700 rounded transition-colors ${rightPanelOpen ? 'text-blue-400 bg-blue-500/20' : 'text-gray-400 hover:text-white'}`}
                           title="Advanced Panel"
+                          data-editor-ui="true"
                         >
                           {rightPanelOpen ? <PanelRightOpen size={16} /> : <PanelRight size={16} />}
                         </button>
