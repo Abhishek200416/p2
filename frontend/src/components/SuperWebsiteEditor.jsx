@@ -488,22 +488,37 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                         </button>
                       </div>
 
-                      <div className="flex items-center gap-1 bg-gray-800/50 rounded-lg p-1">
+                      <div className="flex items-center gap-1 bg-gray-800/50 rounded-lg p-1" data-editor-ui="true">
                         <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                          }}
                           className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white transition-colors"
                           title="Layout Tools"
+                          data-editor-ui="true"
                         >
                           <Layout size={16} />
                         </button>
                         <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                          }}
                           className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white transition-colors"
                           title="Style Editor"
+                          data-editor-ui="true"
                         >
                           <Palette size={16} />
                         </button>
                         <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                          }}
                           className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white transition-colors"
                           title="Typography"
+                          data-editor-ui="true"
                         >
                           <Type size={16} />
                         </button>
