@@ -534,6 +534,89 @@ const SuperAdvancedRightPanel = ({
     </div>
   );
 
+  // Enhanced AI Tab with Redesign Assistant
+  const renderAITab = () => (
+    <div className="space-y-1">
+      {/* AI Redesign Assistant */}
+      <CollapsibleSection 
+        name="aiRedesign" 
+        title="AI Redesign Assistant" 
+        icon={Wand2}
+        variant="creative"
+      >
+        <AIRedesignAssistant
+          selectedElement={selectedElement}
+          onElementUpdate={onElementUpdate}
+          content={content}
+          isAuthenticated={isAuthenticated}
+        />
+      </CollapsibleSection>
+
+      {/* Quick AI Actions Section */}
+      <CollapsibleSection 
+        name="quickAiActions" 
+        title="Quick AI Actions" 
+        icon={Sparkles}
+        variant="primary"
+      >
+        <div className="space-y-2">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs text-gray-500">Gemini 2.0 Flash</span>
+            <div className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">
+              Connected
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 gap-2">
+            <motion.button
+              onClick={() => generateAISuggestions('layout')}
+              disabled={isGeneratingAI}
+              className="px-3 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 disabled:opacity-50 flex items-center justify-center"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Layout className="w-4 h-4 mr-2" />
+              Layout Suggestions
+            </motion.button>
+            
+            <motion.button
+              onClick={() => generateAISuggestions('content')}
+              disabled={isGeneratingAI}
+              className="px-3 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600 disabled:opacity-50 flex items-center justify-center"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Edit3 className="w-4 h-4 mr-2" />
+              Content Improvements
+            </motion.button>
+            
+            <motion.button
+              onClick={() => generateAISuggestions('design')}
+              disabled={isGeneratingAI}
+              className="px-3 py-2 bg-purple-500 text-white text-sm rounded hover:bg-purple-600 disabled:opacity-50 flex items-center justify-center"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Palette className="w-4 h-4 mr-2" />
+              Design Enhancement
+            </motion.button>
+          </div>
+          
+          {isGeneratingAI && (
+            <div className="flex items-center justify-center py-2">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                className="w-5 h-5 border-2 border-blue-500/30 border-t-blue-500 rounded-full mr-2"
+              />
+              <span className="text-xs text-blue-600">AI is thinking...</span>
+            </div>
+          )}
+        </div>
+      </CollapsibleSection>
+    </div>
+  );
+
   // Tabs configuration
   const tabs = [
     { id: 'layers', label: 'Layers', icon: Layers },
