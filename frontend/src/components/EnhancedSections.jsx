@@ -384,10 +384,10 @@ export const Footer = React.forwardRef(({ content, isEditMode, saveContent, expo
     <div className="portfolio-container">
       <div className="text-center py-8">
         <p className="text-lg text-acc-1 font-semibold mb-2 font-display">
-          "{content.meta.footer_oath}"
+          "{content.meta?.footer_oath || 'Less talk. More shipping.'}"
         </p>
         <p className="text-sm text-muted mb-4">
-          © 2024 Abhishek Kolluri • Built with React & FastAPI • Deployed fast • Last updated: {content.meta.last_updated}
+          © 2024 Abhishek Kolluri • Built with React & FastAPI • Deployed fast • Last updated: {content.meta?.last_updated || 'Today'}
         </p>
         
         {isEditMode && (
