@@ -407,6 +407,8 @@ async def delete_image(image_id: str):
             return {"message": "Image deleted successfully"}
         
         raise HTTPException(status_code=404, detail="Image not found")
+    except HTTPException:
+        raise  # Re-raise HTTPExceptions with original status code
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Delete failed: {str(e)}")
 
