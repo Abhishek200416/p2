@@ -353,6 +353,9 @@ backend:
       - working: false
         agent: "main"
         comment: "🔧 TESTING REQUIRED: Advanced drag-and-drop with mouse tracking, visual feedback, element positioning, and magnetic snapping needs comprehensive testing."
+      - working: false
+        agent: "testing"
+        comment: "❌ DRAG AND DROP SYSTEM INACCESSIBLE: Cannot test drag-and-drop functionality because it's primarily controlled through the right panel's Advanced Element Dragging section. Right panel not opening prevents access to drag mode activation, element positioning controls, and visual feedback systems. Core dragging logic appears implemented but not accessible for testing."
 
   - task: "In-Place Text Editing System"
     implemented: true
