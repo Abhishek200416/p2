@@ -150,7 +150,7 @@ const EnhancedFeedback = React.forwardRef(({ content }, ref) => {
   }
 
   return (
-    <section id="feedback" className="section">
+    <section ref={ref} id="feedback" className="section">
       <div className="portfolio-container">
         <div className="glass-card section-content animate-slide-up">
           <h2 className="heading-xl mb-8 text-acc-1 font-display flex items-center">
