@@ -1204,6 +1204,40 @@ class PortfolioAPITester:
         print("-" * 30)
         self.test_analytics_authenticated()
         
+        # SUPER ADVANCED API TESTS
+        print("\n🚀 SUPER ADVANCED API TESTS")
+        print("-" * 30)
+        self.test_super_health_check()
+        
+        print("\n🎥 VIDEO MANAGEMENT TESTS")
+        print("-" * 30)
+        self.test_video_upload_invalid_file()
+        self.test_video_list()
+        self.test_video_delete_nonexistent()
+        
+        print("\n🖼️ IMAGE MANAGEMENT TESTS")
+        print("-" * 30)
+        self.test_image_upload_invalid_file()
+        self.test_image_delete_nonexistent()
+        
+        print("\n🤖 AI INTEGRATION TESTS")
+        print("-" * 30)
+        self.test_ai_generate_content_text()
+        self.test_ai_generate_content_image_suggestion()
+        self.test_ai_generate_content_layout_recommendation()
+        self.test_ai_improve_content()
+        self.test_ai_generate_css()
+        self.test_layout_suggest()
+        
+        print("\n⚡ REAL-TIME EDITING TESTS")
+        print("-" * 30)
+        self.test_dimensions_update()
+        self.test_styles_update()
+        
+        print("\n📈 ADVANCED ANALYTICS TESTS")
+        print("-" * 30)
+        self.test_advanced_analytics()
+        
         # Summary
         print("\n" + "=" * 60)
         print("📊 COMPREHENSIVE TEST SUMMARY")
