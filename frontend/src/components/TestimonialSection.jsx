@@ -94,7 +94,7 @@ const TestimonialSection = React.forwardRef(({ content, isEditMode, setContent }
   const current = testimonials[currentTestimonial];
 
   return (
-    <section id="testimonials" className="section">
+    <section ref={ref} id="testimonials" className="section">
       <div className="portfolio-container">
         <div className="glass-card section-content animate-fade-in">
           <h2 className="heading-xl mb-8 text-acc-1 font-display flex items-center">
