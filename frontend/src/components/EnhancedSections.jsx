@@ -22,7 +22,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 
-export const SkillsSection = ({ content }) => (
+export const SkillsSection = React.forwardRef(({ content }, ref) => (
   <section id="skills" className="section">
     <div className="portfolio-container">
       <div className="glass-card section-content animate-slide-up">
