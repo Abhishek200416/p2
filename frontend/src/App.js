@@ -474,7 +474,7 @@ function App() {
                 </h4>
                 <div className="text-3xl font-bold text-ink mb-1 flex items-center justify-center">
                   <IndianRupee className="w-6 h-6" />
-                  {content.freelance.pricing.hourlyINR}/hr
+                  {content.freelance?.pricing?.hourlyINR || 900}/hr
                 </div>
                 <div className="text-sm text-muted">~${content.freelance.pricing.hourlyUSD}/hr USD</div>
               </div>
