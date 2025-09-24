@@ -1259,7 +1259,13 @@ class PortfolioAPITester:
             "Subscriber Management": ["Subscribe Valid Email", "Subscribe Duplicate Email", "Get Subscribers Authenticated", "Get Subscribers Unauthenticated"],
             "Feedback System": ["Submit Feedback General", "Submit Feedback Project", "Submit Feedback Hiring", "Get Feedback Authenticated", "Feedback Data Validation"],
             "Contact System": ["Submit Contact MVP Project", "Submit Contact WebApp Project", "Submit Contact AI Integration", "Get Contacts Authenticated", "Contact Data Validation"],
-            "Analytics": ["Analytics Authenticated"]
+            "Analytics": ["Analytics Authenticated"],
+            "Super Advanced": ["Super Health Check"],
+            "Video Management": ["Video Upload Invalid File", "Video List", "Video Delete Nonexistent"],
+            "Image Management": ["Image Upload Invalid File", "Image Delete Nonexistent"],
+            "AI Integration": ["AI Generate Content Text", "AI Generate Image Suggestions", "AI Generate Layout Recommendations", "AI Improve Content", "AI Generate CSS", "Layout Suggest"],
+            "Real-time Editing": ["Dimensions Update", "Styles Update"],
+            "Advanced Analytics": ["Advanced Analytics"]
         }
         
         print(f"\n📋 RESULTS BY CATEGORY:")
