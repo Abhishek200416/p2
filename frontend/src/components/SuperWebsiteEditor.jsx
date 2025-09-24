@@ -94,22 +94,31 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
 
   // Handle login
   const handleLogin = async (password) => {
-    if (password === 'shipfast') {
-      setIsEditMode(true);
-      setShowPasswordCard(false);
-      setShowToolbar(true);
-      setRightPanelOpen(true);
-      
-      // Initialize edit history
-      setEditHistory([JSON.parse(JSON.stringify(content))]);
-      setCurrentHistoryIndex(0);
-      
-      // Add editing attributes to elements
-      addEditingAttributes();
-      
-      return Promise.resolve();
-    } else {
-      return Promise.reject(new Error('Invalid password'));
+    console.log('handleLogin called with password:', password);
+    try {
+      if (password === 'shipfast') {
+        console.log('Password correct, activating edit mode');
+        setIsEditMode(true);
+        setShowPasswordCard(false);
+        setShowToolbar(true);
+        setRightPanelOpen(true);
+        
+        // Initialize edit history
+        setEditHistory([JSON.parse(JSON.stringify(content))]);
+        setCurrentHistoryIndex(0);
+        
+        // Add editing attributes to elements
+        addEditingAttributes();
+        
+        console.log('Edit mode activated successfully');
+        return Promise.resolve();
+      } else {
+        console.log('Password incorrect:', password);
+        return Promise.reject(new Error('Invalid password'));
+      }
+    } catch (error) {
+      console.error('Error in handleLogin:', error);
+      return Promise.reject(error);
     }
   };
 
