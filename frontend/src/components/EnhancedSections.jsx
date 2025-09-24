@@ -61,7 +61,7 @@ export const SkillsSection = React.forwardRef(({ content }, ref) => (
 SkillsSection.displayName = 'SkillsSection';
 
 export const ExperienceSection = React.forwardRef(({ content }, ref) => (
-  <section id="experience" className="section">
+  <section ref={ref} id="experience" className="section">
     <div className="portfolio-container">
       <div className="glass-card section-content animate-slide-up">
         <h2 className="heading-xl mb-8 text-acc-1 font-display flex items-center">
