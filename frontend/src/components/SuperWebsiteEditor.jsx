@@ -277,27 +277,58 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isEditMode, handleUndo, handleRedo, handleSave]);
 
+  // Set up event listeners for editing
+  useEffect(() => {
+    if (isEditMode) {
+      document.addEventListener('contextmenu', handleRightClick);
+      document.addEventListener('click', handleElementClick);
+    }
+
+    return () => {
+      document.removeEventListener('contextmenu', handleRightClick);
+      document.removeEventListener('click', handleElementClick);
+    };
+  }, [isEditMode]);
+
   return (
-    <DragDropProvider
-      isEditMode={isEditMode}
-      onSectionMove={handleSectionMove}
-      onSectionAdd={handleSectionAdd}
-    >
-      <ContextMenuProvider
+    <div className="relative min-h-screen">
+      {/* Advanced Real-time Dimensions */}
+      <AdvancedRealTimeDimensions
+        selectedElement={selectedElement}
+        onDimensionChange={(dims) => handleElementUpdate(selectedElement, { dimensions: dims })}
         isEditMode={isEditMode}
-        onElementAction={handleElementAction}
-      >
-        <div className="relative min-h-screen">
-          {/* Floating Edit Button */}
-          {!isEditMode && (
-            <motion.button
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 text-white p-4 rounded-full shadow-2xl shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300"
-              onClick={() => setShowPasswordCard(true)}
-              title="Enter Edit Mode"
+        showGrid={showGrid}
+      />
+
+      {/* Enhanced Context Menu */}
+      <EnhancedContextMenu
+        isOpen={contextMenu.isOpen}
+        position={contextMenu.position}
+        onClose={() => setContextMenu({ isOpen: false, position: { x: 0, y: 0 } })}
+        selectedElement={selectedElement}
+        onElementUpdate={handleElementUpdate}
+      />
+
+      {/* Super Advanced Right Panel */}
+      <SuperAdvancedRightPanel
+        isOpen={rightPanelOpen}
+        onToggle={() => setRightPanelOpen(!rightPanelOpen)}
+        selectedElement={selectedElement}
+        onElementUpdate={handleElementUpdate}
+        content={content}
+        onContentChange={onContentChange}
+      />
+
+      {/* Floating Edit Button */}
+      {!isEditMode && (
+        <motion.button
+          initial={{ scale: 0, rotate: -180 }}
+          animate={{ scale: 1, rotate: 0 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 text-white p-4 rounded-full shadow-2xl shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300"
+          onClick={() => setShowPasswordCard(true)}
+          title="Enter Edit Mode"
             >
               <Wand2 size={24} />
             </motion.button>
