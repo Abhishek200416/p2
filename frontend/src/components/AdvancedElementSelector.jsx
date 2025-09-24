@@ -9,7 +9,7 @@ import {
   Eye, 
   EyeOff,
   RotateCw,
-  Resize,
+  Expand,
   Target,
   Layers,
   Settings,
