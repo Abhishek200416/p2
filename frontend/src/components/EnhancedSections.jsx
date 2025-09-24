@@ -70,7 +70,7 @@ export const ExperienceSection = React.forwardRef(({ content }, ref) => (
         </h2>
         
         <div className="space-y-6">
-          {content.experience.map((exp, index) => (
+          {content.experience?.map((exp, index) => (
             <div key={index} className="glass-card p-6 group hover:border-acc-1/40 transition-all">
               <div className="flex items-start justify-between mb-3">
                 <div>
