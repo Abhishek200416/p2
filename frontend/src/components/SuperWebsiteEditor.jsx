@@ -590,22 +590,37 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                         </button>
                       </div>
 
-                      <div className="flex items-center gap-1 bg-gray-800/50 rounded-lg p-1">
+                      <div className="flex items-center gap-1 bg-gray-800/50 rounded-lg p-1" data-editor-ui="true">
                         <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                          }}
                           className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white transition-colors"
                           title="Upload Video"
+                          data-editor-ui="true"
                         >
                           <Video size={16} />
                         </button>
                         <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                          }}
                           className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white transition-colors"
                           title="Upload Image"
+                          data-editor-ui="true"
                         >
                           <Image size={16} />
                         </button>
                         <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                          }}
                           className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white transition-colors"
                           title="AI Assistant"
+                          data-editor-ui="true"
                         >
                           <Sparkles size={16} />
                         </button>
