@@ -263,7 +263,7 @@ const BeautifulPasswordCard = ({ onLogin, isOpen, onClose }) => {
             </form>
           </div>
         </motion.div>
-      </motion.div>
+      )}
     </AnimatePresence>
   );
 };
