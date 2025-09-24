@@ -987,7 +987,7 @@ const SuperAdvancedRightPanel = ({
             {/* Enhanced Header with Gradient */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200/50 bg-gradient-to-r from-blue-50 to-purple-50">
               <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center" data-editor-ui="true">
                   <Settings className="w-4 h-4 text-white" />
                 </div>
                 <h2 className="text-lg font-semibold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
@@ -997,8 +997,17 @@ const SuperAdvancedRightPanel = ({
               <motion.button
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
-                onClick={onToggle}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  onToggle();
+                }}
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
                 className="p-2 hover:bg-white/50 rounded-lg transition-all duration-300 group"
+                data-editor-ui="true"
               >
                 <PanelRightClose className="w-5 h-5 text-gray-600 group-hover:text-purple-600" />
               </motion.button>
