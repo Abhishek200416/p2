@@ -65,6 +65,41 @@ const SuperAdvancedRightPanel = ({
   });
   const [viewport, setViewport] = useState('desktop');
   
+  // Advanced expand/collapse state for different sections
+  const [expandedSections, setExpandedSections] = useState({
+    // Layers tab
+    pageStructure: true,
+    elementHierarchy: true,
+    visibilityControls: false,
+    layerEffects: false,
+    
+    // Properties tab  
+    dimensions: true,
+    position: true,
+    rotationTransform: false,
+    responsiveViewport: true,
+    advancedStyling: false,
+    animationControls: false,
+    
+    // Assets tab
+    videoAssets: true,
+    imageAssets: true,
+    iconLibrary: false,
+    fontAssets: false,
+    
+    // Code tab
+    cssEditor: true,
+    aiCssGeneration: true,
+    cssPresets: false,
+    advancedCssTools: false,
+    
+    // AI tab
+    quickAiActions: true,
+    aiSuggestionsHistory: true,
+    aiContentGeneration: false,
+    aiDesignAnalysis: false
+  });
+  
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const fileInputRef = useRef(null);
   const videoInputRef = useRef(null);
