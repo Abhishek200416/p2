@@ -623,6 +623,7 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                         className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors"
                         title="Save Changes (Ctrl+S)"
                         data-editor-ui="true"
+                        type="button"
                       >
                         <Save size={16} />
                         Save
@@ -638,6 +639,7 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                         className="flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors"
                         title="Exit Edit Mode (Ctrl+E)"
                         data-editor-ui="true"
+                        type="button"
                       >
                         <EyeOff size={16} />
                         Exit
