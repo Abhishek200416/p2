@@ -219,9 +219,15 @@ const SuperAdvancedRightPanel = ({
         className={`border rounded-lg mb-3 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 ${variantStyles[variant]}`}
       >
         <button
-          onClick={() => toggleSection(name)}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Collapsible section clicked:', name, 'current state:', isExpanded);
+            toggleSection(name);
+          }}
           className="w-full flex items-center justify-between p-3 text-left hover:bg-white/50 transition-colors group"
           data-editor-ui="true"
+          type="button"
         >
           <div className="flex items-center space-x-2">
             <Icon className="w-4 h-4 text-gray-600 group-hover:text-blue-600 transition-colors" />
