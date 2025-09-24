@@ -873,32 +873,86 @@ const SuperAdvancedRightPanel = ({
         </div>
       </CollapsibleSection>
 
-      {/* Component Library */}
+      {/* Component Library with + buttons */}
       <CollapsibleSection 
         name="components" 
-        title="Components" 
+        title="+ Add Components" 
         icon={Component}
         variant="creative"
       >
         <div className="space-y-2">
           {[
-            { name: 'Button', icon: MousePointer },
-            { name: 'Card', icon: Box },
-            { name: 'Header', icon: Layout },
-            { name: 'Footer', icon: Frame }
+            { name: '+ New Button', icon: MousePointer, element: 'button' },
+            { name: '+ New Card', icon: Box, element: 'div' },
+            { name: '+ New Header', icon: Layout, element: 'header' },
+            { name: '+ New Section', icon: Frame, element: 'section' },
+            { name: '+ Text Block', icon: Type, element: 'p' },
+            { name: '+ Image Block', icon: Image, element: 'img' }
           ].map((component, index) => (
             <button
               key={index}
-              className="w-full flex items-center space-x-2 p-2 text-left hover:bg-purple-50 rounded border border-transparent hover:border-purple-200 transition-all"
-              onClick={() => {
-                // Logic to add component
+              className="w-full flex items-center space-x-2 p-3 text-left hover:bg-purple-50 rounded border border-transparent hover:border-purple-200 transition-all bg-gradient-to-r from-green-50 to-emerald-50"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 console.log('Adding component:', component.name);
+                
+                // Create new element
+                const newElement = document.createElement(component.element);
+                
+                // Add content based on element type
+                if (component.element === 'button') {
+                  newElement.textContent = 'New Button';
+                  newElement.className = 'px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors';
+                } else if (component.element === 'div') {
+                  newElement.innerHTML = '<h3>New Card</h3><p>Card content goes here...</p>';
+                  newElement.className = 'p-4 bg-white rounded-lg shadow border';
+                } else if (component.element === 'header') {
+                  newElement.innerHTML = '<h1>New Header</h1>';
+                  newElement.className = 'text-2xl font-bold mb-4';
+                } else if (component.element === 'section') {
+                  newElement.innerHTML = '<h2>New Section</h2><p>Section content...</p>';
+                  newElement.className = 'py-8 px-4 border-b';
+                } else if (component.element === 'p') {
+                  newElement.textContent = 'New text block. Click to edit this content.';
+                  newElement.className = 'text-gray-700 leading-relaxed';
+                } else if (component.element === 'img') {
+                  newElement.src = 'https://via.placeholder.com/300x200?text=New+Image';
+                  newElement.alt = 'New Image';
+                  newElement.className = 'w-full h-48 object-cover rounded';
+                }
+                
+                // Add editing attributes
+                newElement.setAttribute('data-editable', 'true');
+                newElement.setAttribute('data-element-id', `new-element-${Date.now()}`);
+                
+                // Insert into page
+                if (selectedElement) {
+                  selectedElement.parentNode.insertBefore(newElement, selectedElement.nextSibling);
+                } else {
+                  // Add to the end of the main content
+                  const mainContent = document.querySelector('main') || document.body;
+                  mainContent.appendChild(newElement);
+                }
+                
+                // Select the new element
+                if (onElementUpdate) {
+                  onElementUpdate(newElement, {});
+                }
               }}
+              data-editor-ui="true"
+              type="button"
             >
-              <component.icon className="w-4 h-4 text-purple-500" />
-              <span className="text-xs font-medium">{component.name}</span>
+              <component.icon className="w-4 h-4 text-green-600" />
+              <span className="text-xs font-medium text-green-700">{component.name}</span>
             </button>
           ))}
+          
+          <div className="mt-3 p-2 bg-gradient-to-r from-blue-50 to-purple-50 rounded border">
+            <p className="text-xs text-gray-600 text-center">
+              💡 Click any + button to add new content to your page
+            </p>
+          </div>
         </div>
       </CollapsibleSection>
     </div>
