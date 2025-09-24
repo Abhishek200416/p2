@@ -1005,6 +1005,7 @@ const SuperAdvancedRightPanel = ({
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
+                  console.log('Panel close button clicked');
                   onToggle();
                 }}
                 onMouseDown={(e) => {
