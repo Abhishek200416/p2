@@ -382,12 +382,13 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
   useEffect(() => {
     if (isEditMode) {
       document.addEventListener('contextmenu', handleRightClick);
-      document.addEventListener('click', handleElementClick);
+      // Use capture phase to handle clicks before they bubble to UI elements
+      document.addEventListener('click', handleElementClick, { capture: true });
     }
 
     return () => {
       document.removeEventListener('contextmenu', handleRightClick);
-      document.removeEventListener('click', handleElementClick);
+      document.removeEventListener('click', handleElementClick, { capture: true });
     };
   }, [isEditMode]);
 
