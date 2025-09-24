@@ -136,10 +136,14 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
   const handleRightClick = (e) => {
     if (!isEditMode) return;
     
+    // Check for data-editor-ui attribute first (highest priority)
+    if (e.target.closest('[data-editor-ui="true"]')) {
+      return; // Don't show context menu for UI elements
+    }
+    
     // Don't show context menu for UI elements
     const isUIElement = e.target.closest(`
       button,
-      [data-editor-ui="true"], 
       .fixed,
       [role="button"], 
       .edit-toolbar, 
