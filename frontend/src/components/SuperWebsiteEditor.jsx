@@ -252,16 +252,28 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
 
   // Handle save
   const handleSave = useCallback(async () => {
-    setIsAutoSaving(true);
+    const savedIndicator = document.getElementById('auto-save-indicator');
+    if (savedIndicator) {
+      savedIndicator.textContent = 'Saving...';
+      savedIndicator.className = 'text-yellow-400 text-xs';
+    }
+    
     try {
       if (onContentChange) {
         await onContentChange(content);
       }
       setLastSaved(new Date());
+      
+      if (savedIndicator) {
+        savedIndicator.textContent = `Saved at ${new Date().toLocaleTimeString()}`;
+        savedIndicator.className = 'text-green-400 text-xs';
+      }
     } catch (error) {
       console.error('Save failed:', error);
-    } finally {
-      setIsAutoSaving(false);
+      if (savedIndicator) {
+        savedIndicator.textContent = 'Save failed';
+        savedIndicator.className = 'text-red-400 text-xs';
+      }
     }
   }, [content, onContentChange]);
 
