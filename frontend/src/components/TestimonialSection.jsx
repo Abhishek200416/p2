@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Star, Quote, ChevronLeft, ChevronRight, User } from 'lucide-react';
 
-const TestimonialSection = ({ content, isEditMode, setContent }) => {
+const TestimonialSection = React.forwardRef(({ content, isEditMode, setContent }, ref) => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   const defaultTestimonials = [
