@@ -117,6 +117,8 @@ async def upload_video(file: UploadFile = File(...)):
             url=video_url,
             size=file_size
         )
+    except HTTPException:
+        raise  # Re-raise HTTPExceptions with original status code
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Upload failed: {str(e)}")
 
