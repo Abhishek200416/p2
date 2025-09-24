@@ -377,6 +377,8 @@ async def upload_image(file: UploadFile = File(...)):
             "url": image_url,
             "size": file_size
         }
+    except HTTPException:
+        raise  # Re-raise HTTPExceptions with original status code
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Image upload failed: {str(e)}")
 
