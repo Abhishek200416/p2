@@ -221,6 +221,7 @@ const SuperAdvancedRightPanel = ({
         <button
           onClick={() => toggleSection(name)}
           className="w-full flex items-center justify-between p-3 text-left hover:bg-white/50 transition-colors group"
+          data-editor-ui="true"
         >
           <div className="flex items-center space-x-2">
             <Icon className="w-4 h-4 text-gray-600 group-hover:text-blue-600 transition-colors" />
