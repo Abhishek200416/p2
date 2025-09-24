@@ -185,46 +185,22 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
       return; // Let the UI element handle its own click
     }
     
-    // Comprehensive UI element exclusion
-    const isUIElement = e.target.closest(`
-      button,
-      .fixed,
-      [role="button"], 
-      .edit-toolbar, 
-      .right-panel, 
-      .context-menu,
-      .bg-gray-900,
-      .bg-white,
-      .border-gray-200,
-      .z-\\[1000\\],
-      .z-\\[9900\\],
-      .z-\\[9950\\],
-      .p-2,
-      .p-3,
-      .p-4,
-      .hover\\:bg-gray-700,
-      .hover\\:bg-purple-50,
-      .hover\\:bg-gray-100,
-      .transition-colors,
-      .cursor-pointer,
-      .select-none,
-      input,
-      textarea,
-      select,
-      .monaco-editor,
-      .overflow-hidden,
-      .backdrop-blur-xl,
-      .shadow-2xl
-    `.replace(/\s+/g, ''));
+    // Simple and reliable UI element detection
+    const isUIElement = e.target.closest(
+      'button, input, textarea, select, .edit-toolbar, .right-panel, .context-menu, .monaco-editor'
+    );
     
-    // Also check if the click is within any panel or toolbar containers
-    const isInPanel = e.target.closest('[class*="fixed"], [class*="z-["], .edit-toolbar, .right-panel');
-    const isInModal = e.target.closest('[class*="backdrop"], [class*="modal"]');
+    // Check if click is within any fixed positioned elements (panels/toolbars)
+    const isInFixedElement = e.target.closest('.fixed, [class*="z-["]');
     
-    if (isUIElement || isInPanel || isInModal) {
+    // Check for any element with editor-related classes
+    const isEditorUI = e.target.closest('[class*="bg-gray-"], [class*="hover:"], [class*="transition-"]');
+    
+    if (isUIElement || isInFixedElement) {
       return; // Let the UI element handle its own click
     }
     
+    // Only handle clicks on editable content elements
     const target = e.target.closest('[data-editable="true"]');
     if (target) {
       setSelectedElement(target);
