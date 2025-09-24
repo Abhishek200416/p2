@@ -166,7 +166,7 @@ export const HackathonsSection = React.forwardRef(({ content }, ref) => (
 HackathonsSection.displayName = 'HackathonsSection';
 
 export const CertificationsSection = React.forwardRef(({ content }, ref) => (
-  <section id="certifications" className="section">
+  <section ref={ref} id="certifications" className="section">
     <div className="portfolio-container">
       <div className="glass-card section-content animate-slide-up">
         <h2 className="heading-xl mb-8 text-acc-1 font-display flex items-center">
