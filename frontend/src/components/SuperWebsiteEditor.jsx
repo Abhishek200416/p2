@@ -188,6 +188,7 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
         break;
       case 'delete':
         // Delete element
+        // eslint-disable-next-line no-undef
         if (confirm('Are you sure you want to delete this element?')) {
           console.log('Delete element:', elementData);
         }
