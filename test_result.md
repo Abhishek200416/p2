@@ -378,11 +378,11 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Basic Portfolio Loading"
+    - "Super Advanced Expand/Collapse UI with Gradient Design"
     - "Advanced Edit Mode Authentication"
-    - "Enhanced Feedback System"
-    - "Enhanced Contact Forms"
-    - "Professional Images Display"
+    - "Enhanced Element Selection & Dragging"
+    - "AI-Powered Redesign System"
+    - "Live CSS Editor with Existing Code Display"
   stuck_tasks: []
   test_all: true
   test_priority: "high_first"
