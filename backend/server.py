@@ -477,6 +477,90 @@ except ImportError as e:
     
     app.include_router(super_router)
 
+# Import and add Gemini AI routes
+try:
+    from gemini_service import gemini_service
+    
+    class AIDesignRequest(BaseModel):
+        element_info: Dict[str, Any]
+    
+    class AICSSRequest(BaseModel):
+        description: str
+        element_type: str = "div"
+    
+    class AIContentRequest(BaseModel):
+        content: str
+        content_type: str = "general"
+    
+    class AIColorPaletteRequest(BaseModel):
+        theme: str = "modern"
+    
+    class AIAnalysisRequest(BaseModel):
+        element_html: str
+        context: str = ""
+    
+    # Gemini AI endpoints
+    @api_router.post("/ai/design-suggestions")
+    async def get_design_suggestions(request: AIDesignRequest, credentials: HTTPAuthorizationCredentials = Depends(security)):
+        """Generate AI-powered design suggestions for an element"""
+        try:
+            # Verify token
+            payload = jwt.decode(credentials.credentials, JWT_SECRET, algorithms=["HS256"])
+        except jwt.PyJWTError:
+            raise HTTPException(status_code=401, detail="Invalid authentication token")
+        
+        result = await gemini_service.generate_design_suggestions(request.element_info)
+        return result
+    
+    @api_router.post("/ai/generate-css")
+    async def generate_css(request: AICSSRequest, credentials: HTTPAuthorizationCredentials = Depends(security)):
+        """Generate CSS from description using AI"""
+        try:
+            payload = jwt.decode(credentials.credentials, JWT_SECRET, algorithms=["HS256"])
+        except jwt.PyJWTError:
+            raise HTTPException(status_code=401, detail="Invalid authentication token")
+        
+        result = await gemini_service.generate_css_from_description(request.description, request.element_type)
+        return result
+    
+    @api_router.post("/ai/improve-content")
+    async def improve_content(request: AIContentRequest, credentials: HTTPAuthorizationCredentials = Depends(security)):
+        """Improve content using AI"""
+        try:
+            payload = jwt.decode(credentials.credentials, JWT_SECRET, algorithms=["HS256"])
+        except jwt.PyJWTError:
+            raise HTTPException(status_code=401, detail="Invalid authentication token")
+        
+        result = await gemini_service.improve_content(request.content, request.content_type)
+        return result
+    
+    @api_router.post("/ai/color-palette")
+    async def generate_color_palette(request: AIColorPaletteRequest, credentials: HTTPAuthorizationCredentials = Depends(security)):
+        """Generate AI color palette"""
+        try:
+            payload = jwt.decode(credentials.credentials, JWT_SECRET, algorithms=["HS256"])
+        except jwt.PyJWTError:
+            raise HTTPException(status_code=401, detail="Invalid authentication token")
+        
+        result = await gemini_service.generate_color_palette(request.theme)
+        return result
+    
+    @api_router.post("/ai/analyze-element")
+    async def analyze_element(request: AIAnalysisRequest, credentials: HTTPAuthorizationCredentials = Depends(security)):
+        """Analyze element for improvements using AI"""
+        try:
+            payload = jwt.decode(credentials.credentials, JWT_SECRET, algorithms=["HS256"])
+        except jwt.PyJWTError:
+            raise HTTPException(status_code=401, detail="Invalid authentication token")
+        
+        result = await gemini_service.analyze_element_for_improvements(request.element_html, request.context)
+        return result
+
+    logger.info("✅ Gemini AI routes added successfully")
+
+except ImportError as e:
+    logger.warning(f"Gemini AI service not available: {e}")
+
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
