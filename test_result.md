@@ -534,11 +534,16 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Advanced Right Panel Features Testing"
-    - "Drag & Drop Functionality Testing"
-    - "Live CSS Editor Testing"
-    - "AI Assistant Integration Testing"
-    - "Context Menu Advanced Features"
+    - "Password Authentication in Edit Mode"
+    - "Auto-Save System with Right Panel Conflicts" 
+    - "Right Panel Expand/Collapse Functionality"
+    - "Element Selection and Editing System"
+    - "CSS Editor with Live Preview"
+    - "AI Redesign Assistant Integration"
+    - "Drag and Drop System"
+    - "In-Place Text Editing System"
+    - "Context Menu System"
+    - "Undo/Redo History System"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
