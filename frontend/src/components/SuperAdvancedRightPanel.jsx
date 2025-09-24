@@ -364,41 +364,150 @@ const SuperAdvancedRightPanel = ({
   ];
 
   const renderLayersTab = () => (
-    <div className="space-y-3">
-      <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium">Page Elements</h3>
-        <div className="flex space-x-1">
-          <button className="p-1 hover:bg-gray-100 rounded">
-            <Eye className="w-4 h-4" />
-          </button>
-          <button className="p-1 hover:bg-gray-100 rounded">
-            <Grid className="w-4 h-4" />
-          </button>
+    <div className="space-y-1">
+      {/* Page Structure Section */}
+      <CollapsibleSection 
+        name="pageStructure" 
+        title="Page Structure" 
+        icon={Layers3}
+        variant="primary"
+      >
+        <div className="space-y-2">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs text-gray-500">Main Sections</span>
+            <div className="flex space-x-1">
+              <button className="p-1 hover:bg-gray-100 rounded" title="Show All">
+                <Eye className="w-3 h-3" />
+              </button>
+              <button className="p-1 hover:bg-gray-100 rounded" title="Grid View">
+                <Grid className="w-3 h-3" />
+              </button>
+            </div>
+          </div>
+          
+          {['Hero', 'About', 'Freelance', 'Projects', 'Skills', 'Experience', 'Contact'].map((section, index) => (
+            <motion.div 
+              key={section}
+              className="flex items-center justify-between p-2 bg-white rounded border hover:border-blue-300 transition-colors cursor-pointer"
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <Layout className="w-3 h-3 text-gray-400" />
+                <span className="text-xs font-medium">{section} Section</span>
+              </div>
+              <div className="flex space-x-1">
+                <button className="p-1 hover:bg-gray-100 rounded">
+                  <Eye className="w-3 h-3 text-blue-600" />
+                </button>
+                <button className="p-1 hover:bg-gray-100 rounded">
+                  <Move className="w-3 h-3 text-gray-400" />
+                </button>
+              </div>
+            </motion.div>
+          ))}
         </div>
-      </div>
-      
-      <div className="space-y-2 max-h-96 overflow-y-auto">
-        {/* Layer items would be dynamically generated here */}
-        <div className="p-2 bg-blue-50 border border-blue-200 rounded text-sm">
-          <div className="flex items-center justify-between">
-            <span className="flex items-center">
-              <Layout className="w-4 h-4 mr-2" />
-              Hero Section
-            </span>
-            <Eye className="w-4 h-4 text-blue-600" />
+      </CollapsibleSection>
+
+      {/* Element Hierarchy Section */}
+      <CollapsibleSection 
+        name="elementHierarchy" 
+        title="Element Hierarchy" 
+        icon={Component}
+        variant="success"
+      >
+        <div className="space-y-2">
+          <div className="space-y-1">
+            {selectedElement ? (
+              <div className="p-2 bg-blue-100 border border-blue-300 rounded">
+                <div className="flex items-center space-x-2">
+                  <Box className="w-3 h-3 text-blue-600" />
+                  <span className="text-xs font-medium text-blue-800">
+                    Selected: {selectedElement.tagName || 'Element'}
+                  </span>
+                </div>
+                <div className="mt-1 text-xs text-blue-600">
+                  ID: {selectedElement.id || 'No ID'}
+                </div>
+              </div>
+            ) : (
+              <div className="p-2 bg-gray-100 rounded text-center">
+                <span className="text-xs text-gray-500">Select an element to view hierarchy</span>
+              </div>
+            )}
           </div>
         </div>
-        
-        <div className="p-2 hover:bg-gray-50 border rounded text-sm">
-          <div className="flex items-center justify-between">
-            <span className="flex items-center">
-              <Layout className="w-4 h-4 mr-2" />
-              About Section
-            </span>
-            <Eye className="w-4 h-4" />
+      </CollapsibleSection>
+
+      {/* Visibility Controls Section */}
+      <CollapsibleSection 
+        name="visibilityControls" 
+        title="Visibility & Display" 
+        icon={Eye}
+        variant="warning"
+      >
+        <div className="space-y-3">
+          <div className="grid grid-cols-2 gap-2">
+            <button className="px-2 py-1 bg-green-500 text-white text-xs rounded hover:bg-green-600 flex items-center justify-center">
+              <Eye className="w-3 h-3 mr-1" />
+              Show All
+            </button>
+            <button className="px-2 py-1 bg-gray-500 text-white text-xs rounded hover:bg-gray-600 flex items-center justify-center">
+              <EyeOff className="w-3 h-3 mr-1" />
+              Hide All
+            </button>
+          </div>
+          
+          <div className="space-y-2">
+            <label className="flex items-center justify-between">
+              <span className="text-xs text-gray-600">Section Animations</span>
+              <input type="checkbox" className="w-3 h-3" defaultChecked />
+            </label>
+            <label className="flex items-center justify-between">
+              <span className="text-xs text-gray-600">Hover Effects</span>
+              <input type="checkbox" className="w-3 h-3" defaultChecked />
+            </label>
+            <label className="flex items-center justify-between">
+              <span className="text-xs text-gray-600">Particle System</span>
+              <input type="checkbox" className="w-3 h-3" defaultChecked />
+            </label>
           </div>
         </div>
-      </div>
+      </CollapsibleSection>
+
+      {/* Layer Effects Section */}
+      <CollapsibleSection 
+        name="layerEffects" 
+        title="Layer Effects & Filters" 
+        icon={Sliders}
+        variant="purple"
+      >
+        <div className="space-y-3">
+          <div>
+            <label className="block text-xs text-gray-600 mb-1">Global Opacity</label>
+            <input type="range" min="0" max="100" defaultValue="100" className="w-full h-1" />
+          </div>
+          
+          <div>
+            <label className="block text-xs text-gray-600 mb-1">Blur Effect</label>
+            <input type="range" min="0" max="20" defaultValue="0" className="w-full h-1" />
+          </div>
+          
+          <div>
+            <label className="block text-xs text-gray-600 mb-1">Brightness</label>
+            <input type="range" min="0" max="200" defaultValue="100" className="w-full h-1" />
+          </div>
+          
+          <div className="flex space-x-1">
+            <button className="px-2 py-1 bg-purple-500 text-white text-xs rounded hover:bg-purple-600 flex-1">
+              Apply Effects
+            </button>
+            <button className="px-2 py-1 bg-gray-500 text-white text-xs rounded hover:bg-gray-600">
+              Reset
+            </button>
+          </div>
+        </div>
+      </CollapsibleSection>
     </div>
   );
 
