@@ -280,6 +280,8 @@ const TestimonialSection = React.forwardRef(({ content, isEditMode, setContent }
       </div>
     </section>
   );
-};
+});
+
+TestimonialSection.displayName = 'TestimonialSection';
 
 export default TestimonialSection;
