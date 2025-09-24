@@ -452,9 +452,30 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Include super advanced API routes
-from super_advanced_api import super_router
-app.include_router(super_router)
+# Include super advanced API routes (optional)
+try:
+    from super_advanced_api import super_router
+    app.include_router(super_router)
+    logger.info("Super advanced API routes loaded successfully")
+except ImportError as e:
+    logger.warning(f"Super advanced API routes not loaded: {e}")
+    # Create a minimal super router for health checks
+    from fastapi import APIRouter
+    super_router = APIRouter(prefix="/api/super")
+    
+    @super_router.get("/health")
+    async def super_health():
+        return {
+            "status": "limited",
+            "message": "Super advanced features require additional dependencies",
+            "features": {
+                "video_upload": False,
+                "image_upload": False,
+                "ai_integration": False
+            }
+        }
+    
+    app.include_router(super_router)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
