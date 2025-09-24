@@ -1216,7 +1216,7 @@ const SuperAdvancedRightPanel = ({
               disabled={isGeneratingAI}
               className="px-3 py-2 bg-purple-500 text-white text-sm rounded hover:bg-purple-600 disabled:opacity-50 flex items-center justify-center"
               whileHover={{ scale: 1.02 }}
-              whileTap={ scale: 0.98 }}
+              whileTap={{ scale: 0.98 }}
             >
               <Palette className="w-4 h-4 mr-2" />
               Design Enhancement
