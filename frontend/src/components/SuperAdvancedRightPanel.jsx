@@ -52,6 +52,7 @@ import {
   PanelRightOpen
 } from 'lucide-react';
 import Editor from '@monaco-editor/react';
+import AIRedesignAssistant from './AIRedesignAssistant';
 
 const SuperAdvancedRightPanel = ({ 
   isOpen, 
