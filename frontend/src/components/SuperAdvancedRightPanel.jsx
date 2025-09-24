@@ -512,95 +512,274 @@ const SuperAdvancedRightPanel = ({
   );
 
   const renderPropertiesTab = () => (
-    <div className="space-y-4">
-      <div>
-        <h3 className="text-sm font-medium mb-2">Element Properties</h3>
-        {selectedElement ? (
-          <div className="space-y-3">
-            {/* Dimensions */}
-            <div>
-              <label className="block text-xs text-gray-500 mb-1">Dimensions</label>
-              <div className="grid grid-cols-2 gap-2">
-                <input
-                  type="number"
-                  placeholder="Width"
-                  value={dimensions.width}
-                  onChange={(e) => updateDimensions({ ...dimensions, width: parseInt(e.target.value) })}
-                  className="w-full px-2 py-1 text-xs border rounded"
-                />
-                <input
-                  type="number"
-                  placeholder="Height"
-                  value={dimensions.height}
-                  onChange={(e) => updateDimensions({ ...dimensions, height: parseInt(e.target.value) })}
-                  className="w-full px-2 py-1 text-xs border rounded"
-                />
-              </div>
+    <div className="space-y-1">
+      {selectedElement ? (
+        <>
+          {/* Element Info */}
+          <div className="p-3 bg-blue-100 border border-blue-200 rounded-lg mb-3">
+            <div className="flex items-center space-x-2 mb-1">
+              <Target className="w-4 h-4 text-blue-600" />
+              <span className="text-sm font-medium text-blue-800">Selected Element</span>
             </div>
-
-            {/* Position */}
-            <div>
-              <label className="block text-xs text-gray-500 mb-1">Position</label>
-              <div className="grid grid-cols-2 gap-2">
-                <input
-                  type="number"
-                  placeholder="X"
-                  value={dimensions.x}
-                  onChange={(e) => updateDimensions({ ...dimensions, x: parseInt(e.target.value) })}
-                  className="w-full px-2 py-1 text-xs border rounded"
-                />
-                <input
-                  type="number"
-                  placeholder="Y"
-                  value={dimensions.y}
-                  onChange={(e) => updateDimensions({ ...dimensions, y: parseInt(e.target.value) })}
-                  className="w-full px-2 py-1 text-xs border rounded"
-                />
-              </div>
-            </div>
-
-            {/* Rotation */}
-            <div>
-              <label className="block text-xs text-gray-500 mb-1">Rotation</label>
-              <input
-                type="range"
-                min="-180"
-                max="180"
-                value={dimensions.rotation}
-                onChange={(e) => updateDimensions({ ...dimensions, rotation: parseInt(e.target.value) })}
-                className="w-full"
-              />
-              <div className="text-xs text-center text-gray-500">{dimensions.rotation}°</div>
-            </div>
-
-            {/* Viewport Preview */}
-            <div>
-              <label className="block text-xs text-gray-500 mb-1">Viewport</label>
-              <div className="flex space-x-1">
-                {[
-                  { id: 'desktop', icon: Monitor },
-                  { id: 'tablet', icon: Tablet },
-                  { id: 'mobile', icon: Smartphone }
-                ].map(({ id, icon: Icon }) => (
-                  <button
-                    key={id}
-                    onClick={() => setViewport(id)}
-                    className={`p-2 rounded border ${
-                      viewport === id 
-                        ? 'bg-blue-500 text-white border-blue-500' 
-                        : 'border-gray-200 hover:bg-gray-50'
-                    }`}
-                  >
-                    <Icon className="w-4 h-4" />
-                  </button>
-                ))}
-              </div>
+            <div className="text-xs text-blue-600">
+              {selectedElement.tagName} • ID: {selectedElement.id || 'No ID'}
             </div>
           </div>
-        ) : (
-          <p className="text-xs text-gray-500">Select an element to view properties</p>
-        )}
-      </div>
+
+          {/* Dimensions Section */}
+          <CollapsibleSection 
+            name="dimensions" 
+            title="Dimensions & Size" 
+            icon={Maximize2}
+            variant="primary"
+          >
+            <div className="space-y-3">
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">Width</label>
+                  <input
+                    type="number"
+                    placeholder="Auto"
+                    value={dimensions.width || ''}
+                    onChange={(e) => updateDimensions({ ...dimensions, width: parseInt(e.target.value) || 0 })}
+                    className="w-full px-2 py-1 text-xs border rounded focus:border-blue-400"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">Height</label>
+                  <input
+                    type="number"
+                    placeholder="Auto"
+                    value={dimensions.height || ''}
+                    onChange={(e) => updateDimensions({ ...dimensions, height: parseInt(e.target.value) || 0 })}
+                    className="w-full px-2 py-1 text-xs border rounded focus:border-blue-400"
+                  />
+                </div>
+              </div>
+              
+              <div className="flex space-x-1">
+                <button className="px-2 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600 flex-1 flex items-center justify-center">
+                  <Maximize2 className="w-3 h-3 mr-1" />
+                  Auto Fit
+                </button>
+                <button className="px-2 py-1 bg-gray-500 text-white text-xs rounded hover:bg-gray-600 flex items-center justify-center">
+                  <Minimize2 className="w-3 h-3" />
+                </button>
+              </div>
+            </div>
+          </CollapsibleSection>
+
+          {/* Position Section */}
+          <CollapsibleSection 
+            name="position" 
+            title="Position & Layout" 
+            icon={Move}
+            variant="success"
+          >
+            <div className="space-y-3">
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">X Position</label>
+                  <input
+                    type="number"
+                    placeholder="0"
+                    value={dimensions.x || ''}
+                    onChange={(e) => updateDimensions({ ...dimensions, x: parseInt(e.target.value) || 0 })}
+                    className="w-full px-2 py-1 text-xs border rounded focus:border-green-400"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">Y Position</label>
+                  <input
+                    type="number"
+                    placeholder="0"
+                    value={dimensions.y || ''}
+                    onChange={(e) => updateDimensions({ ...dimensions, y: parseInt(e.target.value) || 0 })}
+                    className="w-full px-2 py-1 text-xs border rounded focus:border-green-400"
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-xs text-gray-500 mb-1">Position Type</label>
+                <select className="w-full px-2 py-1 text-xs border rounded focus:border-green-400">
+                  <option>Static</option>
+                  <option>Relative</option>
+                  <option>Absolute</option>
+                  <option>Fixed</option>
+                  <option>Sticky</option>
+                </select>
+              </div>
+            </div>
+          </CollapsibleSection>
+
+          {/* Rotation & Transform Section */}
+          <CollapsibleSection 
+            name="rotationTransform" 
+            title="Rotation & Transform" 
+            icon={RotateCw}
+            variant="warning"
+          >
+            <div className="space-y-3">
+              <div>
+                <label className="block text-xs text-gray-500 mb-1">Rotation</label>
+                <input
+                  type="range"
+                  min="-180"
+                  max="180"
+                  value={dimensions.rotation || 0}
+                  onChange={(e) => updateDimensions({ ...dimensions, rotation: parseInt(e.target.value) })}
+                  className="w-full"
+                />
+                <div className="flex justify-between items-center mt-1">
+                  <span className="text-xs text-gray-500">-180°</span>
+                  <span className="text-xs font-medium">{dimensions.rotation || 0}°</span>
+                  <span className="text-xs text-gray-500">180°</span>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">Scale X</label>
+                  <input type="range" min="0.1" max="3" step="0.1" defaultValue="1" className="w-full" />
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">Scale Y</label>
+                  <input type="range" min="0.1" max="3" step="0.1" defaultValue="1" className="w-full" />
+                </div>
+              </div>
+              
+              <div className="flex space-x-1">
+                <button className="px-2 py-1 bg-yellow-500 text-white text-xs rounded hover:bg-yellow-600 flex-1 flex items-center justify-center">
+                  <RotateCw className="w-3 h-3 mr-1" />
+                  Apply
+                </button>
+                <button className="px-2 py-1 bg-gray-500 text-white text-xs rounded hover:bg-gray-600 flex items-center justify-center">
+                  <RotateCcw className="w-3 h-3" />
+                </button>
+              </div>
+            </div>
+          </CollapsibleSection>
+
+          {/* Responsive Viewport Section */}
+          <CollapsibleSection 
+            name="responsiveViewport" 
+            title="Responsive Preview" 
+            icon={Monitor}
+            variant="primary"
+          >
+            <div className="space-y-3">
+              <div>
+                <label className="block text-xs text-gray-500 mb-2">Viewport Size</label>
+                <div className="grid grid-cols-3 gap-1">
+                  {[
+                    { id: 'desktop', icon: Monitor, label: 'Desktop' },
+                    { id: 'tablet', icon: Tablet, label: 'Tablet' },
+                    { id: 'mobile', icon: Smartphone, label: 'Mobile' }
+                  ].map(({ id, icon: Icon, label }) => (
+                    <button
+                      key={id}
+                      onClick={() => setViewport(id)}
+                      className={`p-2 rounded border text-xs ${
+                        viewport === id 
+                          ? 'bg-blue-500 text-white border-blue-500' 
+                          : 'border-gray-200 hover:bg-gray-50'
+                      }`}
+                    >
+                      <Icon className="w-3 h-3 mx-auto mb-1" />
+                      <div className="text-xs">{label}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="text-xs text-center text-gray-500 bg-gray-100 py-2 rounded">
+                Current: {viewport.charAt(0).toUpperCase() + viewport.slice(1)} View
+              </div>
+            </div>
+          </CollapsibleSection>
+
+          {/* Advanced Styling Section */}
+          <CollapsibleSection 
+            name="advancedStyling" 
+            title="Advanced Styling" 
+            icon={Palette}
+            variant="purple"
+          >
+            <div className="space-y-3">
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">Opacity</label>
+                  <input type="range" min="0" max="100" defaultValue="100" className="w-full" />
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">Z-Index</label>
+                  <input type="number" defaultValue="0" className="w-full px-2 py-1 text-xs border rounded" />
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-xs text-gray-500 mb-1">Box Shadow</label>
+                <select className="w-full px-2 py-1 text-xs border rounded">
+                  <option>None</option>
+                  <option>Small</option>
+                  <option>Medium</option>
+                  <option>Large</option>
+                  <option>Custom</option>
+                </select>
+              </div>
+              
+              <div>
+                <label className="block text-xs text-gray-500 mb-1">Border Radius</label>
+                <input type="range" min="0" max="50" defaultValue="8" className="w-full" />
+              </div>
+            </div>
+          </CollapsibleSection>
+
+          {/* Animation Controls Section */}
+          <CollapsibleSection 
+            name="animationControls" 
+            title="Animation Controls" 
+            icon={Zap}
+            variant="danger"
+          >
+            <div className="space-y-3">
+              <div>
+                <label className="block text-xs text-gray-500 mb-1">Animation Type</label>
+                <select className="w-full px-2 py-1 text-xs border rounded">
+                  <option>None</option>
+                  <option>Fade In</option>
+                  <option>Slide Up</option>
+                  <option>Slide Down</option>
+                  <option>Scale In</option>
+                  <option>Bounce</option>
+                </select>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">Duration (ms)</label>
+                  <input type="number" defaultValue="300" className="w-full px-2 py-1 text-xs border rounded" />
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">Delay (ms)</label>
+                  <input type="number" defaultValue="0" className="w-full px-2 py-1 text-xs border rounded" />
+                </div>
+              </div>
+              
+              <button className="w-full px-2 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-600 flex items-center justify-center">
+                <Zap className="w-3 h-3 mr-1" />
+                Preview Animation
+              </button>
+            </div>
+          </CollapsibleSection>
+        </>
+      ) : (
+        <div className="p-6 text-center">
+          <Target className="w-8 h-8 mx-auto text-gray-400 mb-2" />
+          <p className="text-sm text-gray-500">Select an element to view properties</p>
+        </div>
+      )}
     </div>
   );
 
