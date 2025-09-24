@@ -295,6 +295,15 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
 
   return (
     <div className="relative min-h-screen">
+      {/* Advanced Element Selector */}
+      <AdvancedElementSelector
+        isEditMode={isEditMode}
+        selectedElement={selectedElement}
+        onElementSelect={setSelectedElement}
+        onElementUpdate={handleElementUpdate}
+        isAuthenticated={isEditMode}
+      />
+
       {/* Advanced Real-time Dimensions */}
       <AdvancedRealTimeDimensions
         selectedElement={selectedElement}
