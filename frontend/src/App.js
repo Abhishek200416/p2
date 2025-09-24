@@ -747,7 +747,9 @@ function App() {
         </div>
       </div>
     </section>
-  );
+  ));
+  
+  ProjectsSection.displayName = 'ProjectsSection';
 
   return (
     <BrowserRouter future={{ v7_startTransition: true }}>
