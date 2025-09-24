@@ -442,7 +442,7 @@ function App() {
           <div className="mb-8">
             <h3 className="heading-lg mb-4 font-display">About Me</h3>
             <p className="text-lg text-ink leading-relaxed">
-              {content.freelance.about}
+              {content.freelance?.about || 'Professional Full-Stack Developer and Freelancer'}
             </p>
           </div>
           
