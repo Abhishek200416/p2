@@ -1002,12 +1002,9 @@ const SuperAdvancedRightPanel = ({
                   console.log('Panel close button clicked');
                   onToggle();
                 }}
-                onMouseDown={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                }}
                 className="p-2 hover:bg-white/50 rounded-lg transition-all duration-300 group"
                 data-editor-ui="true"
+                type="button"
               >
                 <PanelRightClose className="w-5 h-5 text-gray-600 group-hover:text-purple-600" />
               </motion.button>
