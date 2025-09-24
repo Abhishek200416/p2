@@ -132,29 +132,27 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
     setContextMenu({ isOpen: false, position: { x: 0, y: 0 } });
   };
 
-  // Handle right-click context menu
+  // Handle right-click context menu - Fixed to work reliably  
   const handleRightClick = (e) => {
     if (!isEditMode) return;
     
-    // Check for data-editor-ui attribute first (highest priority)
-    if (e.target.closest('[data-editor-ui="true"]')) {
-      return; // Don't show context menu for UI elements
+    // Always allow UI elements to handle right-clicks normally
+    const editorUIElement = e.target.closest('[data-editor-ui="true"]');
+    if (editorUIElement) {
+      return; // Don't interfere with UI element right-clicks
     }
     
-    // Simple UI element detection for right-click
-    const isUIElement = e.target.closest(
-      'button, input, textarea, select, .edit-toolbar, .right-panel, .context-menu, .monaco-editor, .fixed'
-    );
-    
-    if (isUIElement) {
-      return; // Don't show context menu for UI elements
+    // Allow normal right-click on form elements and interactive items
+    const interactiveElement = e.target.closest('button, input, textarea, select, a[href], [contenteditable="true"]');
+    if (interactiveElement) {
+      return; // Allow normal context menu on interactive elements
     }
     
-    e.preventDefault();
-    const target = e.target.closest('[data-editable="true"]');
-    
-    if (target) {
-      setSelectedElement(target);
+    // Only show custom context menu on editable content
+    const editableTarget = e.target.closest('[data-editable="true"]');
+    if (editableTarget) {
+      e.preventDefault();
+      setSelectedElement(editableTarget);
       setContextMenu({
         isOpen: true,
         position: { x: e.clientX, y: e.clientY }
