@@ -178,7 +178,7 @@ export const CertificationsSection = React.forwardRef(({ content }, ref) => (
         <div className="mb-8">
           <h3 className="heading-lg mb-6 font-display">Professional Certifications</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {content.certs.map((cert, index) => (
+            {content.certs?.map((cert, index) => (
               <div key={index} className="group relative overflow-hidden bg-glass-bg/50 backdrop-blur-xl border border-glass-border rounded-xl p-4 transition-all hover:border-acc-2 hover:shadow-lg hover:shadow-acc-2/20 hover:scale-105">
                 {/* Certificate Background Image */}
                 {cert.image && (
