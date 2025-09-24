@@ -902,7 +902,7 @@ const SuperAdvancedRightPanel = ({
           whileHover={{ scale: 1.1, rotate: 5 }}
           whileTap={{ scale: 0.9 }}
           onClick={onToggle}
-          className="fixed top-20 right-4 z-[999] p-4 bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 text-white rounded-2xl shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 group"
+          className="fixed top-20 right-4 z-[9900] p-4 bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 text-white rounded-2xl shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 group"
           style={{
             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
             boxShadow: '0 10px 40px rgba(102, 126, 234, 0.4), 0 0 0 1px rgba(255,255,255,0.1)'
