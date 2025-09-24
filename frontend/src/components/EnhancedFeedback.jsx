@@ -381,6 +381,8 @@ const EnhancedFeedback = React.forwardRef(({ content }, ref) => {
       </div>
     </section>
   );
-};
+});
+
+EnhancedFeedback.displayName = 'EnhancedFeedback';
 
 export default EnhancedFeedback;
