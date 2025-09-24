@@ -380,7 +380,7 @@ export const ContactSection = React.forwardRef(({ content }, ref) => (
 ContactSection.displayName = 'ContactSection';
 
 export const Footer = React.forwardRef(({ content, isEditMode, saveContent, exportJSON }, ref) => (
-  <footer className="section border-t border-glass-border/30 bg-panel/50">
+  <footer ref={ref} className="section border-t border-glass-border/30 bg-panel/50">
     <div className="portfolio-container">
       <div className="text-center py-8">
         <p className="text-lg text-acc-1 font-semibold mb-2 font-display">
