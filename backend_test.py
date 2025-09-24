@@ -773,6 +773,380 @@ class PortfolioAPITester:
             
         except Exception as e:
             self.log_test("Contact Data Validation", False, f"Connection error: {str(e)}")
+
+    # SUPER ADVANCED API TESTS
+    
+    def test_super_health_check(self):
+        """Test GET /api/super/health - Health check for super features"""
+        try:
+            response = requests.get(f"{self.base_url}/super/health")
+            
+            if response.status_code == 200:
+                data = response.json()
+                if "status" in data and "features" in data:
+                    features = data["features"]
+                    required_features = ["video_upload", "image_upload", "ai_integration"]
+                    missing_features = [f for f in required_features if f not in features]
+                    
+                    if not missing_features:
+                        self.log_test("Super Health Check", True, 
+                                    f"Super features health check passed. AI Integration: {features.get('ai_integration', False)}", 
+                                    {"features": features, "status": data["status"]})
+                    else:
+                        self.log_test("Super Health Check", False, 
+                                    f"Missing features in health check: {missing_features}", 
+                                    {"missing_features": missing_features})
+                else:
+                    self.log_test("Super Health Check", False, "Missing expected fields in health response", 
+                                {"response": data})
+            else:
+                self.log_test("Super Health Check", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Super Health Check", False, f"Connection error: {str(e)}")
+
+    def test_video_upload_invalid_file(self):
+        """Test POST /api/super/video/upload with invalid file type"""
+        try:
+            # Create a fake text file to test validation
+            import io
+            fake_file = io.BytesIO(b"This is not a video file")
+            files = {'file': ('test.txt', fake_file, 'text/plain')}
+            
+            response = requests.post(f"{self.base_url}/super/video/upload", files=files)
+            
+            if response.status_code == 400:
+                self.log_test("Video Upload Invalid File", True, "Correctly rejected non-video file")
+            else:
+                self.log_test("Video Upload Invalid File", False, 
+                            f"Expected 400, got {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Video Upload Invalid File", False, f"Connection error: {str(e)}")
+
+    def test_video_list(self):
+        """Test GET /api/super/video/list - List uploaded videos"""
+        try:
+            response = requests.get(f"{self.base_url}/super/video/list")
+            
+            if response.status_code == 200:
+                data = response.json()
+                if "videos" in data:
+                    self.log_test("Video List", True, 
+                                f"Video list endpoint working. Found {len(data['videos'])} videos", 
+                                {"video_count": len(data["videos"])})
+                else:
+                    self.log_test("Video List", False, "Missing 'videos' field in response", 
+                                {"response": data})
+            else:
+                self.log_test("Video List", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Video List", False, f"Connection error: {str(e)}")
+
+    def test_video_delete_nonexistent(self):
+        """Test DELETE /api/super/video/{video_id} with non-existent video"""
+        try:
+            fake_video_id = "nonexistent-video-id"
+            response = requests.delete(f"{self.base_url}/super/video/{fake_video_id}")
+            
+            if response.status_code == 404:
+                self.log_test("Video Delete Nonexistent", True, "Correctly returned 404 for non-existent video")
+            else:
+                self.log_test("Video Delete Nonexistent", False, 
+                            f"Expected 404, got {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Video Delete Nonexistent", False, f"Connection error: {str(e)}")
+
+    def test_image_upload_invalid_file(self):
+        """Test POST /api/super/image/upload with invalid file type"""
+        try:
+            # Create a fake text file to test validation
+            import io
+            fake_file = io.BytesIO(b"This is not an image file")
+            files = {'file': ('test.txt', fake_file, 'text/plain')}
+            
+            response = requests.post(f"{self.base_url}/super/image/upload", files=files)
+            
+            if response.status_code == 400:
+                self.log_test("Image Upload Invalid File", True, "Correctly rejected non-image file")
+            else:
+                self.log_test("Image Upload Invalid File", False, 
+                            f"Expected 400, got {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Image Upload Invalid File", False, f"Connection error: {str(e)}")
+
+    def test_image_delete_nonexistent(self):
+        """Test DELETE /api/super/image/{image_id} with non-existent image"""
+        try:
+            fake_image_id = "nonexistent-image-id"
+            response = requests.delete(f"{self.base_url}/super/image/{fake_image_id}")
+            
+            if response.status_code == 404:
+                self.log_test("Image Delete Nonexistent", True, "Correctly returned 404 for non-existent image")
+            else:
+                self.log_test("Image Delete Nonexistent", False, 
+                            f"Expected 404, got {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Image Delete Nonexistent", False, f"Connection error: {str(e)}")
+
+    def test_ai_generate_content_text(self):
+        """Test POST /api/super/ai/generate-content with text generation"""
+        try:
+            ai_request = {
+                "prompt": "Create a professional bio for a full-stack developer",
+                "context": "Portfolio website about section",
+                "type": "text"
+            }
+            
+            response = requests.post(f"{self.base_url}/super/ai/generate-content", json=ai_request)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if "content" in data and len(data["content"]) > 10:
+                    self.log_test("AI Generate Content Text", True, 
+                                "AI text generation working correctly", 
+                                {"content_length": len(data["content"]), "confidence": data.get("confidence", "N/A")})
+                else:
+                    self.log_test("AI Generate Content Text", False, "Generated content too short or missing", 
+                                {"response": data})
+            else:
+                self.log_test("AI Generate Content Text", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("AI Generate Content Text", False, f"Connection error: {str(e)}")
+
+    def test_ai_generate_content_image_suggestion(self):
+        """Test POST /api/super/ai/generate-content with image suggestions"""
+        try:
+            ai_request = {
+                "prompt": "Hero section for a tech portfolio",
+                "context": "Modern, professional website",
+                "type": "image_suggestion"
+            }
+            
+            response = requests.post(f"{self.base_url}/super/ai/generate-content", json=ai_request)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if "content" in data and len(data["content"]) > 10:
+                    self.log_test("AI Generate Image Suggestions", True, 
+                                "AI image suggestion generation working correctly", 
+                                {"content_length": len(data["content"])})
+                else:
+                    self.log_test("AI Generate Image Suggestions", False, "Generated suggestions too short or missing", 
+                                {"response": data})
+            else:
+                self.log_test("AI Generate Image Suggestions", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("AI Generate Image Suggestions", False, f"Connection error: {str(e)}")
+
+    def test_ai_generate_content_layout_recommendation(self):
+        """Test POST /api/super/ai/generate-content with layout recommendations"""
+        try:
+            ai_request = {
+                "prompt": "Portfolio projects section",
+                "context": "Showcase 6 different projects with images and descriptions",
+                "type": "layout_recommendation"
+            }
+            
+            response = requests.post(f"{self.base_url}/super/ai/generate-content", json=ai_request)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if "content" in data and len(data["content"]) > 10:
+                    self.log_test("AI Generate Layout Recommendations", True, 
+                                "AI layout recommendation generation working correctly", 
+                                {"content_length": len(data["content"])})
+                else:
+                    self.log_test("AI Generate Layout Recommendations", False, "Generated recommendations too short or missing", 
+                                {"response": data})
+            else:
+                self.log_test("AI Generate Layout Recommendations", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("AI Generate Layout Recommendations", False, f"Connection error: {str(e)}")
+
+    def test_ai_improve_content(self):
+        """Test POST /api/super/ai/improve-content"""
+        try:
+            ai_request = {
+                "prompt": "I am a developer who builds websites. I know JavaScript and Python.",
+                "context": "Professional portfolio bio"
+            }
+            
+            response = requests.post(f"{self.base_url}/super/ai/improve-content", json=ai_request)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if "improved_content" in data and len(data["improved_content"]) > 10:
+                    self.log_test("AI Improve Content", True, 
+                                "AI content improvement working correctly", 
+                                {"improved_length": len(data["improved_content"])})
+                else:
+                    self.log_test("AI Improve Content", False, "Improved content too short or missing", 
+                                {"response": data})
+            else:
+                self.log_test("AI Improve Content", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("AI Improve Content", False, f"Connection error: {str(e)}")
+
+    def test_ai_generate_css(self):
+        """Test POST /api/super/ai/generate-css"""
+        try:
+            css_request = {
+                "description": "Modern button with hover effects and gradient background",
+                "element_type": "button",
+                "current_styles": {
+                    "padding": "10px 20px",
+                    "border": "none"
+                }
+            }
+            
+            response = requests.post(f"{self.base_url}/super/ai/generate-css", json=css_request)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if "css_code" in data and len(data["css_code"]) > 10:
+                    self.log_test("AI Generate CSS", True, 
+                                "AI CSS generation working correctly", 
+                                {"css_length": len(data["css_code"])})
+                else:
+                    self.log_test("AI Generate CSS", False, "Generated CSS too short or missing", 
+                                {"response": data})
+            else:
+                self.log_test("AI Generate CSS", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("AI Generate CSS", False, f"Connection error: {str(e)}")
+
+    def test_layout_suggest(self):
+        """Test POST /api/super/layout/suggest"""
+        try:
+            layout_request = {
+                "prompt": "E-commerce product page with image gallery, product details, reviews, and related products",
+                "context": "Modern responsive e-commerce website"
+            }
+            
+            response = requests.post(f"{self.base_url}/super/layout/suggest", json=layout_request)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if "layout_suggestions" in data and len(data["layout_suggestions"]) > 10:
+                    self.log_test("Layout Suggest", True, 
+                                "AI layout suggestions working correctly", 
+                                {"suggestions_length": len(data["layout_suggestions"])})
+                else:
+                    self.log_test("Layout Suggest", False, "Layout suggestions too short or missing", 
+                                {"response": data})
+            else:
+                self.log_test("Layout Suggest", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Layout Suggest", False, f"Connection error: {str(e)}")
+
+    def test_dimensions_update(self):
+        """Test POST /api/super/dimensions/update"""
+        try:
+            dimension_update = {
+                "element_id": "hero-section-123",
+                "x": 100.5,
+                "y": 200.0,
+                "width": 800.0,
+                "height": 400.0,
+                "rotation": 0.0
+            }
+            
+            response = requests.post(f"{self.base_url}/super/dimensions/update", json=dimension_update)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if "status" in data and data["status"] == "updated" and "element_id" in data:
+                    self.log_test("Dimensions Update", True, 
+                                "Real-time dimension updates working correctly", 
+                                {"element_id": data["element_id"], "status": data["status"]})
+                else:
+                    self.log_test("Dimensions Update", False, "Missing expected fields in response", 
+                                {"response": data})
+            else:
+                self.log_test("Dimensions Update", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Dimensions Update", False, f"Connection error: {str(e)}")
+
+    def test_styles_update(self):
+        """Test POST /api/super/styles/update"""
+        try:
+            style_update = {
+                "element_id": "main-button-456",
+                "styles": {
+                    "background-color": "#3b82f6",
+                    "color": "white",
+                    "padding": "12px 24px",
+                    "border-radius": "8px",
+                    "font-weight": "600"
+                }
+            }
+            
+            response = requests.post(f"{self.base_url}/super/styles/update", json=style_update)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if "status" in data and data["status"] == "updated" and "element_id" in data:
+                    self.log_test("Styles Update", True, 
+                                "Element style updates working correctly", 
+                                {"element_id": data["element_id"], "styles_count": len(data.get("styles", {}))})
+                else:
+                    self.log_test("Styles Update", False, "Missing expected fields in response", 
+                                {"response": data})
+            else:
+                self.log_test("Styles Update", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Styles Update", False, f"Connection error: {str(e)}")
+
+    def test_advanced_analytics(self):
+        """Test GET /api/super/analytics/advanced"""
+        try:
+            response = requests.get(f"{self.base_url}/super/analytics/advanced")
+            
+            if response.status_code == 200:
+                data = response.json()
+                required_fields = ["media", "ai_sessions", "last_updated"]
+                missing_fields = [field for field in required_fields if field not in data]
+                
+                if not missing_fields:
+                    media_data = data.get("media", {})
+                    media_fields = ["videos", "images", "total_size_mb"]
+                    missing_media_fields = [field for field in media_fields if field not in media_data]
+                    
+                    if not missing_media_fields:
+                        self.log_test("Advanced Analytics", True, 
+                                    "Advanced analytics endpoint working correctly", 
+                                    {
+                                        "videos": media_data["videos"],
+                                        "images": media_data["images"],
+                                        "total_size_mb": media_data["total_size_mb"],
+                                        "ai_sessions": data["ai_sessions"]
+                                    })
+                    else:
+                        self.log_test("Advanced Analytics", False, 
+                                    f"Missing fields in media data: {missing_media_fields}", 
+                                    {"missing_media_fields": missing_media_fields})
+                else:
+                    self.log_test("Advanced Analytics", False, 
+                                f"Missing fields in analytics response: {missing_fields}", 
+                                {"missing_fields": missing_fields})
+            else:
+                self.log_test("Advanced Analytics", False, f"HTTP {response.status_code}", 
+                            {"response": response.text})
+        except Exception as e:
+            self.log_test("Advanced Analytics", False, f"Connection error: {str(e)}")
     
     def run_all_tests(self):
         """Run all tests in sequence"""
