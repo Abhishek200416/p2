@@ -624,6 +624,8 @@ const EnhancedContact = React.forwardRef(({ content }, ref) => {
       </div>
     </section>
   );
-};
+});
+
+EnhancedContact.displayName = 'EnhancedContact';
 
 export default EnhancedContact;
