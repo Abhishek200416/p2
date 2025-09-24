@@ -383,6 +383,9 @@ backend:
       - working: false
         agent: "main"
         comment: "🔧 TESTING REQUIRED: Right-click context menu system for element editing, style modifications, and advanced options needs comprehensive testing."
+      - working: false
+        agent: "testing"
+        comment: "❌ CONTEXT MENU SYSTEM NOT RESPONDING: Right-click context menu not appearing consistently during testing. Context menu system implemented (EnhancedContextMenu.jsx) but not triggering properly on element right-clicks. Menu positioning, style modifications, and advanced editing options not accessible. Context menu event handlers may have conflicts or timing issues."
 
   - task: "Undo/Redo History System"
     implemented: true
