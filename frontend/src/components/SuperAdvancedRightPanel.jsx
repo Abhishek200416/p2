@@ -400,23 +400,13 @@ const SuperAdvancedRightPanel = ({
                 e.preventDefault();
                 e.stopPropagation();
                 console.log('Drag Mode button clicked, selected element:', selectedElement);
-                if (selectedElement) startDragging(selectedElement);
-              }}
-              onMouseDown={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
-              onTouchStart={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
+                if (selectedElement) {
+                  startDragging(selectedElement);
+                }
               }}
               className="px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all flex items-center justify-center cursor-pointer select-none"
               data-editor-ui="true"
-              style={{ 
-                minHeight: '40px',
-                userSelect: 'none',
-                WebkitUserSelect: 'none'
-              }}
+              type="button"
             >
               <Move className="w-3 h-3 mr-1" />
               Drag Mode
@@ -428,22 +418,14 @@ const SuperAdvancedRightPanel = ({
                 e.preventDefault();
                 e.stopPropagation();
                 console.log('Clone Element button clicked');
-              }}
-              onMouseDown={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
-              onTouchStart={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
+                if (selectedElement) {
+                  const cloned = selectedElement.cloneNode(true);
+                  selectedElement.parentNode.insertBefore(cloned, selectedElement.nextSibling);
+                }
               }}
               className="px-4 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm rounded-lg hover:from-blue-600 hover:to-cyan-600 transition-all flex items-center justify-center cursor-pointer select-none"
               data-editor-ui="true"
-              style={{ 
-                minHeight: '40px',
-                userSelect: 'none',
-                WebkitUserSelect: 'none'
-              }}
+              type="button"
             >
               <Copy className="w-3 h-3 mr-1" />
               Clone Element
