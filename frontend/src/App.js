@@ -533,7 +533,9 @@ function App() {
         </div>
       </div>
     </section>
-  );
+  ));
+  
+  FreelanceSection.displayName = 'FreelanceSection';
 
   const ProjectModal = ({ project, onClose }) => {
     if (!project) return null;
