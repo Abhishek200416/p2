@@ -4,7 +4,7 @@ import { useToast } from '../hooks/use-toast';
 import AnimatedBackground from './AnimatedBackground';
 import ParticleSystem from './ParticleSystem';
 
-const EnhancedHero = ({ content }) => {
+const EnhancedHero = React.forwardRef(({ content }, ref) => {
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isReduced, setIsReduced] = useState(false);
