@@ -649,20 +649,32 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                     </div>
 
                     {/* Right side - Actions */}
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3" data-editor-ui="true">
                       <button
-                        onClick={handleSave}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          console.log('Save button clicked');
+                          handleSave();
+                        }}
                         className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors"
                         title="Save Changes (Ctrl+S)"
+                        data-editor-ui="true"
                       >
                         <Save size={16} />
                         Save
                       </button>
                       
                       <button
-                        onClick={handleLogout}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          console.log('Exit button clicked');
+                          handleLogout();
+                        }}
                         className="flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors"
                         title="Exit Edit Mode (Ctrl+E)"
+                        data-editor-ui="true"
                       >
                         <EyeOff size={16} />
                         Exit
