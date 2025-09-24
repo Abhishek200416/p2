@@ -103,9 +103,11 @@ export const ExperienceSection = React.forwardRef(({ content }, ref) => (
       </div>
     </div>
   </section>
-);
+));
 
-export const HackathonsSection = ({ content }) => (
+ExperienceSection.displayName = 'ExperienceSection';
+
+export const HackathonsSection = React.forwardRef(({ content }, ref) => (
   <section id="hackathons" className="section">
     <div className="portfolio-container">
       <div className="glass-card section-content animate-slide-up">
