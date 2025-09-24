@@ -7,6 +7,7 @@
     "ctaSecondary": "View Projects", 
     "ctaDownload": "Download Resume",
     "subscribeCopy": "Rare updates, high signal only.",
+    "hasIntroVideo": false,
     "video": { 
       "src": "/assets/infcastle-loop.mp4", 
       "poster": "/assets/infcastle-poster.jpg" 
