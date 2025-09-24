@@ -389,16 +389,46 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
 
                       <div className="flex items-center gap-1 bg-gray-800/50 rounded-lg p-1">
                         <button
-                          className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white transition-colors"
-                          title="Grid View"
+                          onClick={() => setShowGrid(!showGrid)}
+                          className={`p-2 hover:bg-gray-700 rounded transition-colors ${showGrid ? 'text-blue-400 bg-blue-500/20' : 'text-gray-400 hover:text-white'}`}
+                          title="Toggle Grid"
                         >
                           <Grid size={16} />
                         </button>
                         <button
-                          className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white transition-colors"
-                          title="Layers"
+                          onClick={() => setShowRulers(!showRulers)}
+                          className={`p-2 hover:bg-gray-700 rounded transition-colors ${showRulers ? 'text-blue-400 bg-blue-500/20' : 'text-gray-400 hover:text-white'}`}
+                          title="Toggle Rulers"
                         >
-                          <Layers size={16} />
+                          <Ruler size={16} />
+                        </button>
+                        <button
+                          onClick={() => setRightPanelOpen(!rightPanelOpen)}
+                          className={`p-2 hover:bg-gray-700 rounded transition-colors ${rightPanelOpen ? 'text-blue-400 bg-blue-500/20' : 'text-gray-400 hover:text-white'}`}
+                          title="Advanced Panel"
+                        >
+                          {rightPanelOpen ? <PanelRightOpen size={16} /> : <PanelRight size={16} />}
+                        </button>
+                      </div>
+
+                      <div className="flex items-center gap-1 bg-gray-800/50 rounded-lg p-1">
+                        <button
+                          className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white transition-colors"
+                          title="Upload Video"
+                        >
+                          <Video size={16} />
+                        </button>
+                        <button
+                          className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white transition-colors"
+                          title="Upload Image"
+                        >
+                          <Image size={16} />
+                        </button>
+                        <button
+                          className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white transition-colors"
+                          title="AI Assistant"
+                        >
+                          <Sparkles size={16} />
                         </button>
                       </div>
                     </div>
