@@ -398,6 +398,9 @@ backend:
       - working: false
         agent: "main"
         comment: "🔧 TESTING REQUIRED: Edit history with undo/redo functionality, state management, and keyboard shortcuts (Ctrl+Z, Ctrl+Y) needs testing."
+      - working: false
+        agent: "testing"
+        comment: "❌ UNDO/REDO BUTTONS NOT ACCESSIBLE: Undo/Redo functionality implemented in code with keyboard shortcuts (Ctrl+Z, Ctrl+Y) responding, but toolbar buttons not found during testing. Edit history system and state management logic present but UI buttons for undo/redo not visible or accessible in the edit toolbar. Keyboard shortcuts working but visual buttons missing."
 
   - task: "Enhanced Analytics Dashboard API"
     implemented: true
