@@ -208,7 +208,11 @@ const BeautifulPasswordCard = ({ onLogin, isOpen, onClose }) => {
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="p-6 space-y-6">
+            <form 
+              onSubmit={handleSubmit}
+              className="p-6 space-y-6"
+              noValidate
+            >
               <div className="relative">
                 <label className="block text-sm font-medium text-gray-300 mb-2">
                   Password
