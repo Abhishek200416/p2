@@ -396,7 +396,7 @@ const AdvancedElementSelector = ({
       )}
 
       {/* Element Interaction Styles */}
-      <style jsx global>{`
+      <style>{`
         [data-selected="true"] {
           animation: selectedPulse 2s ease-in-out infinite;
         }
