@@ -152,6 +152,12 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
   const handleElementClick = (e) => {
     if (!isEditMode) return;
     
+    // Don't handle clicks on UI elements (buttons, panels, toolbars)
+    const isUIElement = e.target.closest('button, [data-editor-ui="true"], .fixed, [role="button"], .edit-toolbar, .right-panel, .context-menu');
+    if (isUIElement) {
+      return; // Let the UI element handle its own click
+    }
+    
     const target = e.target.closest('[data-editable="true"]');
     if (target) {
       setSelectedElement(target);
