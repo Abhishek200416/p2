@@ -575,7 +575,7 @@ const AdvancedElementSelector = ({
                       data-editor-ui="true"
                       type="button"
                     >
-                      <Resize className="w-4 h-4" />
+                      <Expand className="w-4 h-4" />
                     </motion.button>
                   </div>
 
