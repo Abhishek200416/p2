@@ -75,7 +75,7 @@ const EnhancedHero = React.forwardRef(({ content }, ref) => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background with Video Slot */}
       <AnimatedBackground />
       
