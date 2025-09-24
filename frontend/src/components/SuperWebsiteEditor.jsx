@@ -141,26 +141,12 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
       return; // Don't show context menu for UI elements
     }
     
-    // Don't show context menu for UI elements
-    const isUIElement = e.target.closest(`
-      button,
-      .fixed,
-      [role="button"], 
-      .edit-toolbar, 
-      .right-panel, 
-      .context-menu,
-      .bg-gray-900,
-      .bg-white,
-      .border-gray-200,
-      input,
-      textarea,
-      select,
-      .monaco-editor
-    `.replace(/\s+/g, ''));
+    // Simple UI element detection for right-click
+    const isUIElement = e.target.closest(
+      'button, input, textarea, select, .edit-toolbar, .right-panel, .context-menu, .monaco-editor, .fixed'
+    );
     
-    const isInPanel = e.target.closest('[class*="fixed"], [class*="z-["], .edit-toolbar, .right-panel');
-    
-    if (isUIElement || isInPanel) {
+    if (isUIElement) {
       return; // Don't show context menu for UI elements
     }
     
