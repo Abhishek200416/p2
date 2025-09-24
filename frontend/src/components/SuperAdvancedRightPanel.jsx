@@ -957,14 +957,29 @@ const SuperAdvancedRightPanel = ({
               {tabs.map(({ id, label, icon: Icon }) => (
                 <motion.button
                   key={id}
-                  onClick={() => setActiveTab(id)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setActiveTab(id);
+                  }}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
                   whileHover={{ y: -2 }}
                   whileTap={{ y: 0 }}
-                  className={`flex-1 p-3 text-xs font-medium border-b-2 transition-all duration-300 ${
+                  className={`flex-1 p-4 text-xs font-medium border-b-2 transition-all duration-200 cursor-pointer select-none ${
                     activeTab === id
                       ? 'border-purple-500 text-purple-600 bg-purple-50/50'
                       : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-100/50'
                   }`}
+                  style={{ 
+                    minHeight: '60px',
+                    userSelect: 'none',
+                    WebkitUserSelect: 'none',
+                    MozUserSelect: 'none',
+                    msUserSelect: 'none'
+                  }}
                 >
                   <Icon className="w-4 h-4 mx-auto mb-1" />
                   <div>{label}</div>
