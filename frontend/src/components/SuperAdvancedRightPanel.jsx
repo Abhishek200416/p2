@@ -950,6 +950,7 @@ const SuperAdvancedRightPanel = ({
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
+            console.log('Panel toggle button clicked, current state:', isOpen);
             onToggle();
           }}
           onMouseDown={(e) => {
