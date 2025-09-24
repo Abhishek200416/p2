@@ -176,10 +176,14 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
   const handleElementClick = (e) => {
     if (!isEditMode) return;
     
+    // Check for data-editor-ui attribute first (highest priority)
+    if (e.target.closest('[data-editor-ui="true"]')) {
+      return; // Let the UI element handle its own click
+    }
+    
     // Comprehensive UI element exclusion
     const isUIElement = e.target.closest(`
       button,
-      [data-editor-ui="true"], 
       .fixed,
       [role="button"], 
       .edit-toolbar, 
