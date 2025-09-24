@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import BeautifulPasswordCard from './BeautifulPasswordCard';
-import ContextMenuProvider from './ContextMenuSystem';
-import DragDropProvider, { DraggableSection, AddSectionButton } from './DragDropSystem';
-import RealTimeEditor from './RealTimeEditor';
+import SuperAdvancedRightPanel from './SuperAdvancedRightPanel';
+import AdvancedRealTimeDimensions from './AdvancedRealTimeDimensions';
+import EnhancedContextMenu from './EnhancedContextMenu';
 import { 
   Settings, 
   Eye, 
@@ -21,7 +21,12 @@ import {
   Download,
   Upload,
   Sparkles,
-  Wand2
+  Wand2,
+  PanelRight,
+  PanelRightOpen,
+  Video,
+  Image,
+  Ruler
 } from 'lucide-react';
 
 const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) => {
