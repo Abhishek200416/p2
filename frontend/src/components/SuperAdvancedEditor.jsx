@@ -1401,7 +1401,7 @@ const SuperAdvancedEditor = ({
       </div>
 
       {/* CSS Animations */}
-      <style jsx global>{`
+      <style>{`
         @keyframes dropSuccess {
           0% { transform: scale(1); }
           50% { transform: scale(1.05); }
