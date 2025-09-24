@@ -348,17 +348,17 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isEditMode, handleUndo, handleRedo, handleSave]);
 
-  // Set up event listeners for editing
+  // Set up event listeners for editing - Fixed to be non-intrusive
   useEffect(() => {
     if (isEditMode) {
-      document.addEventListener('contextmenu', handleRightClick);
-      // Use bubbling phase (default) instead of capture to allow UI elements to handle clicks first
-      document.addEventListener('click', handleElementClick);
+      // Use capture: false to allow UI elements to handle events first
+      document.addEventListener('contextmenu', handleRightClick, false);
+      document.addEventListener('click', handleElementClick, false);
     }
 
     return () => {
-      document.removeEventListener('contextmenu', handleRightClick);
-      document.removeEventListener('click', handleElementClick);
+      document.removeEventListener('contextmenu', handleRightClick, false);
+      document.removeEventListener('click', handleElementClick, false);
     };
   }, [isEditMode]);
 
