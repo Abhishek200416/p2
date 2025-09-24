@@ -404,7 +404,7 @@ export const Footer = React.forwardRef(({ content, isEditMode, saveContent, expo
         )}
         
         <p className="text-xs text-muted mt-4 opacity-60">
-          {content.meta.value_prop}
+          {content.meta?.value_prop || "Fast execution, clean handoff, honest communication."}
         </p>
       </div>
     </div>
