@@ -459,20 +459,30 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                   <div className="flex items-center justify-between">
                     {/* Left side - Edit controls */}
                     <div className="flex items-center gap-3">
-                      <div className="flex items-center gap-1 bg-gray-800/50 rounded-lg p-1">
+                      <div className="flex items-center gap-1 bg-gray-800/50 rounded-lg p-1" data-editor-ui="true">
                         <button
-                          onClick={handleUndo}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            handleUndo();
+                          }}
                           disabled={currentHistoryIndex <= 0}
                           className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                           title="Undo (Ctrl+Z)"
+                          data-editor-ui="true"
                         >
                           <Undo size={16} />
                         </button>
                         <button
-                          onClick={handleRedo}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            handleRedo();
+                          }}
                           disabled={currentHistoryIndex >= editHistory.length - 1}
                           className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                           title="Redo (Ctrl+Shift+Z)"
+                          data-editor-ui="true"
                         >
                           <Redo size={16} />
                         </button>
