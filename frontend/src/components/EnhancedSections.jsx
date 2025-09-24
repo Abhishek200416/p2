@@ -117,7 +117,7 @@ export const HackathonsSection = React.forwardRef(({ content }, ref) => (
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {content.hackathons.map((hackathon, index) => (
+          {content.hackathons?.map((hackathon, index) => (
             <div key={index} className="glass-card p-6 group">
               <div className="flex items-start justify-between mb-4">
                 <h3 className="heading-md text-acc-1 mb-2 font-display group-hover:text-acc-2 transition-colors">
