@@ -147,6 +147,8 @@ async def delete_video(video_id: str):
             return {"message": "Video deleted successfully"}
         
         raise HTTPException(status_code=404, detail="Video not found")
+    except HTTPException:
+        raise  # Re-raise HTTPExceptions with original status code
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Delete failed: {str(e)}")
 
