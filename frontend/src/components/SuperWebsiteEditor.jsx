@@ -558,10 +558,18 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
+                            console.log('Upload Video clicked');
+                            // Create a temporary file input for videos
+                            const input = document.createElement('input');
+                            input.type = 'file';
+                            input.accept = 'video/*';
+                            input.multiple = true;
+                            input.click();
                           }}
                           className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white transition-colors"
                           title="Upload Video"
                           data-editor-ui="true"
+                          type="button"
                         >
                           <Video size={16} />
                         </button>
@@ -569,10 +577,18 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
+                            console.log('Upload Image clicked');
+                            // Create a temporary file input for images
+                            const input = document.createElement('input');
+                            input.type = 'file';
+                            input.accept = 'image/*';
+                            input.multiple = true;
+                            input.click();
                           }}
                           className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white transition-colors"
                           title="Upload Image"
                           data-editor-ui="true"
+                          type="button"
                         >
                           <Image size={16} />
                         </button>
@@ -580,10 +596,18 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
+                            console.log('AI Assistant clicked');
+                            setRightPanelOpen(true);
+                            // Switch to AI tab after short delay
+                            setTimeout(() => {
+                              const aiTab = document.querySelector('[data-tab="ai"]');
+                              if (aiTab) aiTab.click();
+                            }, 300);
                           }}
                           className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white transition-colors"
                           title="AI Assistant"
                           data-editor-ui="true"
+                          type="button"
                         >
                           <Sparkles size={16} />
                         </button>
