@@ -483,7 +483,7 @@ function App() {
             {/* Project Pricing Grid */}
             <h4 className="heading-md mb-4 font-display">Project Pricing (Starting at)</h4>
             <div className="pricing-grid">
-              {content.freelance.pricing.projects.map((project, index) => (
+              {content.freelance?.pricing?.projects?.map((project, index) => (
                 <div key={index} className="pricing-card group">
                   <h5 className="text-base font-semibold mb-3 group-hover:text-acc-2 transition-colors">
                     {project.name}
@@ -494,7 +494,7 @@ function App() {
                   </div>
                   <div className="price-usd">~${project.usd} USD</div>
                 </div>
-              ))}
+              )) || []}
             </div>
             
             {/* Value Adds */}
