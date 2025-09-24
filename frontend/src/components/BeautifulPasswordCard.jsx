@@ -10,8 +10,17 @@ const BeautifulPasswordCard = ({ onLogin, isOpen, onClose }) => {
   const [shake, setShake] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     console.log('Form submitted with password:', password);
+    
+    if (!password.trim()) {
+      setError('Please enter a password');
+      return;
+    }
+    
     setIsLoading(true);
     setError('');
 
@@ -19,6 +28,7 @@ const BeautifulPasswordCard = ({ onLogin, isOpen, onClose }) => {
       console.log('Calling onLogin with password:', password);
       await onLogin(password);
       console.log('onLogin completed successfully');
+      setPassword(''); // Clear password on success
     } catch (err) {
       console.error('onLogin failed:', err);
       setError('Invalid password. Please try again.');
@@ -27,6 +37,20 @@ const BeautifulPasswordCard = ({ onLogin, isOpen, onClose }) => {
     } finally {
       console.log('Setting isLoading to false');
       setIsLoading(false);
+    }
+  };
+
+  // Alternative handler for button click to avoid form submission issues
+  const handleButtonClick = async () => {
+    console.log('Button clicked directly with password:', password);
+    await handleSubmit();
+  };
+
+  // Handle Enter key press
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !isLoading) {
+      console.log('Enter key pressed');
+      handleSubmit(e);
     }
   };
 
