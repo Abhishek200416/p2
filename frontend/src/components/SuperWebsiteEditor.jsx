@@ -162,35 +162,37 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
     }
   };
 
-  // Handle element click
+  // Handle element click - Fixed to allow UI interactions
   const handleElementClick = (e) => {
     if (!isEditMode) return;
     
-    // Check for data-editor-ui attribute first (highest priority)
-    if (e.target.closest('[data-editor-ui="true"]')) {
-      return; // Let the UI element handle its own click
+    // Priority 1: Always allow data-editor-ui elements to work
+    const editorUIElement = e.target.closest('[data-editor-ui="true"]');
+    if (editorUIElement) {
+      return; // Let the UI element handle its own click completely
     }
     
-    // Simple and reliable UI element detection
-    const isUIElement = e.target.closest(
-      'button, input, textarea, select, .edit-toolbar, .right-panel, .context-menu, .monaco-editor'
-    );
-    
-    // Check if click is within any fixed positioned elements (panels/toolbars)
-    const isInFixedElement = e.target.closest('.fixed, [class*="z-["]');
-    
-    // Check for any element with editor-related classes
-    const isEditorUI = e.target.closest('[class*="bg-gray-"], [class*="hover:"], [class*="transition-"]');
-    
-    if (isUIElement || isInFixedElement) {
-      return; // Let the UI element handle its own click
+    // Priority 2: Allow buttons, inputs, and interactive elements
+    const interactiveElement = e.target.closest('button, input, textarea, select, a[href], [role="button"], [tabindex]');
+    if (interactiveElement) {
+      return; // Let interactive elements work normally
     }
     
-    // Only handle clicks on editable content elements
-    const target = e.target.closest('[data-editable="true"]');
-    if (target) {
-      setSelectedElement(target);
-      setContextMenu({ isOpen: false, position: { x: 0, y: 0 } });
+    // Priority 3: Allow panel and toolbar interactions
+    const panelElement = e.target.closest('.edit-toolbar, .right-panel, .context-menu, .monaco-editor, .fixed');
+    if (panelElement) {
+      return; // Let panels and toolbars handle their own clicks
+    }
+    
+    // Only intercept clicks on actual editable content
+    const editableTarget = e.target.closest('[data-editable="true"]');
+    if (editableTarget) {
+      // Only set selection if it's not a UI interaction
+      const isUIInteraction = e.target.matches('button, input, [data-editor-ui], .monaco-editor *');
+      if (!isUIInteraction) {
+        setSelectedElement(editableTarget);
+        setContextMenu({ isOpen: false, position: { x: 0, y: 0 } });
+      }
     }
   };
 
