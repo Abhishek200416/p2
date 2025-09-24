@@ -538,7 +538,7 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
 
           {/* Edit Mode Overlay Styles */}
           {isEditMode && (
-            <style jsx>{`
+            <style>{`
               .edit-mode-active * {
                 position: relative;
               }
