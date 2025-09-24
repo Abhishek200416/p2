@@ -37,7 +37,6 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
   const [showToolbar, setShowToolbar] = useState(false);
   const [editHistory, setEditHistory] = useState([]);
   const [currentHistoryIndex, setCurrentHistoryIndex] = useState(-1);
-  const [isAutoSaving, setIsAutoSaving] = useState(false);
   const [lastSaved, setLastSaved] = useState(null);
   const [selectedElement, setSelectedElement] = useState(null);
   const [hoverElement, setHoverElement] = useState(null);
