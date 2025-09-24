@@ -53,20 +53,42 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
     contentRef.current = content;
   }, [content]);
 
-  // Auto-save functionality
+  // Auto-save functionality - optimized to prevent panel reloads
   useEffect(() => {
     if (!isEditMode) return;
 
+    let hasChanges = false;
+    let lastContentSnapshot = JSON.stringify(contentRef.current);
+
     const autoSaveInterval = setInterval(() => {
       if (contentRef.current) {
-        setIsAutoSaving(true);
-        // Simulate save
-        setTimeout(() => {
-          setIsAutoSaving(false);
-          setLastSaved(new Date());
-        }, 500);
+        const currentContentSnapshot = JSON.stringify(contentRef.current);
+        
+        // Only auto-save if there are actual changes
+        if (currentContentSnapshot !== lastContentSnapshot) {
+          hasChanges = true;
+          lastContentSnapshot = currentContentSnapshot;
+          
+          // Use a less intrusive auto-save that doesn't trigger UI re-renders
+          const savedIndicator = document.getElementById('auto-save-indicator');
+          if (savedIndicator) {
+            savedIndicator.textContent = 'Saving...';
+            savedIndicator.className = 'text-yellow-400 text-xs';
+          }
+          
+          // Simulate save without state changes that cause re-renders
+          setTimeout(() => {
+            if (savedIndicator) {
+              savedIndicator.textContent = `Saved at ${new Date().toLocaleTimeString()}`;
+              savedIndicator.className = 'text-green-400 text-xs';
+              // Save to localStorage as backup
+              localStorage.setItem('portfolio-backup', JSON.stringify(contentRef.current));
+              localStorage.setItem('portfolio-backup-timestamp', new Date().toISOString());
+            }
+          }, 300);
+        }
       }
-    }, 5000); // Auto-save every 5 seconds
+    }, 10000); // Auto-save every 10 seconds instead of 5 (less frequent)
 
     return () => clearInterval(autoSaveInterval);
   }, [isEditMode]);
