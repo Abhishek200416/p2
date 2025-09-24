@@ -4,6 +4,8 @@ import BeautifulPasswordCard from './BeautifulPasswordCard';
 import SuperAdvancedRightPanel from './SuperAdvancedRightPanel';
 import AdvancedRealTimeDimensions from './AdvancedRealTimeDimensions';
 import EnhancedContextMenu from './EnhancedContextMenu';
+import AdvancedElementSelector from './AdvancedElementSelector';
+import AIRedesignAssistant from './AIRedesignAssistant';
 import { 
   Settings, 
   Eye, 
