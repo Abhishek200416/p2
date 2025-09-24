@@ -372,7 +372,7 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
           animate={{ scale: 1, rotate: 0 }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="fixed bottom-6 right-6 z-[9999] bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 text-white p-4 rounded-full shadow-2xl shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300"
+          className="fixed bottom-6 right-6 z-[10000] bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 text-white p-4 rounded-full shadow-2xl shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300"
           onClick={() => setShowPasswordCard(true)}
           title="Enter Edit Mode"
             >
