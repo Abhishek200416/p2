@@ -191,7 +191,7 @@ const SuperAdvancedRightPanel = ({
       if (!el.className) return '';
       // Handle both string and DOMTokenList
       const className = typeof el.className === 'string' ? el.className : el.className.toString();
-      return className.split(' ')[0] || '';
+      return (className && typeof className === 'string') ? className.split(' ')[0] || '' : '';
     };
     
     const className = getClassName(element);
