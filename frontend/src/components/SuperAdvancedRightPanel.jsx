@@ -186,9 +186,17 @@ const SuperAdvancedRightPanel = ({
   const generateCSSFromElement = (element, styles) => {
     const cssRules = [];
     
-    // Get element identifier
+    // Get element identifier - safely handle className
+    const getClassName = (el) => {
+      if (!el.className) return '';
+      // Handle both string and DOMTokenList
+      const className = typeof el.className === 'string' ? el.className : el.className.toString();
+      return className.split(' ')[0] || '';
+    };
+    
+    const className = getClassName(element);
     const elementId = element.id ? `#${element.id}` : 
-                     element.className ? `.${element.className.split(' ')[0]}` : 
+                     className ? `.${className}` : 
                      element.tagName.toLowerCase();
     
     cssRules.push(`/* Existing styles for ${elementId} */`);
