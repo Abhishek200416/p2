@@ -1172,62 +1172,210 @@ const SuperAdvancedRightPanel = ({
   );
 
   const renderAITab = () => (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium">AI Assistant</h3>
-        <div className="text-xs text-gray-500">Gemini 2.0 Flash</div>
-      </div>
-      
-      <div className="space-y-2">
-        <button
-          onClick={() => generateAISuggestions('layout')}
-          disabled={isGeneratingAI}
-          className="w-full px-3 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 disabled:opacity-50 flex items-center justify-center"
-        >
-          <Layout className="w-4 h-4 mr-2" />
-          Suggest Layout Improvements
-        </button>
-        
-        <button
-          onClick={() => generateAISuggestions('content')}
-          disabled={isGeneratingAI}
-          className="w-full px-3 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600 disabled:opacity-50 flex items-center justify-center"
-        >
-          <Edit3 className="w-4 h-4 mr-2" />
-          Improve Content
-        </button>
-        
-        <button
-          onClick={() => generateAISuggestions('design')}
-          disabled={isGeneratingAI}
-          className="w-full px-3 py-2 bg-purple-500 text-white text-sm rounded hover:bg-purple-600 disabled:opacity-50 flex items-center justify-center"
-        >
-          <Palette className="w-4 h-4 mr-2" />
-          Enhance Design
-        </button>
-      </div>
-      
-      {/* AI Suggestions Display */}
-      <div className="space-y-2 max-h-64 overflow-y-auto">
-        {aiSuggestions.map((suggestion) => (
-          <div key={suggestion.id} className="p-3 bg-gray-50 rounded border">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-medium capitalize">{suggestion.type}</span>
-              <span className="text-xs text-gray-500">
-                {new Date(suggestion.timestamp).toLocaleTimeString()}
-              </span>
+    <div className="space-y-1">
+      {/* Quick AI Actions Section */}
+      <CollapsibleSection 
+        name="quickAiActions" 
+        title="Quick AI Actions" 
+        icon={Sparkles}
+        variant="primary"
+      >
+        <div className="space-y-2">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs text-gray-500">Gemini 2.0 Flash</span>
+            <div className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">
+              Connected
             </div>
-            <p className="text-xs text-gray-700">{suggestion.content}</p>
           </div>
-        ))}
-      </div>
-      
-      {isGeneratingAI && (
-        <div className="flex items-center justify-center py-4">
-          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
-          <span className="ml-2 text-sm text-gray-600">Generating AI suggestions...</span>
+          
+          <div className="grid grid-cols-1 gap-2">
+            <motion.button
+              onClick={() => generateAISuggestions('layout')}
+              disabled={isGeneratingAI}
+              className="px-3 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 disabled:opacity-50 flex items-center justify-center"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Layout className="w-4 h-4 mr-2" />
+              Layout Suggestions
+            </motion.button>
+            
+            <motion.button
+              onClick={() => generateAISuggestions('content')}
+              disabled={isGeneratingAI}
+              className="px-3 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600 disabled:opacity-50 flex items-center justify-center"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Edit3 className="w-4 h-4 mr-2" />
+              Content Improvements
+            </motion.button>
+            
+            <motion.button
+              onClick={() => generateAISuggestions('design')}
+              disabled={isGeneratingAI}
+              className="px-3 py-2 bg-purple-500 text-white text-sm rounded hover:bg-purple-600 disabled:opacity-50 flex items-center justify-center"
+              whileHover={{ scale: 1.02 }}
+              whileTap={ scale: 0.98 }}
+            >
+              <Palette className="w-4 h-4 mr-2" />
+              Design Enhancement
+            </motion.button>
+          </div>
+          
+          {isGeneratingAI && (
+            <div className="flex items-center justify-center py-2">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                className="w-5 h-5 border-2 border-blue-500/30 border-t-blue-500 rounded-full mr-2"
+              />
+              <span className="text-xs text-blue-600">AI is thinking...</span>
+            </div>
+          )}
         </div>
-      )}
+      </CollapsibleSection>
+
+      {/* AI Suggestions History Section */}
+      <CollapsibleSection 
+        name="aiSuggestionsHistory" 
+        title="AI Suggestions History" 
+        icon={History}
+        variant="success"
+      >
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-gray-500">{aiSuggestions.length} suggestions generated</span>
+            <button className="text-xs text-red-600 hover:text-red-800">Clear All</button>
+          </div>
+          
+          <div className="space-y-2 max-h-48 overflow-y-auto">
+            {aiSuggestions.length > 0 ? (
+              aiSuggestions.map((suggestion) => (
+                <motion.div 
+                  key={suggestion.id} 
+                  className="p-2 bg-white border rounded hover:border-green-400"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs font-medium capitalize bg-green-100 text-green-800 px-2 py-1 rounded">
+                      {suggestion.type}
+                    </span>
+                    <span className="text-xs text-gray-500">
+                      {new Date(suggestion.timestamp).toLocaleTimeString()}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-700 line-clamp-3">{suggestion.content}</p>
+                  
+                  <div className="flex space-x-1 mt-2">
+                    <button className="px-2 py-1 bg-green-500 text-white text-xs rounded hover:bg-green-600">
+                      Apply
+                    </button>
+                    <button className="px-2 py-1 bg-gray-500 text-white text-xs rounded hover:bg-gray-600">
+                      Save
+                    </button>
+                  </div>
+                </motion.div>
+              ))
+            ) : (
+              <div className="p-4 text-center border-2 border-dashed border-gray-200 rounded">
+                <History className="w-6 h-6 mx-auto text-gray-400 mb-1" />
+                <p className="text-xs text-gray-500">No AI suggestions yet</p>
+                <p className="text-xs text-gray-400 mt-1">Generate some suggestions above!</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </CollapsibleSection>
+
+      {/* AI Content Generation Section */}
+      <CollapsibleSection 
+        name="aiContentGeneration" 
+        title="AI Content Generator" 
+        icon={FileText}
+        variant="warning"
+      >
+        <div className="space-y-3">
+          <div>
+            <label className="block text-xs text-gray-500 mb-1">Content Type</label>
+            <select className="w-full px-2 py-1 text-xs border rounded">
+              <option>Hero Text</option>
+              <option>About Section</option>
+              <option>Project Description</option>
+              <option>Call to Action</option>
+              <option>Meta Description</option>
+            </select>
+          </div>
+          
+          <textarea
+            placeholder="Describe what content you want to generate..."
+            className="w-full px-2 py-2 text-xs border rounded h-16 resize-none"
+            defaultValue="Create professional hero text for a full-stack developer portfolio"
+          />
+          
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <label className="block text-xs text-gray-500 mb-1">Tone</label>
+              <select className="w-full px-2 py-1 text-xs border rounded">
+                <option>Professional</option>
+                <option>Casual</option>
+                <option>Creative</option>
+                <option>Technical</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs text-gray-500 mb-1">Length</label>
+              <select className="w-full px-2 py-1 text-xs border rounded">
+                <option>Short</option>
+                <option>Medium</option>
+                <option>Long</option>
+              </select>
+            </div>
+          </div>
+          
+          <button className="w-full px-3 py-2 bg-yellow-500 text-white text-sm rounded hover:bg-yellow-600 flex items-center justify-center">
+            <Wand2 className="w-4 h-4 mr-2" />
+            Generate Content
+          </button>
+        </div>
+      </CollapsibleSection>
+
+      {/* AI Design Analysis Section */}
+      <CollapsibleSection 
+        name="aiDesignAnalysis" 
+        title="AI Design Analysis" 
+        icon={Target}
+        variant="danger"
+      >
+        <div className="space-y-3">
+          <div className="text-xs text-gray-500 mb-2">Website Analysis & Recommendations</div>
+          
+          <div className="space-y-2">
+            <button className="w-full px-2 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-600 flex items-center justify-center">
+              <Eye className="w-3 h-3 mr-1" />
+              Analyze Current Design
+            </button>
+            
+            <button className="w-full px-2 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-600 flex items-center justify-center">
+              <Zap className="w-3 h-3 mr-1" />
+              Performance Analysis
+            </button>
+            
+            <button className="w-full px-2 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-600 flex items-center justify-center">
+              <Smartphone className="w-3 h-3 mr-1" />
+              Mobile Responsiveness Check
+            </button>
+          </div>
+          
+          <div className="p-2 bg-red-50 border border-red-200 rounded">
+            <div className="text-xs font-medium text-red-800 mb-1">Latest Analysis</div>
+            <div className="text-xs text-red-600">Overall Score: 92/100</div>
+            <div className="text-xs text-gray-600 mt-1">Great design! Consider improving loading speed.</div>
+          </div>
+        </div>
+      </CollapsibleSection>
     </div>
   );
 
