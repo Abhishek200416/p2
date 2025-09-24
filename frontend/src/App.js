@@ -506,11 +506,11 @@ function App() {
               <div className="space-y-2 text-sm text-muted">
                 <p className="flex items-center">
                   <ArrowRight className="w-3 h-3 mr-2 text-acc-1" />
-                  {content.freelance.pricing.bundles[0].name}: ₹{content.freelance.pricing.bundles[0].startINR.toLocaleString()}+
+                  {content.freelance?.pricing?.bundles?.[0]?.name || 'Full-Stack Bundle'}: ₹{(content.freelance?.pricing?.bundles?.[0]?.startINR || 75000).toLocaleString()}+
                 </p>
                 <p className="flex items-center">
                   <ArrowRight className="w-3 h-3 mr-2 text-acc-1" />
-                  Maintenance & Support: ₹{content.freelance.pricing.maintenanceMonthlyINR.toLocaleString()}/month
+                  Maintenance & Support: ₹{(content.freelance?.pricing?.maintenanceMonthlyINR || 15000).toLocaleString()}/month
                 </p>
                 <p className="flex items-center">
                   <ArrowRight className="w-3 h-3 mr-2 text-acc-1" />
