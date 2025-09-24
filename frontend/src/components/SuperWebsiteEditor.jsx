@@ -318,6 +318,7 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
         onElementUpdate={handleElementUpdate}
         content={content}
         onContentChange={onContentChange}
+        isAuthenticated={isEditMode}
       />
 
       {/* Floating Edit Button */}
