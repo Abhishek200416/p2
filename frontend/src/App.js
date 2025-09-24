@@ -427,7 +427,7 @@ function App() {
   );
 
   const FreelanceSection = React.forwardRef((props, ref) => (
-    <section id="freelance" className="section">
+    <section ref={ref} id="freelance" className="section">
       <div className="portfolio-container">
         <div className="glass-card section-content animate-slide-up">
           <h2 className="heading-xl mb-4 text-acc-1 font-display flex items-center">
