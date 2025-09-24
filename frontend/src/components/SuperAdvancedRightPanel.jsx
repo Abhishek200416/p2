@@ -826,9 +826,24 @@ const SuperAdvancedRightPanel = ({
         variant="warning"
       >
         <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-medium text-gray-700">Upload Videos</span>
+            <button
+              onClick={() => videoInputRef.current?.click()}
+              className="px-3 py-1 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs rounded-lg hover:from-orange-600 hover:to-red-600 flex items-center gap-1"
+              data-editor-ui="true"
+              type="button"
+            >
+              <Upload className="w-3 h-3" />
+              + Add Videos
+            </button>
+          </div>
+          
           <button
             onClick={() => videoInputRef.current?.click()}
             className="w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-500 transition-colors"
+            data-editor-ui="true"
+            type="button"
           >
             <Upload className="w-6 h-6 mx-auto mb-1 text-gray-400" />
             <p className="text-xs text-gray-600">Click to upload videos</p>
@@ -841,10 +856,13 @@ const SuperAdvancedRightPanel = ({
                   <div className="flex items-center space-x-2">
                     <Video className="w-4 h-4 text-purple-500" />
                     <span className="text-xs font-medium truncate">{video.name}</span>
+                    <span className="text-xs text-gray-400">({(video.size / 1024 / 1024).toFixed(1)}MB)</span>
                   </div>
                   <button
                     onClick={() => setUploadedVideos(prev => prev.filter((_, i) => i !== index))}
                     className="text-red-500 hover:text-red-700 transition-colors"
+                    data-editor-ui="true"
+                    type="button"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
