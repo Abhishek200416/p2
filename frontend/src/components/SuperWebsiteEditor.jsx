@@ -547,9 +547,7 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
               </motion.div>
             )}
           </AnimatePresence>
-        </div>
-      </ContextMenuProvider>
-    </DragDropProvider>
+    </div>
   );
 };
 
