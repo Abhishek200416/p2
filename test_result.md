@@ -559,7 +559,17 @@ test_plan:
     - "In-Place Text Editing System"
     - "Context Menu System"
     - "Undo/Redo History System"
-  stuck_tasks: []
+  stuck_tasks:
+    - "Password Authentication in Edit Mode"
+    - "Auto-Save System with Right Panel Conflicts"
+    - "Right Panel Expand/Collapse Functionality"
+    - "Element Selection and Editing System"
+    - "CSS Editor with Live Preview"
+    - "AI Redesign Assistant Integration"
+    - "Drag and Drop System"
+    - "In-Place Text Editing System"
+    - "Context Menu System"
+    - "Undo/Redo History System"
   test_all: false
   test_priority: "high_first"
 
