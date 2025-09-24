@@ -382,6 +382,10 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Include super advanced API routes
+from super_advanced_api import super_router
+app.include_router(super_router)
+
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
