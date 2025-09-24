@@ -291,11 +291,10 @@ const SuperAdvancedRightPanel = ({
 
   const loadUploadedMedia = async () => {
     try {
-      const videoResponse = await fetch(`${backendUrl}/api/super/video/list`);
-      if (videoResponse.ok) {
-        const videoData = await videoResponse.json();
-        setUploadedVideos(videoData.videos || []);
-      }
+      // Skip loading media for now as endpoints are not implemented
+      console.log('Media loading skipped - backend endpoints not available');
+      setUploadedVideos([]);
+      setUploadedImages([]);
     } catch (error) {
       console.warn('Failed to load media:', error);
     }
