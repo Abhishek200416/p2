@@ -535,6 +535,254 @@ const SuperAdvancedRightPanel = ({
     </div>
   );
 
+  // Enhanced Properties Tab
+  const renderPropertiesTab = () => (
+    <div className="space-y-1">
+      {selectedElement ? (
+        <>
+          {/* Element Properties */}
+          <CollapsibleSection 
+            name="elementProperties" 
+            title="Element Properties" 
+            icon={Settings}
+            variant="primary"
+          >
+            <div className="space-y-3">
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <label className="text-xs font-medium text-gray-700 block mb-1">Width</label>
+                  <input 
+                    type="text" 
+                    className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                    placeholder="auto"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-gray-700 block mb-1">Height</label>
+                  <input 
+                    type="text" 
+                    className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                    placeholder="auto"
+                  />
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-4 gap-1">
+                <div>
+                  <label className="text-xs font-medium text-gray-700 block mb-1">Top</label>
+                  <input 
+                    type="text" 
+                    className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                    placeholder="0"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-gray-700 block mb-1">Right</label>
+                  <input 
+                    type="text" 
+                    className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                    placeholder="0"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-gray-700 block mb-1">Bottom</label>
+                  <input 
+                    type="text" 
+                    className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                    placeholder="0"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-gray-700 block mb-1">Left</label>
+                  <input 
+                    type="text" 
+                    className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                    placeholder="0"
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <label className="text-xs font-medium text-gray-700 block mb-2">Background Color</label>
+                <div className="flex gap-2">
+                  <input type="color" className="w-8 h-8 rounded border border-gray-300" />
+                  <input 
+                    type="text" 
+                    className="flex-1 px-2 py-1 text-xs border border-gray-300 rounded focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                    placeholder="#000000"
+                  />
+                </div>
+              </div>
+            </div>
+          </CollapsibleSection>
+
+          {/* Typography Properties */}
+          <CollapsibleSection 
+            name="typography" 
+            title="Typography" 
+            icon={Type}
+            variant="secondary"
+          >
+            <div className="space-y-3">
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <label className="text-xs font-medium text-gray-700 block mb-1">Font Size</label>
+                  <input 
+                    type="text" 
+                    className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                    placeholder="16px"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-gray-700 block mb-1">Font Weight</label>
+                  <select className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
+                    <option value="400">Normal</option>
+                    <option value="600">Semi Bold</option>
+                    <option value="700">Bold</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div>
+                <label className="text-xs font-medium text-gray-700 block mb-2">Text Color</label>
+                <div className="flex gap-2">
+                  <input type="color" className="w-8 h-8 rounded border border-gray-300" />
+                  <input 
+                    type="text" 
+                    className="flex-1 px-2 py-1 text-xs border border-gray-300 rounded focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                    placeholder="#000000"
+                  />
+                </div>
+              </div>
+            </div>
+          </CollapsibleSection>
+        </>
+      ) : (
+        <div className="p-4 text-center text-gray-500">
+          <Settings className="w-8 h-8 mx-auto mb-2 opacity-50" />
+          <p className="text-sm">Select an element to view its properties</p>
+        </div>
+      )}
+    </div>
+  );
+
+  // Enhanced Assets Tab
+  const renderAssetsTab = () => (
+    <div className="space-y-1">
+      {/* Image Assets */}
+      <CollapsibleSection 
+        name="imageAssets" 
+        title="Images" 
+        icon={Image}
+        variant="success"
+      >
+        <div className="space-y-3">
+          <button
+            onClick={() => fileInputRef.current?.click()}
+            className="w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-500 transition-colors"
+          >
+            <Upload className="w-6 h-6 mx-auto mb-1 text-gray-400" />
+            <p className="text-xs text-gray-600">Click to upload images</p>
+          </button>
+          
+          {uploadedImages.length > 0 && (
+            <div className="grid grid-cols-2 gap-2">
+              {uploadedImages.map((image, index) => (
+                <div key={index} className="relative group">
+                  <img 
+                    src={image.url} 
+                    alt={image.name}
+                    className="w-full h-20 object-cover rounded border cursor-pointer hover:opacity-80 transition-opacity"
+                    onClick={() => {
+                      // Logic to insert image into selected element
+                      if (selectedElement && onElementUpdate) {
+                        onElementUpdate(selectedElement, { 
+                          style: { backgroundImage: `url(${image.url})` }
+                        });
+                      }
+                    }}
+                  />
+                  <button
+                    onClick={() => setUploadedImages(prev => prev.filter((_, i) => i !== index))}
+                    className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                  >
+                    <Trash2 className="w-3 h-3" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </CollapsibleSection>
+
+      {/* Video Assets */}
+      <CollapsibleSection 
+        name="videoAssets" 
+        title="Videos" 
+        icon={Video}
+        variant="warning"
+      >
+        <div className="space-y-3">
+          <button
+            onClick={() => videoInputRef.current?.click()}
+            className="w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-500 transition-colors"
+          >
+            <Upload className="w-6 h-6 mx-auto mb-1 text-gray-400" />
+            <p className="text-xs text-gray-600">Click to upload videos</p>
+          </button>
+          
+          {uploadedVideos.length > 0 && (
+            <div className="space-y-2">
+              {uploadedVideos.map((video, index) => (
+                <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded border">
+                  <div className="flex items-center space-x-2">
+                    <Video className="w-4 h-4 text-purple-500" />
+                    <span className="text-xs font-medium truncate">{video.name}</span>
+                  </div>
+                  <button
+                    onClick={() => setUploadedVideos(prev => prev.filter((_, i) => i !== index))}
+                    className="text-red-500 hover:text-red-700 transition-colors"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </CollapsibleSection>
+
+      {/* Component Library */}
+      <CollapsibleSection 
+        name="components" 
+        title="Components" 
+        icon={Component}
+        variant="creative"
+      >
+        <div className="space-y-2">
+          {[
+            { name: 'Button', icon: MousePointer },
+            { name: 'Card', icon: Box },
+            { name: 'Header', icon: Layout },
+            { name: 'Footer', icon: Frame }
+          ].map((component, index) => (
+            <button
+              key={index}
+              className="w-full flex items-center space-x-2 p-2 text-left hover:bg-purple-50 rounded border border-transparent hover:border-purple-200 transition-all"
+              onClick={() => {
+                // Logic to add component
+                console.log('Adding component:', component.name);
+              }}
+            >
+              <component.icon className="w-4 h-4 text-purple-500" />
+              <span className="text-xs font-medium">{component.name}</span>
+            </button>
+          ))}
+        </div>
+      </CollapsibleSection>
+    </div>
+  );
+
   // Enhanced AI Tab with Redesign Assistant
   const renderAITab = () => (
     <div className="space-y-1">
