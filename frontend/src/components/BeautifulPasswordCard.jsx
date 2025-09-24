@@ -290,6 +290,15 @@ const BeautifulPasswordCard = ({ onLogin, isOpen, onClose }) => {
                 />
               </motion.button>
 
+              {/* Hidden submit button for form submission */}
+              <button
+                type="submit"
+                className="hidden"
+                disabled={isLoading || !password}
+              >
+                Submit
+              </button>
+
               <div className="text-center">
                 <p className="text-gray-500 text-xs">
                   Hint: The password is a popular startup phrase 🚀
