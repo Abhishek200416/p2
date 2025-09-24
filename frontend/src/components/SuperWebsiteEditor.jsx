@@ -192,13 +192,17 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
 
   // Enhanced logout with cleanup
   const handleLogout = () => {
+    console.log('handleLogout called - starting exit process');
+    
     // Show confirmation for unsaved changes
     if (autoSaveStatus === 'saving') {
       if (!window.confirm('Auto-save is in progress. Are you sure you want to exit?')) {
+        console.log('User cancelled exit due to auto-save in progress');
         return;
       }
     }
     
+    console.log('Proceeding with logout - setting states');
     setIsEditMode(false);
     setShowToolbar(false);
     setRightPanelOpen(false);
@@ -208,6 +212,7 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
     setDragMode(false);
     setShowGrid(false);
     
+    console.log('Cleaning up element attributes');
     // Clean up element attributes
     const elements = document.querySelectorAll('[data-editable="true"]');
     elements.forEach(element => {
@@ -220,6 +225,7 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
       element.style.cursor = '';
     });
     
+    console.log('Exit completed successfully');
     addNotification('Edit mode deactivated', 'info', 2000);
   };
 
