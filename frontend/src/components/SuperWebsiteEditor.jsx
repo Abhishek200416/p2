@@ -75,15 +75,28 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
       setIsEditMode(true);
       setShowPasswordCard(false);
       setShowToolbar(true);
+      setRightPanelOpen(true);
       
       // Initialize edit history
       setEditHistory([JSON.parse(JSON.stringify(content))]);
       setCurrentHistoryIndex(0);
       
+      // Add editing attributes to elements
+      addEditingAttributes();
+      
       return Promise.resolve();
     } else {
       return Promise.reject(new Error('Invalid password'));
     }
+  };
+
+  // Add editing attributes to all elements
+  const addEditingAttributes = () => {
+    const elements = document.querySelectorAll('section, div[class*="section"], header, main, footer, article');
+    elements.forEach((element, index) => {
+      element.setAttribute('data-editable', 'true');
+      element.setAttribute('data-element-id', `element-${index}`);
+    });
   };
 
   // Handle logout
