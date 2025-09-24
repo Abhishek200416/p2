@@ -254,7 +254,8 @@ const BeautifulPasswordCard = ({ onLogin, isOpen, onClose }) => {
               </div>
 
               <motion.button
-                type="submit"
+                type="button"
+                onClick={handleButtonClick}
                 disabled={isLoading || !password}
                 className="w-full relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 text-white py-3 px-6 rounded-xl font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/25"
                 whileHover={{ scale: 1.02 }}
