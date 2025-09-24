@@ -201,6 +201,8 @@ const EnhancedHero = React.forwardRef(({ content }, ref) => {
       </div>
     </section>
   );
-};
+});
+
+EnhancedHero.displayName = 'EnhancedHero';
 
 export default EnhancedHero;
