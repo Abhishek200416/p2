@@ -748,7 +748,7 @@ function App() {
   );
 
   return (
-    <BrowserRouter>
+    <BrowserRouter future={{ v7_startTransition: true }}>
       <div className="App" style={{ background: 'var(--bg)', color: 'var(--ink)', minHeight: '100vh' }}>
         {/* Video Intro */}
         {showVideoIntro && content.hero?.video?.src && (
