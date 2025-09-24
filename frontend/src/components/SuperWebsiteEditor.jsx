@@ -39,6 +39,10 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
   const [lastSaved, setLastSaved] = useState(null);
   const [selectedElement, setSelectedElement] = useState(null);
   const [hoverElement, setHoverElement] = useState(null);
+  const [rightPanelOpen, setRightPanelOpen] = useState(false);
+  const [contextMenu, setContextMenu] = useState({ isOpen: false, position: { x: 0, y: 0 } });
+  const [showGrid, setShowGrid] = useState(true);
+  const [showRulers, setShowRulers] = useState(true);
 
   const contentRef = useRef(content);
 
