@@ -125,7 +125,7 @@ const EnhancedFeedback = React.forwardRef(({ content }, ref) => {
 
   if (submitted) {
     return (
-      <section id="feedback" className="section">
+      <section ref={ref} id="feedback" className="section">
         <div className="portfolio-container">
           <div className="glass-card section-content animate-fade-in text-center py-12">
             <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-6" />
