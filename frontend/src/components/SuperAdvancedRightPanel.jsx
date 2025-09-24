@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ChevronRight, 
   ChevronLeft, 
+  ChevronDown,
+  ChevronUp,
   Layers, 
   Settings, 
   Image, 
@@ -10,6 +12,7 @@ import {
   Code2, 
   Sparkles,
   Eye,
+  EyeOff,
   Trash2,
   Upload,
   Download,
@@ -24,7 +27,22 @@ import {
   ZoomOut,
   Monitor,
   Tablet,
-  Smartphone
+  Smartphone,
+  Box,
+  Maximize2,
+  Minimize2,
+  RotateCcw,
+  Sliders,
+  Type,
+  ColorWheel,
+  Frame,
+  Wand2,
+  History,
+  FileText,
+  Zap,
+  Target,
+  Layers3,
+  Component
 } from 'lucide-react';
 import Editor from '@monaco-editor/react';
 
