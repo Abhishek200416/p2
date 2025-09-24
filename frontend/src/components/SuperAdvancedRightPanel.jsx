@@ -423,6 +423,7 @@ const SuperAdvancedRightPanel = ({
                 e.stopPropagation();
               }}
               className="px-4 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm rounded-lg hover:from-blue-600 hover:to-cyan-600 transition-all flex items-center justify-center cursor-pointer select-none"
+              data-editor-ui="true"
               style={{ 
                 minHeight: '40px',
                 userSelect: 'none',
