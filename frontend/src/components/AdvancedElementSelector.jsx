@@ -118,26 +118,43 @@ const AdvancedElementSelector = ({
 
   // Advanced dragging system
   const startDragging = useCallback((element, e) => {
-    if (!element) return;
+    if (!element || !element.parentElement) return;
 
     setIsDragging(true);
     const rect = element.getBoundingClientRect();
+    const parentRect = element.parentElement.getBoundingClientRect();
+    
     setDragOffset({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top
     });
 
-    // Make element draggable
-    element.style.position = 'absolute';
+    // Store original position and styles
+    const originalStyles = {
+      position: element.style.position,
+      left: element.style.left,
+      top: element.style.top,
+      zIndex: element.style.zIndex,
+      cursor: element.style.cursor,
+      transform: element.style.transform,
+      boxShadow: element.style.boxShadow
+    };
+
+    // Make element draggable with relative positioning to parent
+    if (element.style.position !== 'absolute') {
+      element.style.position = 'relative';
+    }
     element.style.zIndex = '9999';
     element.style.cursor = 'grabbing';
     element.style.transform = 'rotate(1deg) scale(1.02)';
     element.style.boxShadow = '0 20px 40px rgba(139, 92, 246, 0.3)';
 
     const handleMouseMove = (e) => {
-      if (element) {
-        element.style.left = (e.clientX - dragOffset.x) + 'px';
-        element.style.top = (e.clientY - dragOffset.y) + 'px';
+      if (element && element.parentElement) {
+        const newX = e.clientX - parentRect.left - dragOffset.x;
+        const newY = e.clientY - parentRect.top - dragOffset.y;
+        element.style.left = newX + 'px';
+        element.style.top = newY + 'px';
       }
     };
 
@@ -147,6 +164,8 @@ const AdvancedElementSelector = ({
         element.style.cursor = 'grab';
         element.style.transform = '';
         element.style.boxShadow = '';
+        // Keep the new position but restore other styles
+        element.style.zIndex = originalStyles.zIndex;
       }
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
