@@ -784,86 +784,208 @@ const SuperAdvancedRightPanel = ({
   );
 
   const renderAssetsTab = () => (
-    <div className="space-y-4">
-      {/* Video Assets */}
-      <div>
-        <div className="flex items-center justify-between mb-2">
-          <h3 className="text-sm font-medium">Videos</h3>
-          <button
-            onClick={() => videoInputRef.current?.click()}
-            className="px-2 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600 flex items-center"
-          >
-            <Upload className="w-3 h-3 mr-1" />
-            Upload
-          </button>
-        </div>
-        
-        <div className="space-y-2 max-h-40 overflow-y-auto">
-          {uploadedVideos.map((video) => (
-            <div key={video.id} className="flex items-center justify-between p-2 border rounded">
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-medium truncate">{video.filename}</p>
-                <p className="text-xs text-gray-500">{Math.round(video.size / 1024)} KB</p>
-              </div>
-              <div className="flex space-x-1">
-                <button
-                  onClick={() => deleteVideo(video.id)}
-                  className="p-1 text-red-600 hover:bg-red-50 rounded"
+    <div className="space-y-1">
+      {/* Video Assets Section */}
+      <CollapsibleSection 
+        name="videoAssets" 
+        title="Video Assets" 
+        icon={Video}
+        variant="primary"
+      >
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-gray-500">Manage video files</span>
+            <button
+              onClick={() => videoInputRef.current?.click()}
+              className="px-2 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600 flex items-center"
+            >
+              <Upload className="w-3 h-3 mr-1" />
+              Upload Video
+            </button>
+          </div>
+          
+          <div className="space-y-2 max-h-40 overflow-y-auto">
+            {uploadedVideos.length > 0 ? (
+              uploadedVideos.map((video) => (
+                <motion.div 
+                  key={video.id} 
+                  className="flex items-center justify-between p-2 bg-white border rounded hover:border-blue-300"
+                  whileHover={{ scale: 1.02 }}
                 >
-                  <Trash2 className="w-3 h-3" />
-                </button>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-medium truncate">{video.filename}</p>
+                    <p className="text-xs text-gray-500">{Math.round(video.size / 1024)} KB</p>
+                  </div>
+                  <div className="flex space-x-1">
+                    <button className="p-1 text-blue-600 hover:bg-blue-50 rounded" title="Preview">
+                      <Eye className="w-3 h-3" />
+                    </button>
+                    <button className="p-1 text-green-600 hover:bg-green-50 rounded" title="Use as Hero">
+                      <Download className="w-3 h-3" />
+                    </button>
+                    <button
+                      onClick={() => deleteVideo(video.id)}
+                      className="p-1 text-red-600 hover:bg-red-50 rounded"
+                      title="Delete"
+                    >
+                      <Trash2 className="w-3 h-3" />
+                    </button>
+                  </div>
+                </motion.div>
+              ))
+            ) : (
+              <div className="p-4 text-center border-2 border-dashed border-gray-200 rounded">
+                <Video className="w-6 h-6 mx-auto text-gray-400 mb-1" />
+                <p className="text-xs text-gray-500">No videos uploaded</p>
               </div>
-            </div>
-          ))}
+            )}
+          </div>
+          
+          <input
+            ref={videoInputRef}
+            type="file"
+            accept="video/*"
+            onChange={handleVideoUpload}
+            className="hidden"
+          />
         </div>
-        
-        <input
-          ref={videoInputRef}
-          type="file"
-          accept="video/*"
-          onChange={handleVideoUpload}
-          className="hidden"
-        />
-      </div>
+      </CollapsibleSection>
 
-      {/* Image Assets */}
-      <div>
-        <div className="flex items-center justify-between mb-2">
-          <h3 className="text-sm font-medium">Images</h3>
-          <button
-            onClick={() => fileInputRef.current?.click()}
-            className="px-2 py-1 bg-green-500 text-white text-xs rounded hover:bg-green-600 flex items-center"
-          >
-            <Upload className="w-3 h-3 mr-1" />
-            Upload
+      {/* Image Assets Section */}
+      <CollapsibleSection 
+        name="imageAssets" 
+        title="Image Assets" 
+        icon={Image}
+        variant="success"
+      >
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-gray-500">Project & content images</span>
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              className="px-2 py-1 bg-green-500 text-white text-xs rounded hover:bg-green-600 flex items-center"
+            >
+              <Upload className="w-3 h-3 mr-1" />
+              Upload Image
+            </button>
+          </div>
+          
+          {uploadedImages.length > 0 ? (
+            <div className="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto">
+              {uploadedImages.map((image) => (
+                <motion.div 
+                  key={image.id} 
+                  className="relative group"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <img
+                    src={`${backendUrl}${image.url}`}
+                    alt={image.filename}
+                    className="w-full h-16 object-cover rounded border border-gray-200"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity rounded flex items-center justify-center space-x-1">
+                    <button className="p-1 text-white hover:text-blue-300" title="Use Image">
+                      <Download className="w-3 h-3" />
+                    </button>
+                    <button className="p-1 text-white hover:text-red-300" title="Delete">
+                      <Trash2 className="w-3 h-3" />
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            <div className="p-4 text-center border-2 border-dashed border-gray-200 rounded">
+              <Image className="w-6 h-6 mx-auto text-gray-400 mb-1" />
+              <p className="text-xs text-gray-500">No images uploaded</p>
+            </div>
+          )}
+          
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            className="hidden"
+          />
+        </div>
+      </CollapsibleSection>
+
+      {/* Icon Library Section */}
+      <CollapsibleSection 
+        name="iconLibrary" 
+        title="Icon Library" 
+        icon={Zap}
+        variant="warning"
+      >
+        <div className="space-y-3">
+          <div className="text-xs text-gray-500 mb-2">Lucide React Icons</div>
+          
+          <div className="grid grid-cols-6 gap-1 max-h-32 overflow-y-auto">
+            {[Edit3, Settings, Layout, Palette, Code2, Sparkles, Eye, Move, Grid, Ruler, Target, Type].map((Icon, index) => (
+              <motion.button
+                key={index}
+                className="p-2 border rounded hover:bg-yellow-50 hover:border-yellow-300 flex items-center justify-center"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Icon className="w-4 h-4 text-gray-600" />
+              </motion.button>
+            ))}
+          </div>
+          
+          <button className="w-full px-2 py-1 bg-yellow-500 text-white text-xs rounded hover:bg-yellow-600">
+            Browse All Icons
           </button>
         </div>
-        
-        <div className="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto">
-          {uploadedImages.map((image) => (
-            <div key={image.id} className="relative group">
-              <img
-                src={`${backendUrl}${image.url}`}
-                alt={image.filename}
-                className="w-full h-16 object-cover rounded border"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity rounded flex items-center justify-center">
-                <button className="p-1 text-white hover:text-red-300">
-                  <Trash2 className="w-3 h-3" />
-                </button>
-              </div>
+      </CollapsibleSection>
+
+      {/* Font Assets Section */}
+      <CollapsibleSection 
+        name="fontAssets" 
+        title="Typography & Fonts" 
+        icon={Type}
+        variant="purple"
+      >
+        <div className="space-y-3">
+          <div>
+            <label className="block text-xs text-gray-500 mb-1">Font Family</label>
+            <select className="w-full px-2 py-1 text-xs border rounded">
+              <option>Inter (Default)</option>
+              <option>Roboto</option>
+              <option>Open Sans</option>
+              <option>Montserrat</option>
+              <option>Poppins</option>
+            </select>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <label className="block text-xs text-gray-500 mb-1">Font Size</label>
+              <select className="w-full px-2 py-1 text-xs border rounded">
+                <option>12px</option>
+                <option>14px</option>
+                <option>16px</option>
+                <option>18px</option>
+                <option>24px</option>
+              </select>
             </div>
-          ))}
+            <div>
+              <label className="block text-xs text-gray-500 mb-1">Font Weight</label>
+              <select className="w-full px-2 py-1 text-xs border rounded">
+                <option>Normal</option>
+                <option>Medium</option>
+                <option>Semibold</option>
+                <option>Bold</option>
+              </select>
+            </div>
+          </div>
+          
+          <div className="p-2 bg-gray-50 border rounded text-center">
+            <span className="text-sm">Sample Text Preview</span>
+          </div>
         </div>
-        
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/*"
-          onChange={handleImageUpload}
-          className="hidden"
-        />
-      </div>
+      </CollapsibleSection>
     </div>
   );
 
