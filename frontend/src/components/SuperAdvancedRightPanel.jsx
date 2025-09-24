@@ -1027,6 +1027,7 @@ const SuperAdvancedRightPanel = ({
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
+                    console.log('Tab clicked:', id, 'current tab:', activeTab);
                     setActiveTab(id);
                   }}
                   onMouseDown={(e) => {
