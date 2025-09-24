@@ -836,7 +836,12 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                   </button>
                   
                   <button
-                    onClick={handleLogout}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      console.log('Exit button clicked - calling handleLogout');
+                      handleLogout();
+                    }}
                     className="flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors"
                     title="Exit Edit Mode (Ctrl+E)"
                     data-editor-ui="true"
