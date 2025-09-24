@@ -145,7 +145,7 @@ const EnhancedContact = React.forwardRef(({ content }, ref) => {
 
   if (submitted) {
     return (
-      <section id="contact" className="section">
+      <section ref={ref} id="contact" className="section">
         <div className="portfolio-container">
           <div className="glass-card section-content animate-fade-in text-center py-12">
             <CheckCircle className="w-20 h-20 text-green-400 mx-auto mb-6" />
