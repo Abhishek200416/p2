@@ -323,6 +323,9 @@ backend:
       - working: false
         agent: "main"
         comment: "🔧 TESTING REQUIRED: CSS editor with Monaco integration, live CSS application, and existing style detection needs testing. Verify CSS changes apply in real-time."
+      - working: false
+        agent: "testing"
+        comment: "❌ CSS EDITOR INACCESSIBLE: Cannot test CSS editor functionality because right panel is not opening properly. CSS editor is implemented within the right panel's Code tab, but panel toggle button not found during testing. Monaco editor integration and live CSS application features cannot be verified due to panel accessibility issues."
 
   - task: "AI Redesign Assistant Integration"
     implemented: true
