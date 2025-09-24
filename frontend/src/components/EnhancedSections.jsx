@@ -409,4 +409,6 @@ export const Footer = React.forwardRef(({ content, isEditMode, saveContent, expo
       </div>
     </div>
   </footer>
-);
+));
+
+Footer.displayName = 'Footer';
