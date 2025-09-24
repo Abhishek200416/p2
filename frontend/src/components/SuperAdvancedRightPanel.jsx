@@ -630,9 +630,10 @@ const SuperAdvancedRightPanel = ({
   const renderTabContent = () => {
     switch (activeTab) {
       case 'layers': return renderLayersTab();
+      case 'properties': return renderPropertiesTab();
+      case 'assets': return renderAssetsTab();
       case 'code': return renderCodeTab();
       case 'ai': return renderAITab();
-      // Add other tabs as needed
       default: return <div className="p-4 text-center text-gray-500">Tab content coming soon...</div>;
     }
   };
