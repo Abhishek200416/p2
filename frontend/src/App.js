@@ -450,12 +450,12 @@ function App() {
           <div className="mb-8">
             <h3 className="heading-lg mb-6 font-display">Skills & Services</h3>
             <div className="skill-pills">
-              {content.freelance.services.map((service, index) => (
+              {content.freelance?.services?.map((service, index) => (
                 <span key={index} className="skill-pill group">
                   <CheckCircle className="inline w-4 h-4 mr-2 text-ok group-hover:text-acc-1 transition-colors" />
                   {service}
                 </span>
-              ))}
+              )) || []}
             </div>
           </div>
           
