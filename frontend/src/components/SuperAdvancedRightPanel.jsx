@@ -393,9 +393,14 @@ const SuperAdvancedRightPanel = ({
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
+                console.log('Drag Mode button clicked, selected element:', selectedElement);
                 if (selectedElement) startDragging(selectedElement);
               }}
               onMouseDown={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              onTouchStart={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
               }}
