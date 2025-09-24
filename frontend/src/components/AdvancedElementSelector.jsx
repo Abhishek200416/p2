@@ -76,6 +76,8 @@ const AdvancedElementSelector = ({
       if (selectedElement) {
         selectedElement.style.outline = '';
         selectedElement.style.outlineOffset = '';
+        selectedElement.removeAttribute('contenteditable');
+        selectedElement.removeAttribute('data-selected');
       }
 
       // Select new element
@@ -85,6 +87,15 @@ const AdvancedElementSelector = ({
       element.style.outline = '3px solid rgba(139, 92, 246, 0.8)';
       element.style.outlineOffset = '2px';
       element.setAttribute('data-selected', 'true');
+      
+      // Make text elements editable
+      if (element.tagName === 'H1' || element.tagName === 'H2' || 
+          element.tagName === 'H3' || element.tagName === 'P' || 
+          element.tagName === 'SPAN' || element.tagName === 'DIV' ||
+          element.tagName === 'A' || element.tagName === 'LI') {
+        element.setAttribute('contenteditable', 'true');
+        element.style.cursor = 'text';
+      }
     };
 
     // Add event listeners to all potential elements
