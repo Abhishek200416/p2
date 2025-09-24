@@ -120,6 +120,49 @@ const SuperAdvancedRightPanel = ({
   const fileInputRef = useRef(null);
   const videoInputRef = useRef(null);
 
+  // Handle file uploads
+  const handleImageUpload = useCallback((e) => {
+    const files = Array.from(e.target.files);
+    files.forEach((file) => {
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const newImage = {
+            name: file.name,
+            url: event.target.result,
+            size: file.size,
+            type: file.type
+          };
+          setUploadedImages(prev => [...prev, newImage]);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+    // Reset input
+    e.target.value = '';
+  }, []);
+
+  const handleVideoUpload = useCallback((e) => {
+    const files = Array.from(e.target.files);
+    files.forEach((file) => {
+      if (file.type.startsWith('video/')) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const newVideo = {
+            name: file.name,
+            url: event.target.result,
+            size: file.size,
+            type: file.type
+          };
+          setUploadedVideos(prev => [...prev, newVideo]);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+    // Reset input
+    e.target.value = '';
+  }, []);
+
   // Get existing CSS from selected element
   useEffect(() => {
     if (selectedElement) {
