@@ -11,16 +11,21 @@ const BeautifulPasswordCard = ({ onLogin, isOpen, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Form submitted with password:', password);
     setIsLoading(true);
     setError('');
 
     try {
+      console.log('Calling onLogin with password:', password);
       await onLogin(password);
+      console.log('onLogin completed successfully');
     } catch (err) {
+      console.error('onLogin failed:', err);
       setError('Invalid password. Please try again.');
       setShake(true);
       setTimeout(() => setShake(false), 500);
     } finally {
+      console.log('Setting isLoading to false');
       setIsLoading(false);
     }
   };
