@@ -31,7 +31,7 @@ export const SkillsSection = React.forwardRef(({ content }, ref) => (
         </h2>
         
         <div className="skill-pills">
-          {content.skills.map((skill, index) => (
+          {content.skills?.map((skill, index) => (
             <span key={index} className="skill-pill group">
               {skill}
             </span>
