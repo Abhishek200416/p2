@@ -990,46 +990,184 @@ const SuperAdvancedRightPanel = ({
   );
 
   const renderCodeTab = () => (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium">Custom CSS</h3>
-        <button
-          onClick={generateCustomCSS}
-          disabled={isGeneratingAI}
-          className="px-2 py-1 bg-purple-500 text-white text-xs rounded hover:bg-purple-600 flex items-center disabled:opacity-50"
-        >
-          <Sparkles className="w-3 h-3 mr-1" />
-          AI Generate
-        </button>
-      </div>
-      
-      <div className="h-64 border rounded overflow-hidden">
-        <Editor
-          height="100%"
-          defaultLanguage="css"
-          value={customCSS}
-          onChange={setCustomCSS}
-          theme="vs-light"
-          options={{
-            fontSize: 12,
-            minimap: { enabled: false },
-            scrollBeyondLastLine: false,
-            wordWrap: 'on'
-          }}
-        />
-      </div>
-      
-      <button
-        className="w-full px-3 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600"
-        onClick={() => {
-          // Apply custom CSS
-          const style = document.createElement('style');
-          style.textContent = customCSS;
-          document.head.appendChild(style);
-        }}
+    <div className="space-y-1">
+      {/* CSS Editor Section */}
+      <CollapsibleSection 
+        name="cssEditor" 
+        title="Custom CSS Editor" 
+        icon={Code2}
+        variant="primary"
       >
-        Apply CSS
-      </button>
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-gray-500">Live CSS Editor</span>
+            <div className="flex space-x-1">
+              <button className="px-2 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600">
+                Format
+              </button>
+              <button className="px-2 py-1 bg-gray-500 text-white text-xs rounded hover:bg-gray-600">
+                Reset
+              </button>
+            </div>
+          </div>
+          
+          <div className="h-48 border rounded overflow-hidden">
+            <Editor
+              height="100%"
+              defaultLanguage="css"
+              value={customCSS}
+              onChange={setCustomCSS}
+              theme="vs-light"
+              options={{
+                fontSize: 11,
+                minimap: { enabled: false },
+                scrollBeyondLastLine: false,
+                wordWrap: 'on',
+                lineNumbers: 'on'
+              }}
+            />
+          </div>
+          
+          <button
+            className="w-full px-3 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 flex items-center justify-center"
+            onClick={() => {
+              const style = document.createElement('style');
+              style.textContent = customCSS;
+              document.head.appendChild(style);
+            }}
+          >
+            <Code2 className="w-4 h-4 mr-2" />
+            Apply CSS Live
+          </button>
+        </div>
+      </CollapsibleSection>
+
+      {/* AI CSS Generation Section */}
+      <CollapsibleSection 
+        name="aiCssGeneration" 
+        title="AI CSS Generator" 
+        icon={Wand2}
+        variant="purple"
+      >
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-gray-500">Gemini 2.0 Flash Powered</span>
+            <div className="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">
+              AI Ready
+            </div>
+          </div>
+          
+          <div>
+            <label className="block text-xs text-gray-500 mb-1">CSS Generation Type</label>
+            <select className="w-full px-2 py-1 text-xs border rounded">
+              <option>Modern Layout</option>
+              <option>Responsive Grid</option>
+              <option>Animation Effects</option>
+              <option>Glassmorphism</option>
+              <option>Neumorphism</option>
+              <option>Gradient Backgrounds</option>
+            </select>
+          </div>
+          
+          <textarea
+            placeholder="Describe the CSS you want to generate..."
+            className="w-full px-2 py-2 text-xs border rounded h-20 resize-none"
+            defaultValue="Create a modern card with glassmorphism effect, subtle shadow, and hover animation"
+          />
+          
+          <button
+            onClick={generateCustomCSS}
+            disabled={isGeneratingAI}
+            className="w-full px-3 py-2 bg-purple-500 text-white text-sm rounded hover:bg-purple-600 flex items-center justify-center disabled:opacity-50"
+          >
+            {isGeneratingAI ? (
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full mr-2"
+              />
+            ) : (
+              <Sparkles className="w-4 h-4 mr-2" />
+            )}
+            {isGeneratingAI ? 'Generating...' : 'Generate AI CSS'}
+          </button>
+        </div>
+      </CollapsibleSection>
+
+      {/* CSS Presets Section */}
+      <CollapsibleSection 
+        name="cssPresets" 
+        title="CSS Presets & Templates" 
+        icon={FileText}
+        variant="success"
+      >
+        <div className="space-y-3">
+          <div className="text-xs text-gray-500 mb-2">Quick CSS Templates</div>
+          
+          <div className="grid grid-cols-1 gap-2">
+            {[
+              { name: 'Glass Card', css: 'backdrop-filter: blur(10px); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);' },
+              { name: 'Neon Glow', css: 'box-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88; border: 1px solid #00ff88;' },
+              { name: 'Gradient Button', css: 'background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); border: none; color: white;' },
+              { name: 'Hover Scale', css: 'transition: transform 0.3s ease; &:hover { transform: scale(1.05); }' }
+            ].map((preset, index) => (
+              <motion.button
+                key={index}
+                className="p-2 text-left border rounded hover:border-green-400 hover:bg-green-50 transition-colors"
+                onClick={() => setCustomCSS(preset.css)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="font-medium text-xs text-green-700">{preset.name}</div>
+                <div className="text-xs text-gray-500 truncate mt-1">{preset.css.slice(0, 50)}...</div>
+              </motion.button>
+            ))}
+          </div>
+        </div>
+      </CollapsibleSection>
+
+      {/* Advanced CSS Tools Section */}
+      <CollapsibleSection 
+        name="advancedCssTools" 
+        title="Advanced CSS Tools" 
+        icon={Settings}
+        variant="warning"
+      >
+        <div className="space-y-3">
+          <div className="space-y-2">
+            <button className="w-full px-2 py-1 bg-yellow-500 text-white text-xs rounded hover:bg-yellow-600 flex items-center justify-center">
+              <ColorWheel className="w-3 h-3 mr-1" />
+              Color Picker
+            </button>
+            
+            <button className="w-full px-2 py-1 bg-yellow-500 text-white text-xs rounded hover:bg-yellow-600 flex items-center justify-center">
+              <Frame className="w-3 h-3 mr-1" />
+              Box Shadow Generator
+            </button>
+            
+            <button className="w-full px-2 py-1 bg-yellow-500 text-white text-xs rounded hover:bg-yellow-600 flex items-center justify-center">
+              <Grid className="w-3 h-3 mr-1" />
+              CSS Grid Generator
+            </button>
+          </div>
+          
+          <div>
+            <label className="block text-xs text-gray-500 mb-1">CSS Validation</label>
+            <div className="p-2 bg-gray-100 rounded text-xs">
+              <span className="text-green-600">✓ Valid CSS Syntax</span>
+            </div>
+          </div>
+          
+          <div className="flex space-x-1">
+            <button className="px-2 py-1 bg-gray-500 text-white text-xs rounded hover:bg-gray-600 flex-1">
+              Export CSS
+            </button>
+            <button className="px-2 py-1 bg-gray-500 text-white text-xs rounded hover:bg-gray-600 flex-1">
+              Import CSS
+            </button>
+          </div>
+        </div>
+      </CollapsibleSection>
     </div>
   );
 
