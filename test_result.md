@@ -338,6 +338,9 @@ backend:
       - working: false
         agent: "main"
         comment: "🔧 TESTING REQUIRED: AI-powered redesign assistant with design patterns, color palette generation, and element redesign capabilities needs testing."
+      - working: false
+        agent: "testing"
+        comment: "❌ AI REDESIGN ASSISTANT INACCESSIBLE: Cannot test AI redesign features because they are located in the right panel's AI Assistant tab. Right panel not opening during testing prevents access to AI-powered redesign options, design patterns (Glassmorphism, Neumorphism, Gradient Flow, etc.), and color palette generation features."
 
   - task: "Drag and Drop System"
     implemented: true
