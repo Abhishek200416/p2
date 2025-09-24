@@ -1147,6 +1147,25 @@ const SuperAdvancedRightPanel = ({
           background: linear-gradient(to bottom, #5a67d8, #6b46c1);
         }
       `}</style>
+
+      {/* Hidden File Input Elements */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        multiple
+        onChange={handleImageUpload}
+        className="hidden"
+      />
+      
+      <input
+        ref={videoInputRef}
+        type="file"
+        accept="video/*"
+        multiple
+        onChange={handleVideoUpload}
+        className="hidden"
+      />
     </>
   );
 };
