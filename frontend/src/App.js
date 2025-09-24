@@ -476,7 +476,7 @@ function App() {
                   <IndianRupee className="w-6 h-6" />
                   {content.freelance?.pricing?.hourlyINR || 900}/hr
                 </div>
-                <div className="text-sm text-muted">~${content.freelance.pricing.hourlyUSD}/hr USD</div>
+                <div className="text-sm text-muted">~${content.freelance?.pricing?.hourlyUSD || 11}/hr USD</div>
               </div>
             </div>
             
