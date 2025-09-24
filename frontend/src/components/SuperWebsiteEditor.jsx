@@ -435,12 +435,14 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
+                            console.log('Undo button clicked');
                             handleUndo();
                           }}
                           disabled={currentHistoryIndex <= 0}
                           className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                           title="Undo (Ctrl+Z)"
                           data-editor-ui="true"
+                          type="button"
                         >
                           <Undo size={16} />
                         </button>
@@ -448,12 +450,14 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
+                            console.log('Redo button clicked');
                             handleRedo();
                           }}
                           disabled={currentHistoryIndex >= editHistory.length - 1}
                           className="p-2 hover:bg-gray-700 rounded text-gray-400 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                           title="Redo (Ctrl+Shift+Z)"
                           data-editor-ui="true"
+                          type="button"
                         >
                           <Redo size={16} />
                         </button>
