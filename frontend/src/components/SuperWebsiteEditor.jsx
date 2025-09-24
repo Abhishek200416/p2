@@ -262,27 +262,32 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
   const handleElementClick = (e) => {
     if (!isEditMode) return;
     
-    // Priority 1: Always allow data-editor-ui elements to work
+    // Priority 1: Always allow data-editor-ui elements to work - MOST IMPORTANT
     const editorUIElement = e.target.closest('[data-editor-ui="true"]');
     if (editorUIElement) {
-      return;
+      console.log('Editor UI element clicked, allowing normal behavior');
+      return; // Let the UI element handle its own click completely
     }
     
     // Priority 2: Allow buttons, inputs, and interactive elements
     const interactiveElement = e.target.closest('button, input, textarea, select, a[href], [role="button"], [tabindex]');
     if (interactiveElement) {
-      return;
+      console.log('Interactive element clicked, allowing normal behavior');
+      return; // Let interactive elements work normally
     }
     
-    // Priority 3: Allow panel and toolbar interactions
+    // Priority 3: Allow panel and toolbar interactions - EXPLICIT CHECK
     const panelElement = e.target.closest('.edit-toolbar, .right-panel, .context-menu, .monaco-editor, .fixed');
     if (panelElement) {
-      return;
+      console.log('Panel/toolbar element clicked, allowing normal behavior');
+      return; // Let panels and toolbars handle their own clicks
     }
     
-    // Handle editable content selection
-    const editableTarget = e.target.closest('[data-editable="true"]') || e.target;
+    // Only handle element selection for actual page content
+    const editableTarget = e.target.closest('[data-editable="true"]');
     if (editableTarget && !editableTarget.closest('[data-editor-ui="true"]')) {
+      console.log('Selecting page element:', editableTarget.tagName);
+      
       // Clear previous selection
       if (selectedElement && selectedElement !== editableTarget) {
         selectedElement.style.outline = '';
