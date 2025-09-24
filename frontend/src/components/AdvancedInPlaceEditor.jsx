@@ -956,7 +956,7 @@ const AdvancedInPlaceEditor = ({
       </div>
 
       {/* CSS for Animations */}
-      <style jsx>{`
+      <style>{`
         @keyframes dropSuccess {
           0% { transform: scale(1); }
           50% { transform: scale(1.05); }
