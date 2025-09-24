@@ -1036,6 +1036,7 @@ const SuperAdvancedRightPanel = ({
                       ? 'border-purple-500 text-purple-600 bg-purple-50/50'
                       : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-100/50'
                   }`}
+                  data-editor-ui="true"
                   style={{ 
                     minHeight: '60px',
                     userSelect: 'none',
