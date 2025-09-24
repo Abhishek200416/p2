@@ -477,16 +477,10 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
                         </span>
                       </div>
 
-                      {isAutoSaving && (
-                        <div className="flex items-center gap-2">
-                          <motion.div
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                            className="w-4 h-4 border-2 border-blue-400/30 border-t-blue-400 rounded-full"
-                          />
-                          <span className="text-sm text-blue-400">Auto-saving...</span>
-                        </div>
-                      )}
+                      {/* Auto-save status - non-reactive indicator */}
+                      <div id="auto-save-indicator" className="text-gray-400 text-xs">
+                        Ready to save
+                      </div>
 
                       {lastSaved && (
                         <span className="text-xs text-gray-500">
