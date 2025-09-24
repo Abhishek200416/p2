@@ -962,7 +962,8 @@ const SuperAdvancedRightPanel = ({
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 400, opacity: 0 }}
             transition={{ type: 'spring', damping: 20, stiffness: 200 }}
-            className="fixed right-0 top-0 h-full w-96 bg-white/95 backdrop-blur-xl border-l border-gray-200/50 shadow-2xl z-[1000] flex flex-col"
+            className="fixed right-0 top-0 h-full w-96 bg-white/95 backdrop-blur-xl border-l border-gray-200/50 shadow-2xl z-[1000] flex flex-col right-panel"
+            data-editor-ui="true"
             style={{
               background: 'linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)'
             }}
