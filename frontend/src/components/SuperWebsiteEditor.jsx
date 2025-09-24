@@ -136,6 +136,30 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
   const handleRightClick = (e) => {
     if (!isEditMode) return;
     
+    // Don't show context menu for UI elements
+    const isUIElement = e.target.closest(`
+      button,
+      [data-editor-ui="true"], 
+      .fixed,
+      [role="button"], 
+      .edit-toolbar, 
+      .right-panel, 
+      .context-menu,
+      .bg-gray-900,
+      .bg-white,
+      .border-gray-200,
+      input,
+      textarea,
+      select,
+      .monaco-editor
+    `.replace(/\s+/g, ''));
+    
+    const isInPanel = e.target.closest('[class*="fixed"], [class*="z-["], .edit-toolbar, .right-panel');
+    
+    if (isUIElement || isInPanel) {
+      return; // Don't show context menu for UI elements
+    }
+    
     e.preventDefault();
     const target = e.target.closest('[data-editable="true"]');
     
