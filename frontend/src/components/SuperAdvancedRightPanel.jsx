@@ -763,9 +763,24 @@ const SuperAdvancedRightPanel = ({
         variant="success"
       >
         <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-medium text-gray-700">Upload Images</span>
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              className="px-3 py-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs rounded-lg hover:from-green-600 hover:to-emerald-600 flex items-center gap-1"
+              data-editor-ui="true"
+              type="button"
+            >
+              <Upload className="w-3 h-3" />
+              + Add Images
+            </button>
+          </div>
+          
           <button
             onClick={() => fileInputRef.current?.click()}
             className="w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-500 transition-colors"
+            data-editor-ui="true"
+            type="button"
           >
             <Upload className="w-6 h-6 mx-auto mb-1 text-gray-400" />
             <p className="text-xs text-gray-600">Click to upload images</p>
@@ -791,6 +806,8 @@ const SuperAdvancedRightPanel = ({
                   <button
                     onClick={() => setUploadedImages(prev => prev.filter((_, i) => i !== index))}
                     className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                    data-editor-ui="true"
+                    type="button"
                   >
                     <Trash2 className="w-3 h-3" />
                   </button>
