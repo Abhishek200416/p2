@@ -16,7 +16,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 
-const EnhancedContact = ({ content }) => {
+const EnhancedContact = React.forwardRef(({ content }, ref) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
