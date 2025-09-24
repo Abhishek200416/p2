@@ -15,7 +15,7 @@ import {
   Target
 } from 'lucide-react';
 
-const EnhancedFeedback = ({ content }) => {
+const EnhancedFeedback = React.forwardRef(({ content }, ref) => {
   const [feedback, setFeedback] = useState({
     name: '',
     email: '',
