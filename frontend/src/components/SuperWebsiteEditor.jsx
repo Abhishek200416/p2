@@ -531,6 +531,7 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
             className={`
               ${isEditMode ? 'pt-16' : ''} 
               ${isEditMode ? 'edit-mode-active' : ''}
+              ${isEditMode ? 'relative z-20' : ''}
             `}
           >
             {children}
