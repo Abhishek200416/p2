@@ -373,8 +373,21 @@ const SuperAdvancedRightPanel = ({
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => selectedElement && startDragging(selectedElement)}
-              className="px-3 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all flex items-center justify-center"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (selectedElement) startDragging(selectedElement);
+              }}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              className="px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all flex items-center justify-center cursor-pointer select-none"
+              style={{ 
+                minHeight: '40px',
+                userSelect: 'none',
+                WebkitUserSelect: 'none'
+              }}
             >
               <Move className="w-3 h-3 mr-1" />
               Drag Mode
@@ -382,7 +395,21 @@ const SuperAdvancedRightPanel = ({
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-3 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs rounded-lg hover:from-blue-600 hover:to-cyan-600 transition-all flex items-center justify-center"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Clone Element clicked');
+              }}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              className="px-4 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm rounded-lg hover:from-blue-600 hover:to-cyan-600 transition-all flex items-center justify-center cursor-pointer select-none"
+              style={{ 
+                minHeight: '40px',
+                userSelect: 'none',
+                WebkitUserSelect: 'none'
+              }}
             >
               <Copy className="w-3 h-3 mr-1" />
               Clone Element
