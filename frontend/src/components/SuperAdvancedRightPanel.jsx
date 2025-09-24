@@ -104,6 +104,71 @@ const SuperAdvancedRightPanel = ({
   const fileInputRef = useRef(null);
   const videoInputRef = useRef(null);
 
+  // Toggle section expansion
+  const toggleSection = (sectionName) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [sectionName]: !prev[sectionName]
+    }));
+  };
+
+  // Collapsible Section Component
+  const CollapsibleSection = ({ 
+    name, 
+    title, 
+    icon: Icon, 
+    children, 
+    defaultExpanded = false,
+    variant = 'default' 
+  }) => {
+    const isExpanded = expandedSections[name] !== undefined ? expandedSections[name] : defaultExpanded;
+    
+    const variantStyles = {
+      default: 'bg-gray-50 border-gray-200',
+      primary: 'bg-blue-50 border-blue-200',
+      success: 'bg-green-50 border-green-200',
+      warning: 'bg-yellow-50 border-yellow-200',
+      danger: 'bg-red-50 border-red-200',
+      purple: 'bg-purple-50 border-purple-200'
+    };
+
+    return (
+      <div className={`border rounded-lg mb-3 overflow-hidden ${variantStyles[variant]}`}>
+        <button
+          onClick={() => toggleSection(name)}
+          className="w-full flex items-center justify-between p-3 text-left hover:bg-white/50 transition-colors"
+        >
+          <div className="flex items-center space-x-2">
+            <Icon className="w-4 h-4 text-gray-600" />
+            <span className="text-sm font-medium text-gray-800">{title}</span>
+          </div>
+          <motion.div
+            animate={{ rotate: isExpanded ? 180 : 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <ChevronDown className="w-4 h-4 text-gray-500" />
+          </motion.div>
+        </button>
+        
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className="overflow-hidden"
+            >
+              <div className="p-3 pt-0 bg-white/30">
+                {children}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    );
+  };
+
   // Load uploaded media on component mount
   useEffect(() => {
     loadUploadedMedia();
