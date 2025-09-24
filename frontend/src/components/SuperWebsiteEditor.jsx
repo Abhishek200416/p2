@@ -103,8 +103,62 @@ const SuperWebsiteEditor = ({ children, onContentChange, content, setContent }) 
   const handleLogout = () => {
     setIsEditMode(false);
     setShowToolbar(false);
+    setRightPanelOpen(false);
     setSelectedElement(null);
     setHoverElement(null);
+    setContextMenu({ isOpen: false, position: { x: 0, y: 0 } });
+  };
+
+  // Handle right-click context menu
+  const handleRightClick = (e) => {
+    if (!isEditMode) return;
+    
+    e.preventDefault();
+    const target = e.target.closest('[data-editable="true"]');
+    
+    if (target) {
+      setSelectedElement(target);
+      setContextMenu({
+        isOpen: true,
+        position: { x: e.clientX, y: e.clientY }
+      });
+    }
+  };
+
+  // Handle element click
+  const handleElementClick = (e) => {
+    if (!isEditMode) return;
+    
+    const target = e.target.closest('[data-editable="true"]');
+    if (target) {
+      setSelectedElement(target);
+      setContextMenu({ isOpen: false, position: { x: 0, y: 0 } });
+    }
+  };
+
+  // Handle element updates
+  const handleElementUpdate = (element, updates) => {
+    if (updates.styles) {
+      Object.entries(updates.styles).forEach(([property, value]) => {
+        element.style[property] = value;
+      });
+    }
+    
+    if (updates.dimensions) {
+      // Handle dimension updates if needed
+    }
+    
+    // Add to edit history
+    addToHistory();
+  };
+
+  // Add to edit history
+  const addToHistory = () => {
+    const newContent = JSON.parse(JSON.stringify(content));
+    const newHistory = editHistory.slice(0, currentHistoryIndex + 1);
+    newHistory.push(newContent);
+    setEditHistory(newHistory);
+    setCurrentHistoryIndex(newHistory.length - 1);
   };
 
   // Handle element actions from context menu
