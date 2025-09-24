@@ -222,6 +222,7 @@ const BeautifulPasswordCard = ({ onLogin, isOpen, onClose }) => {
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    onKeyPress={handleKeyPress}
                     className={`w-full px-4 py-3 bg-slate-800/50 border rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-200 pr-12 ${
                       error 
                         ? 'border-red-500 focus:ring-red-500/50' 
