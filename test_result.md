@@ -293,6 +293,9 @@ backend:
       - working: false
         agent: "main"
         comment: "🔧 TESTING REQUIRED: Right panel (advance menu) expand/collapse functionality needs testing. User reports issues with panel constantly reloading due to auto-save conflicts."
+      - working: false
+        agent: "testing"
+        comment: "❌ RIGHT PANEL ISSUES: Right panel toggle button (.fixed.top-20.right-4) not found during testing. Panel may not be rendering properly or button positioning/visibility issues. Auto-save conflicts appear to be resolved, but panel accessibility remains problematic. Panel tabs (Layers, Properties, Assets, Code, AI Assistant) not accessible due to panel not opening."
 
   - task: "Element Selection and Editing System"
     implemented: true
